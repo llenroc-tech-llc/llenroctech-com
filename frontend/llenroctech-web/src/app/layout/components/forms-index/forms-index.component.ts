@@ -6,7 +6,8 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   selector: 'app-forms-index',
   imports: [CommonModule, RouterModule],
-  templateUrl: './forms-index.component.html'
+  templateUrl: './forms-index.component.html',
+  styleUrl: './forms-index.component.scss'
 })
 export class FormsIndexComponent {
   heading = 'Forms';
