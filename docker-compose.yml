@@ -1,0 +1,9 @@
+services:
+  llenroctech-api:
+    build:
+      context: ./backend/llenroctech-api
+      dockerfile: ../../infrastructure/docker/llenroctech-api.Dockerfile
+    ports:
+      - "8080:8080"
+    profiles:
+      - backend
