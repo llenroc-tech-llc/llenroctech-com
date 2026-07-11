@@ -1,41 +1,44 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files
-
-# ───────────────────────────────
 # Node / Angular build outputs
-# ───────────────────────────────
-/dist
-/tmp
-/out-tsc
-/bazel-out
-/.angular/cache
-Ovro/dist/
-Ovro/.angular/
+dist/
+tmp/
+out-tsc/
+bazel-out/
+.angular/
 *.log
 
-# ───────────────────────────────
 # Dependencies
-# ───────────────────────────────
-/node_modules
-Ovro/node_modules/
-npm-debug.log
-yarn-error.log
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# ───────────────────────────────
 # Netlify
-# ───────────────────────────────
 .netlify/
 netlify/*.log
+netlify/functions/node_modules/
 
-# ───────────────────────────────
-# Environment files (DO NOT COMMIT SECRETS)
-# ───────────────────────────────
+# Environment files and local secrets
 .env
 .env.*
+!.env.example
 env
+*.local
+*.local.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*secret*
+*credentials*
+*service-account*
+supabase/.temp/
+supabase/.env
+supabase/config.json
+src/environments/environment*.local.ts
+frontend/llenroctech-web/src/environments/environment*.local.ts
 
-# ───────────────────────────────
-# IDEs / Editors
-# ───────────────────────────────
+# IDEs / editors
 .idea/
 .project
 .classpath
@@ -43,44 +46,21 @@ env
 *.launch
 .settings/
 *.sublime-workspace
-
-# VS Code
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-.history/*
+.history/
 
-# ───────────────────────────────
 # Miscellaneous
-# ───────────────────────────────
 .sass-cache/
 .connect.lock
-/coverage
-/libpeerconnection.log
+coverage/
+libpeerconnection.log
 testem.log
-/typings
+typings/
 
-# ───────────────────────────────
 # OS junk
-# ───────────────────────────────
 .DS_Store
 Thumbs.db
-# ───────────────────────────────
-# Supabase
-# ───────────────────────────────
-# Local env config (supabase URL, anon key, service role key, etc.)
-supabase/.temp/
-supabase/.env
-supabase/config.json
-
-# Angular environments (if you put real keys in them — only safe for anon key!)
-src/environments/environment*.local.ts
-
-# ───────────────────────────────
-# Functions local config
-# ───────────────────────────────
-netlify/functions/node_modules/
-netlify/functions/package-lock.json
-

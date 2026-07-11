@@ -1,19 +1,21 @@
 [functions]
-  node_bundler = "esbuild"
-  
+node_bundler = "esbuild"
+
 [build]
-  command   = "npm install && npm install --prefix Ovro && npm run build --prefix Ovro"
-  functions = "netlify/functions"
+base      = "frontend/llenroctech-web"
+command   = "npm ci --prefix ../.. && npm ci && npm run build"
+publish   = "dist/llenroc-angular/browser"
+functions = "../../netlify/functions"
 
 [build.environment]
-  NODE_VERSION = "20"
+NODE_VERSION = "20"
 
 [dev]
-  command       = "npm run start:netlify --prefix ./Ovro"
-  targetPort    = 4200     # Angular dev server
-  port          = 8888     # Netlify dev
-  functionsPort = 9991
-  autoLaunch    = true
+command       = "npm run start:netlify"
+targetPort    = 4200
+port          = 8888
+functionsPort = 9991
+autoLaunch    = true
 
 # Functions proxy (keep for dev + prod)
 [[redirects]]
