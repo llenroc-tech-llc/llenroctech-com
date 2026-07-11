@@ -41,6 +41,20 @@
                 <span>Technology Stack</span>
               </a>
 
+              <a class="list-group-item list-group-item-action"
+                 [ngClass]="{ active: currentSection === 'list-item-13' }"
+                 href="javascript:void(0);" (click)="scrollTo('list-item-13'); setActiveLink('list-item-13')">
+                <img class="ai-platform-nav-icon" src="assets/img/icons/ai-assistant-chip-24.svg" alt="AI Platform" />
+                <span>AI Platform</span>
+              </a>
+
+              <a class="list-group-item list-group-item-action"
+                 [ngClass]="{ active: currentSection === 'list-item-14' }"
+                 href="javascript:void(0);" (click)="scrollTo('list-item-14'); setActiveLink('list-item-14')">
+                <img src="assets/img/icons/home8.svg" alt="" />
+                <span>Knowledge Center</span>
+              </a>
+
 <!--              Template navigation temporarily hidden. Keep for later restoration. -->
 <!--              <a class="list-group-item list-group-item-action"-->
 <!--                 [ngClass]="{ active: currentSection === 'list-item-5' }"-->
@@ -105,6 +119,7 @@
                 <img src="assets/img/icons/privacy.svg" alt="" />
                 <span>Client & Talent Portal</span>
               </a>
+
             </div>
 
             <div class="img1 image-anime reveal" appGsapReveal>
@@ -194,6 +209,8 @@
             </div>
 
             <div class="space30"></div>
+
+            <ng-container *ngTemplateOutlet="platformAndKnowledgeSections"></ng-container>
 
 <!--            Website Templates and LLenroc Templates temporarily hidden. -->
 <!--            <div id="list-item-5">-->
@@ -346,6 +363,64 @@
             </section>
 
             <div class="space50"></div>
+
+            <ng-template #platformAndKnowledgeSections>
+            <section id="list-item-13" class="contact-section-area platform-section">
+              <div class="container">
+                <div class="contact-heading heading1">
+                  <h5><img src="assets/img/icons/yellow_circle_icon.svg" alt="">AI Platform (LAAP)</h5>
+                  <div class="space24"></div>
+                  <h2>Building the Future of</h2>
+                  <div class="space24"></div>
+                  <h2 class="head">Enterprise <span>AI</span></h2>
+                </div>
+
+                <div class="space32"></div>
+
+                <div class="contact-boxarea platform-panel">
+                  <h3>AI Platform</h3>
+                  <p class="section-intro">Explore the platform LLenroc Tech is building for intelligent, connected enterprise systems.</p>
+
+                  <div class="topic-grid" aria-label="AI Platform topics">
+                    <div class="topic-card" *ngFor="let topic of ['Overview', 'Architecture', 'AI Agents', 'MCP Servers', 'GraphQL', 'RAG', 'Enterprise Integrations', 'Roadmap', 'GitHub', 'Demo']">
+                      <i class="fa-solid fa-circle-nodes" aria-hidden="true"></i>
+                      <span>{{ topic }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <div class="space60"></div>
+
+            <section id="list-item-14" class="contact-section-area knowledge-section">
+              <div class="container">
+                <div class="contact-heading heading1">
+                  <h5><img src="assets/img/icons/yellow_circle_icon.svg" alt="">Knowledge Center</h5>
+                  <div class="space24"></div>
+                  <h2>Research, Learning &</h2>
+                  <div class="space24"></div>
+                  <h2 class="head"><span>Insights</span></h2>
+                </div>
+
+                <div class="space32"></div>
+
+                <div class="contact-boxarea platform-panel">
+                  <h3>Knowledge Center</h3>
+                  <p class="section-intro">A public learning hub for software engineering, enterprise architecture, research, and applied AI.</p>
+
+                  <div class="topic-grid" aria-label="Knowledge Center topics">
+                    <div class="topic-card" *ngFor="let topic of ['AI Research', 'Spring Boot', 'Angular', 'GraphQL', 'Enterprise Architecture', 'Case Studies', 'White Papers', 'Government Research', 'Grant Research', 'Blogs']">
+                      <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+                      <span>{{ topic }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <div class="space50"></div>
+            </ng-template>
 
           </div>
         </div>

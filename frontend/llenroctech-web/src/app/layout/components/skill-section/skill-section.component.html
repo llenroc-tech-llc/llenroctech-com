@@ -1,282 +1,41 @@
-<div class="skill-section-area">
+<section class="skill-section-area">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="skill-header heading1">
-          <h5 data-aos="fade-left" data-aos-duration="800">
-            <img src="assets/img/icons/yellow_circle_icon.svg" alt="">
-            Core Technologies
-          </h5>
+    <div class="skill-header heading1">
+      <h5 data-aos="fade-left" data-aos-duration="800">
+        <img src="assets/img/icons/yellow_circle_icon.svg" alt="">
+        Core Technologies
+      </h5>
+      <div class="space24"></div>
+      <h2 data-aos="fade-left" data-aos-duration="1000">Enterprise</h2>
+      <div class="space24"></div>
+      <h2 class="head" data-aos="fade-left" data-aos-duration="1100">
+        Technology <span>Stack</span>
+      </h2>
+    </div>
 
-          <div class="space24"></div>
+    <div class="space50"></div>
 
-          <h2 data-aos="fade-left" data-aos-duration="1000">
-            Enterprise
-          </h2>
+    <div class="technology-groups">
+      <section class="technology-group"
+               *ngFor="let group of technologyGroups; let i = index"
+               data-aos="fade-up"
+               [attr.data-aos-duration]="800 + (i * 100)">
+        <header class="group-header">
+          <div class="group-icon" aria-hidden="true">
+            <i [class]="group.icon"></i>
+          </div>
+          <div>
+            <h3>{{ group.title }}</h3>
+            <p>{{ group.description }}</p>
+          </div>
+        </header>
 
-          <div class="space24"></div>
-
-          <h2 class="head" data-aos="fade-left" data-aos-duration="1100">
-            Technology <span>Stack</span>
-          </h2>
+        <div class="technology-list">
+          <span class="technology-item"
+                style="color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; opacity: 1 !important;"
+                *ngFor="let technology of group.technologies">{{ technology }}</span>
         </div>
-
-        <div class="space80"></div>
-
-        <div class="row">
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="900">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/skill1.svg" alt="Angular">
-              </div>
-              <div class="space24"></div>
-              <h3>Angular</h3>
-              <div class="space16"></div>
-              <p>Enterprise Frontend Development</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="1000">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/skill2.svg" alt="TypeScript">
-              </div>
-              <div class="space24"></div>
-              <h3>TypeScript</h3>
-              <div class="space16"></div>
-              <p>Scalable Web Application Development</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="1100">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/skill3.svg" alt="Spring Boot">
-              </div>
-              <div class="space24"></div>
-              <h3>Spring Boot</h3>
-              <div class="space16"></div>
-              <p>Backend Services & APIs</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="1200">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/skill4.svg" alt="PostgreSQL">
-              </div>
-              <div class="space24"></div>
-              <h3>PostgreSQL</h3>
-              <div class="space16"></div>
-              <p>Relational Database Solutions</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="1000">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/skill5.svg" alt="Java">
-              </div>
-              <div class="space24"></div>
-              <h3>Java</h3>
-              <div class="space16"></div>
-              <p>Enterprise Application Development</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="1100">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/skill6.svg" alt="JavaScript" class="Wordpress">
-              </div>
-              <div class="space24"></div>
-              <h3>JavaScript</h3>
-              <div class="space16"></div>
-              <p>Modern Web Experiences</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="900">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/skill7.png" alt="Azure" class="Wordpress">
-              </div>
-              <div class="space24"></div>
-              <h3>Azure</h3>
-              <div class="space16"></div>
-              <p>Cloud Solutions & Deployment</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="1000">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/skill9.png" alt="AWS" class="Wordpress">
-              </div>
-              <div class="space24"></div>
-              <h3>AWS</h3>
-              <div class="space16"></div>
-              <p>Cloud Infrastructure & Services</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="1100">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/skill10.png" alt="Netlify" class="Wordpress">
-              </div>
-              <div class="space24"></div>
-              <h3>Netlify</h3>
-              <div class="space16"></div>
-              <p>Modern Web Hosting & Deployment</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="1200">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/skill11.png" alt="Supabase" class="Wordpress">
-              </div>
-              <div class="space24"></div>
-              <h3>Supabase</h3>
-              <div class="space16"></div>
-              <p>Backend Services & Database Platform</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="900">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/skill12.png" alt="Flyway" class="Wordpress">
-              </div>
-              <div class="space24"></div>
-              <h3>Flyway</h3>
-              <div class="space16"></div>
-              <p>Database Migrations & Versioning</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="1000">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/skill13.png" alt="GitHub Actions" class="Wordpress">
-              </div>
-              <div class="space24"></div>
-              <h3>GitHub Actions</h3>
-              <div class="space16"></div>
-              <p>CI/CD Automation</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="1100">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/graphql.svg" alt="">
-              </div>
-              <div class="space24"></div>
-              <h3>GraphQL</h3>
-              <div class="space16"></div>
-              <p>API Design & Data Integration</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="1200">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/restApi.svg" alt="">
-              </div>
-              <div class="space24"></div>
-              <h3>REST APIs</h3>
-              <div class="space16"></div>
-              <p>Enterprise System Integration</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="900">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/ionic.svg" alt="">
-              </div>
-              <div class="space24"></div>
-              <h3>Ionic & Capacitor</h3>
-              <div class="space16"></div>
-              <p>Cross-Platform Mobile Development</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="1000">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/docker.svg" alt="">
-              </div>
-              <div class="space24"></div>
-              <h3>Docker</h3>
-              <div class="space16"></div>
-              <p>Containerized Development & Delivery</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="1100">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/jenkins.svg" alt="">
-              </div>
-              <div class="space24"></div>
-              <h3>Jenkins</h3>
-              <div class="space16"></div>
-              <p>Build Automation & Deployment</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="1200">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/git.svg" alt="">
-              </div>
-              <div class="space24"></div>
-              <h3>Git</h3>
-              <div class="space16"></div>
-              <p>Source Control & Team Collaboration</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="900">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/sql.svg" alt="">
-              </div>
-              <div class="space24"></div>
-              <h3>SQL</h3>
-              <div class="space16"></div>
-              <p>Data Modeling & Query Optimization</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="1000">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/openTelementy.svg" alt="">
-              </div>
-              <div class="space24"></div>
-              <h3>OpenTelemetry</h3>
-              <div class="space16"></div>
-              <p>Observability, Logs & Tracing</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="zoom-out" data-aos-duration="1100">
-            <div class="skill-boxarea">
-              <div class="icons">
-                <img src="assets/img/icons/firebase.svg" alt="">
-              </div>
-              <div class="space24"></div>
-              <h3>Firebase</h3>
-              <div class="space16"></div>
-              <p>Mobile Testing & App Services</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      </section>
     </div>
   </div>
-</div>
+</section>
