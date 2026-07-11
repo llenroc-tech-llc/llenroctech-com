@@ -23,42 +23,5 @@
     <img src="assets/img/elements/elements1.png" alt="" class="elements1 keyframe5">
     <img src="assets/img/icons/arrow1.svg" alt="" class="arrow1">
   </a>
-<!-- AVATAR STACK + BADGE + TEXT -->
-<div class="avatar-row">
-  <!-- Show avatars + count only when there are reviews -->
-  <div class="images avatar-stack" *ngIf="reviewTotal > 0">
-    <ng-container *ngFor="let t of topAvatars; let i = index">
-      <div class="avatar" [style.zIndex]="10 - i"
-           [style.backgroundColor]="getColor(getInitial(t.author))">
-        {{ getInitial(t.author) }}
-      </div>
-    </ng-container>
-
-    <div class="avatar badge">{{ formatCount(reviewTotal) }}</div>
   </div>
-
-
-<!-- show only when there are zero reviews -->
-<button *ngIf="reviewTotal === 0"
-        class="vl-btn1 badge-cta"
-        type="button"
-        (click)="onWriteReview()">
-  + Write a review
-</button>
-
-
-
-  <!-- Copy -->
-  <ng-container *ngIf="reviewTotal > 0; else noReviews">
-    <div class="reviews-copy">
-      <div class="reviews-title">{{ formatCount(reviewTotal) }} reviews</div>
-      <div class="reviews-sub">({{ averageRating | number:'1.2-2' }} of 5)</div>
-    </div>
-  </ng-container>
-  <ng-template #noReviews>
-    <div class="reviews-copy">
-      <div class="reviews-title">Be the first to review</div>
-      <div class="reviews-sub">No ratings yet</div>
-    </div>
-  </ng-template>
 </div>

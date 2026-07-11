@@ -88,4 +88,79 @@ body.light-mode .payment-mini{
 /* Optional: small hover bump, same vibe as your CTAs */
 .ai-fab-btn:hover{ filter: brightness(1.05); }
 
+.ai-platform-nav-icon {
+  filter: brightness(0) invert(1);
+}
+
+.homepage-review-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 12px 0;
+}
+
+.homepage-review-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--ztc-text-text-1);
+}
+
+.homepage-review-copy span {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+@media (max-width: 575px) {
+  .homepage-review-cta {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.platform-panel .section-intro {
+  max-width: 720px;
+  margin: 14px 0 26px;
+  color: var(--ztc-text-text-1);
+  font-size: var(--ztc-font-size-font-s18);
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.topic-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 58px;
+  padding: 14px 16px;
+  border: 1px solid var(--ztc-border-border-2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--ztc-text-text-1);
+  font-weight: var(--ztc-weight-semibold);
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.topic-card i {
+  width: 18px;
+  color: var(--ztc-bg-btn-bg1);
+  text-align: center;
+}
+
+.topic-card:hover {
+  border-color: var(--ztc-bg-btn-bg1);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 700px) {
+  .topic-grid { grid-template-columns: 1fr; }
+}
+
 
