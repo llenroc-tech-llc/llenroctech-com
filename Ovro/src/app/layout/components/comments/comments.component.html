@@ -1,0 +1,78 @@
+<div class="blog-comments-area" data-aos="fade-left" data-aos-duration="900">
+  <div class="heading1">
+    <h5>
+      <img src="assets/img/icons/yellow_circle_icon.svg" alt="">
+      Comments
+    </h5>
+    <div class="space24"></div>
+    <h2>Join the Conversation</h2>
+  </div>
+
+  <div class="space24"></div>
+
+  <!-- add form -->
+  <div class="comments-boxarea add-form" data-aos="zoom-in" data-aos-duration="950">
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate [attr.aria-busy]="posting() ? 'true' : 'false'">
+      <div class="form-grid">
+        <input class="form-input"
+               type="text"
+               placeholder="Your name *"
+               formControlName="author"
+               [class.invalid]="isInvalid('author')"
+               required>
+        <textarea class="form-input"
+                  rows="3"
+                  placeholder="Say something… *"
+                  formControlName="text"
+                  [class.invalid]="isInvalid('text')"
+                  required></textarea>
+      </div>
+
+      <div class="err" *ngIf="isInvalid('author')">Please enter 2–60 characters.</div>
+      <div class="err" *ngIf="isInvalid('text')">Please add a comment.</div>
+
+      <div class="space12"></div>
+      <button class="vl-btn1" type="submit" [disabled]="form.invalid || posting()">
+        {{ posting() ? 'POSTING…' : 'POST COMMENT' }} <img src="assets/img/icons/mail1.svg" alt="">
+      </button>
+    </form>
+  </div>
+
+  <div class="space24"></div>
+
+  <!-- states -->
+  <div *ngIf="loading()">Loading…</div>
+  <div *ngIf="!loading() && error()" class="err">{{ error() }}</div>
+  <div *ngIf="!loading() && !comments().length && !error()" class="muted">Be the first to comment.</div>
+
+  <!-- list -->
+  <ng-container *ngIf="!loading() && comments().length">
+    <div class="comments-boxarea"
+         *ngFor="let c of comments(); let i = index"
+         data-aos="zoom-in"
+         [attr.data-aos-duration]="900 + (i % 4) * 100">
+
+      <div class="mans-area">
+        <div class="man">
+          <div class="avatar-circle" [style.background]="colorFor(c.author)">{{ initial(c.author) }}</div>
+        </div>
+        <div class="content">
+          <div class="author">{{ c.author }}</div>
+          <p class="muted">{{ c.createdAt | date:'MMM d, y, h:mm a' }}</p>
+        </div>
+      </div>
+
+      <div class="space12"></div>
+
+      <div class="comment-body" style="white-space: pre-wrap;">
+        {{ c.text }}
+      </div>
+
+      <div class="space8"></div>
+      <a *ngIf="mine(c.id) || admin()" class="reply" href="javascript:void(0);" (click)="remove(c.id)">
+      Delete
+      </a>
+
+    </div>
+  </ng-container>
+</div>

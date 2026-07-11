@@ -1,0 +1,15 @@
+[
+  {
+    "id": "llenroc-robolawn",
+    "name": "RoboLawn – Angular Azure Static Web App",
+    "author": "LLENROC TECH",
+    "thumbnail": "assets/llenroc/robolawn-thumb.png",
+    "cover": "assets/llenroc/robolawn-cover.png",
+
+    "livePreview": "https://ashy-meadow-088daff10.1.azurestaticapps.net/",
+    "url": "https://github.com/cornellreddick/robolawn",
+
+    "tags": ["Angular", "Azure SWA", "SPA"],
+    "description": "Set-and-forget lawn care demo built with Angular and deployed on Azure Static Web Apps (Free)."
+  }
+]

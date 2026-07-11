@@ -1,0 +1,13 @@
+/* Make small text readable on dark panels */
+.contact-boxarea small,
+.contact-boxarea .muted {
+  color: #cfe3e7;      /* light, high-contrast */
+  opacity: 0.95;       /* undo low-opacity themes */
+  font-weight: 500;    /* a bit bolder for legibility */
+}
+
+/* Optional: tiny spacing tweak so captions don't crowd inputs */
+.contact-boxarea .input-area > small {
+  display: inline-block;
+  margin-top: 6px;
+}

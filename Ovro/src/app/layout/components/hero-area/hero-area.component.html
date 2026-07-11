@@ -1,0 +1,64 @@
+
+<div class="hero-heading-area heading1">
+  <h5 data-aos="fade-left" data-aos-duration="800">
+    <img src="assets/img/icons/yellow_circle_icon.svg" alt="">
+    LLenroc Tech delivers enterprise software consulting, application modernization, and C2C technology solutions.
+
+  </h5>
+
+  <div class="space24"></div>
+  <h1 data-aos="fade-left" data-aos-duration="900">Building Scalable Software Solutions for </h1>
+  <div class="space24"></div>
+  <h1 class="head" data-aos="fade-left" data-aos-duration="1000">
+    Modern <span>Businesses</span>
+  </h1>
+
+  <div class="space24"></div>
+  <p data-aos="fade-left" data-aos-duration="1100">
+    Helping organizations build, modernize, and scale digital solutions that drive business growth and operational efficiency.
+  </p>
+
+  <div class="arrow" data-aos="fade-left" data-aos-duration="1200">
+  <a href="javascript:void(0);">
+    <img src="assets/img/elements/elements1.png" alt="" class="elements1 keyframe5">
+    <img src="assets/img/icons/arrow1.svg" alt="" class="arrow1">
+  </a>
+<!-- AVATAR STACK + BADGE + TEXT -->
+<div class="avatar-row">
+  <!-- Show avatars + count only when there are reviews -->
+  <div class="images avatar-stack" *ngIf="reviewTotal > 0">
+    <ng-container *ngFor="let t of topAvatars; let i = index">
+      <div class="avatar" [style.zIndex]="10 - i"
+           [style.backgroundColor]="getColor(getInitial(t.author))">
+        {{ getInitial(t.author) }}
+      </div>
+    </ng-container>
+
+    <div class="avatar badge">{{ formatCount(reviewTotal) }}</div>
+  </div>
+
+
+<!-- show only when there are zero reviews -->
+<button *ngIf="reviewTotal === 0"
+        class="vl-btn1 badge-cta"
+        type="button"
+        (click)="onWriteReview()">
+  + Write a review
+</button>
+
+
+
+  <!-- Copy -->
+  <ng-container *ngIf="reviewTotal > 0; else noReviews">
+    <div class="reviews-copy">
+      <div class="reviews-title">{{ formatCount(reviewTotal) }} reviews</div>
+      <div class="reviews-sub">({{ averageRating | number:'1.2-2' }} of 5)</div>
+    </div>
+  </ng-container>
+  <ng-template #noReviews>
+    <div class="reviews-copy">
+      <div class="reviews-title">Be the first to review</div>
+      <div class="reviews-sub">No ratings yet</div>
+    </div>
+  </ng-template>
+</div>

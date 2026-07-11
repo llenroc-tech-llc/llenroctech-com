@@ -1,0 +1,2 @@
+.body-overlay{ /* same styles as above */ }
+body:not(.show-bg-video) .body-overlay{ display: none; }

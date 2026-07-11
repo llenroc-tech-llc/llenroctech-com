@@ -1,0 +1,125 @@
+<div class="blog-section-area" id="blog-top">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <!-- Header -->
+        <div class="blog-header heading1">
+          <h5 data-aos="fade-left" data-aos-duration="900">
+            <img src="assets/img/icons/yellow_circle_icon.svg" alt="">Our Blog
+          </h5>
+          <div class="space24"></div>
+          <h2 data-aos="fade-left" data-aos-duration="1000">Our Latest Blog Idea</h2>
+          <div class="space24"></div>
+          <h2 class="head" data-aos="fade-left" data-aos-duration="1200">UI/UX <span>Trends</span></h2>
+
+          <!-- Admin bar -->
+            <div class="space12"></div>
+            <div style="display:flex;gap:10px;align-items:center;">
+              <!-- shows when NOT admin -->
+<!--              <button *ngIf="!admin()" type="button" class="vl-btn1" (click)="devLogin()">ADMIN SIGN IN</button>-->
+
+              <!-- shows when admin -->
+              <ng-container *ngIf="admin()">
+                <button type="button" class="vl-btn1" (click)="devLogout()">SIGN OUT</button>
+                <button type="button" class="vl-btn1" (click)="addPost()">ADD POST <img src="assets/img/icons/download1.svg" alt=""></button>
+              </ng-container>
+            </div>
+
+
+          <div class="space60"></div>
+
+          <!-- Cards -->
+          <div class="row">
+            <div class="col-lg-6 col-md-6" *ngFor="let b of visible(); let i = index">
+              <div class="blog-boxarea">
+                <div class="img1 reveal" appGsapReveal>
+                  <a [routerLink]="['/blog-single', b.slug]">
+                    <img
+                      [src]="b.hero_image_url || 'assets/img/all-images/blog/blog-img1.png'"
+                      [alt]="b.title || 'Post image'"
+                    />
+                  </a>
+
+                  <!-- edit/delete overlay (admin only) -->
+                  <div *ngIf="admin()" style="position:absolute; top:10px; right:10px; display:flex; gap:8px;">
+                    <a class="vl-btn1" [routerLink]="['/blog-single', b.slug, 'edit']">EDIT</a>
+                    <button type="button" class="vl-btn1" style="background:#9b2c2c" (click)="deletePost(b)">DELETE</button>
+                  </div>
+                </div>
+
+                <div class="content-area">
+                  <ul>
+                    <li><a href="javascript:void(0);">{{ b.category || 'General' }}</a></li>
+                    <li>
+                      <a href="javascript:void(0);">
+                        <i class="fa-regular fa-clock"></i> {{ b.minutes || 3 }} min read
+                      </a>
+                    </li>
+                  </ul>
+
+                  <div class="space16"></div>
+                  <a [routerLink]="['/blog-single', b.slug]">{{ b.title }}</a>
+
+                  <div class="space16"></div>
+                  <ul>
+                    <li>
+                      <a href="javascript:void(0);">
+                        <img
+                          *ngIf="b.author_avatar"
+                          class="author-avatar"
+                          [src]="b.author_avatar"
+                          [alt]="b.author || 'Author'"
+                        />
+                        {{ b.author || 'Cornell Reddick' }}
+                      </a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">
+                        <i class="fa-regular fa-calendar"></i>
+                        {{ b.published_at | date:'MMM d, y' }}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="space30"></div>
+
+            <!-- Pagination -->
+            <div class="pagination-area" *ngIf="totalPages() > 1">
+              <nav aria-label="Blog pagination">
+                <ul class="pagination justify-content-center ll-pagination">
+                  <li class="page-item" [class.disabled]="currentPage() === 1">
+                    <button class="page-link" (click)="prev()" aria-label="Previous">
+                      <i class="fa-solid fa-angle-left"></i>
+                    </button>
+                  </li>
+
+                  <li class="page-item" *ngFor="let p of pageBar()">
+                    <button
+                      *ngIf="p !== '…'; else ellipsis"
+                      type="button"
+                      class="page-link"
+                      [class.active]="p === currentPage()"
+                      (click)="goTo(+p)">
+                      {{ p }}
+                    </button>
+                    <ng-template #ellipsis><span class="page-link">…</span></ng-template>
+                  </li>
+
+                  <li class="page-item" [class.disabled]="currentPage() === totalPages()">
+                    <button class="page-link" (click)="next()" aria-label="Next">
+                      <i class="fa-solid fa-angle-right"></i>
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

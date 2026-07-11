@@ -1,0 +1,8 @@
+<!-- src/app/views/post-editor/post-editor-page.component.html -->
+<div class="container" style="max-width:900px;margin-top:28px;">
+  <div *ngIf="loading()">Loading…</div>
+
+  <ng-container *ngIf="!loading()">
+    <app-post-editor [post]="post()"></app-post-editor>
+  </ng-container>
+</div>

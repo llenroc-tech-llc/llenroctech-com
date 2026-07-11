@@ -1,0 +1,85 @@
+/* Brand colors (tweak to taste) */
+$brand-yellow: #f5b400;     /* your logo yellow */
+$ink: #0f1717;              /* dark text on yellow */
+$fg: #d6e4df;               /* light text */
+$bg: #10201f;               /* dark card bg */
+$stroke: #28423f;           /* subtle border */
+
+.ll-pagination {
+  gap: .25rem;
+
+  .page-item {
+    .page-link {
+      background: transparent;
+      border: 1px solid $stroke;
+      color: $fg;
+      line-height: 1;
+      padding: .5rem .75rem;
+      min-width: 2.25rem;
+      text-align: center;
+      border-radius: .5rem;
+
+      &:hover {
+        background: rgba($fg, .08);
+        color: #fff;
+        border-color: lighten($stroke, 8%);
+      }
+    }
+
+    &.disabled .page-link {
+      opacity: .4;
+      cursor: not-allowed;
+    }
+
+    &.active .page-link,
+    .page-link.active {
+      background: $brand-yellow;
+      border-color: $brand-yellow;
+      color: $ink;
+      font-weight: 700;
+    }
+  }
+
+  /* the “…” span */
+  .page-link:has(> span) {
+    pointer-events: none;
+    border: 1px dashed $stroke;
+  }
+}
+
+.author-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;      
+  object-fit: cover;      
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* src/app/layout/components/blog-section/blog-section.component.scss */
+.admin-overlay{
+  position:absolute; top:8px; right:8px; display:flex; gap:8px;
+}
+.mini-btn{
+  background: rgba(0,0,0,.55);
+  border:1px solid rgba(255,255,255,.2);
+  color:#fff; border-radius:14px; padding:6px 10px; font-weight:700;
+}
+.mini-btn.danger{ background:#6d1d1d; }
+
+.admin-bar { display:flex; gap:12px; }
+.vl-btn1.gray { background:#2f3542; }
+
+.login-panel { display:grid; gap:10px; max-width:420px; }
+
+.admin-overlay{
+  position:absolute; top:8px; right:8px; display:flex; gap:8px;
+}
+.mini-btn{
+  background: rgba(0,0,0,.55);
+  border:1px solid rgba(255,255,255,.2);
+  color:#fff; border-radius:14px; padding:6px 10px; font-weight:700;
+}
+.mini-btn.danger{ background:#6d1d1d; }
+
+

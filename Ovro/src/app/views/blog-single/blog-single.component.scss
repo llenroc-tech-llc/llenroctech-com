@@ -1,0 +1,254 @@
+/* =========================================
+   Blog Single (view + editor)
+   ========================================= */
+
+:host {
+  display: block;
+
+  /* shared gutter so title, meta, hero, body all align */
+  --blog-gutter: 24px;
+}
+@media (min-width: 1200px) {
+  :host { --blog-gutter: 32px; }
+}
+
+/* ---------- VIEW MODE ---------- */
+/* All right-column content is under .blog-right (added in template) */
+.blog-right {
+
+  /* neutralize nested bootstrap paddings that cause drift */
+  .container, .row, .col-lg-12 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .heading1 {
+    padding-left: var(--blog-gutter);
+    padding-right: var(--blog-gutter);
+
+    h5 {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #cfe5de;
+      opacity: .95;
+      img { width: 16px; height: 16px; }
+    }
+    h2 {
+      margin: 0;
+      font-size: clamp(28px, 5vw, 56px);
+      line-height: 1.1;
+      color: #fff;
+    }
+  }
+
+  .blog-details-content {
+    .list {
+      padding-left: var(--blog-gutter);
+      padding-right: var(--blog-gutter);
+
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      align-items: center;
+
+      ul {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li, li a { color: #cfe5de; text-decoration: none; }
+
+        img[alt="author"] {
+          width: 28px; height: 28px; border-radius: 50%;
+          object-fit: cover; margin-right: 6px;
+        }
+      }
+    }
+
+    /* Make the hero image share the same left/right start */
+    .img1 {
+      margin-left: var(--blog-gutter);
+      margin-right: var(--blog-gutter);
+
+      img { width: 100%; display: block; border-radius: 12px; }
+    }
+  }
+
+  .blog-body {
+    padding-left: var(--blog-gutter);
+    padding-right: var(--blog-gutter);
+
+    :is(p, h2, h3, h4, ul, ol, blockquote) { margin-bottom: 16px; }
+
+    blockquote {
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .08);
+      padding: 16px 18px;
+      border-radius: 12px;
+      color: #e6f2ee;
+    }
+  }
+
+  .tags-social {
+    padding-left: var(--blog-gutter);
+    padding-right: var(--blog-gutter);
+
+    display: flex; justify-content: space-between; align-items: center;
+
+    .tags ul, .social ul {
+      display: flex; gap: 10px; list-style: none; margin: 0; padding: 0;
+    }
+    .tags ul li:first-child, .social ul li:first-child { color:#cfe5de; opacity:.9; }
+  }
+
+  /* Contact block niceties (view mode) */
+  #list-item-8 .contact-section-area .container { padding-top: 8px; }
+  #list-item-8 .footer-area { display:flex; justify-content:space-between; align-items:center; }
+  #list-item-8 input[type="text"], #list-item-8 input[type="email"] {
+    text-overflow: ellipsis; white-space: nowrap; overflow: hidden;
+  }
+}
+
+/* ======================================================
+   EDITOR (Create/Edit) — single column
+   ====================================================== */
+
+.blog-editor {
+
+  /* limit max line length so hero + form feel “wide but comfortable” */
+  .editor-max {
+    max-width: 1100px;        /* tweak to taste */
+    margin: 0 auto;
+  }
+
+  /* easy reusable gutter padders */
+  .gpad { padding-left: var(--blog-gutter); padding-right: var(--blog-gutter); }
+  .gpad-img { padding-left: var(--blog-gutter); padding-right: var(--blog-gutter); }
+
+  /* Title/meta/hero/content use same gutter for perfect alignment */
+  .post-title { 
+    margin: 0 0 8px; 
+    font-size: clamp(28px, 5vw, 56px); 
+    line-height: 1.1; 
+    color: #fff; 
+  }
+
+  .post-meta  { 
+    list-style: none; 
+    padding: 0; 
+    margin: 0 0 16px; 
+    display: flex; 
+    gap: 16px; 
+    flex-wrap: wrap; 
+    color: #cfe5de; 
+    opacity: .95; 
+  }
+
+  .hero img   { width: 100%; display: block; border-radius: 12px; }
+
+  .blog-content :is(p, h2, h3, h4, ul, ol, blockquote) { margin-bottom: 16px; }
+  .blog-content blockquote {
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid rgba(255, 255, 255, .08);
+    padding: 16px 18px;
+    border-radius: 12px;
+    color: #e6f2ee;
+  }
+
+  /* The form card below the hero */
+  .editor-card {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-top: 20px;
+  }
+
+  .form-grid { display: grid; gap: 14px; }
+
+  /* Inputs (same feel as Comments / Contact) */
+  .form-input,
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="datetime-local"],
+  input[type="url"],
+  textarea {
+    width: 100%;
+    min-height: 56px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, .08);
+    color: #eaeaea;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s, background .15s;
+  }
+  textarea { min-height: 150px; height: auto; resize: vertical; }
+
+  .form-input::placeholder,
+  input::placeholder,
+  textarea::placeholder { color: rgba(255,255,255,.6); }
+
+  input:focus,
+  textarea:focus {
+    border-color: #ffae00;
+    box-shadow: 0 0 0 3px rgba(255,174,0,.15);
+    background: #121617;
+  }
+
+  /* File input button styled to match */
+  input[type="file"] {
+    padding: 0; height: auto; background: transparent; border: none;
+  }
+  input[type="file"]::file-selector-button,
+  input[type="file"]::-webkit-file-upload-button {
+    padding: 8px 12px;
+    margin-right: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,.16);
+    background: rgba(255,255,255,.12);
+    color: #eaeaea;
+    cursor: pointer;
+  }
+
+  .form-label { color: rgba(255,255,255,.9); font-weight: 600; margin-top: 2px; }
+  .thumb { max-width: 100%; border-radius: 10px; display: block; }
+  .muted { color: rgba(255,255,255,.7); }
+
+  .btn-row { display:flex; gap:10px; justify-content:flex-end; margin-top: 10px; }
+  .vl-btn1.gray { background:#2f3542; }
+  .vl-btn1[disabled] { opacity:.65; cursor:not-allowed; pointer-events:none; }
+}
+
+/* Admin toolbar: lives under the title, aligned with the same gutter */
+.admin-toolbar {
+  display: flex;
+  gap: 10px;
+  padding-left: var(--blog-gutter);
+  padding-right: var(--blog-gutter);
+  margin: 12px 0 4px;
+}
+
+/* Button sizing variant to keep them compact */
+.vl-btn1.small {
+  padding: 8px 16px;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 999px;
+}
+
+/* Danger color variant without weird borders */
+.vl-btn1.danger {
+  background: #d34a4a;
+  color: #fff;
+  border-color: rgba(255,255,255,.08);
+}
+.vl-btn1.danger:hover {
+  background: #b83a3a;
+}

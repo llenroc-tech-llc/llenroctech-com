@@ -1,0 +1,179 @@
+<!-- ===== CHECKOUT (single card) ===== -->
+<div class="contact-section-area" data-aos="fade-left" data-aos-duration="900">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="contact-heading heading1">
+          <h5><img src="assets/img/icons/yellow_circle_icon.svg" alt=""> Checkout</h5>
+          <div class="space24"></div>
+          <h2>Have Any Project in</h2>
+          <div class="space24"></div>
+          <h2 class="head">Mind, <span>Complete Payment</span></h2>
+        </div>
+
+        <div class="space50"></div>
+
+        <!-- ONE CARD ONLY -->
+        <div class="contact-boxarea" data-aos="zoom-in" data-aos-duration="1000">
+          <h3>Choose Payment Method</h3>
+          <div class="space12"></div>
+
+          <!-- Amount -->
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="input-area">
+                <div class="pill-row">
+                  <button type="button" class="vl-btn1 pill" (click)="setAmount(1000)">$10</button>
+                  <button type="button" class="vl-btn1 pill" (click)="setAmount(2500)">$25</button>
+                  <button type="button" class="vl-btn1 pill" (click)="setAmount(5000)">$50</button>
+                  <button type="button" class="vl-btn1 pill" (click)="setAmount(10000)">$100</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="input-area amount-prefix">
+                <input
+                  type="number"
+                  name="amountUsd"
+                  placeholder="Custom Amount (USD)"
+                  [(ngModel)]="amountUsd"
+                  (ngModelChange)="onAmountChanged()
+                  "
+                  class="amount-input"
+                  min="1"
+                  step="1" />
+              </div>
+            </div>
+          </div>
+
+          <div class="space12"></div>
+
+          <!-- Provider tiles -->
+          <div class="method-tabs" role="tablist" aria-label="Select a payment method">
+            <button class="vl-btn1 tab-tile square has-icon"
+                    [class.active]="tab==='card'"
+                    (click)="selectTab('card')"
+                    role="tab"
+                    [attr.aria-selected]="tab==='card'"
+                    [attr.aria-pressed]="tab==='card'">
+              <span class="ico"><img src="assets/img/icons/card.svg" alt=""></span>
+              <span class="lbl">Card</span>
+            </button>
+
+            <button class="vl-btn1 tab-tile square has-icon"
+                    [class.active]="tab==='paypal'"
+                    (click)="selectTab('paypal')"
+                    role="tab"
+                    [attr.aria-selected]="tab==='paypal'"
+                    [attr.aria-pressed]="tab==='paypal'">
+              <span class="ico">
+                <img src="assets/img/icons/paypal.svg" alt="">
+                <img src="assets/img/icons/venmo-badge.svg" class="badge" alt="">
+              </span>
+              <span class="lbl">PayPal / Venmo</span>
+            </button>
+
+            <button class="vl-btn1 tab-tile square has-icon"
+                    [class.active]="tab==='wallets'"
+                    (click)="selectTab('wallets')"
+                    role="tab"
+                    [attr.aria-selected]="tab==='wallets'"
+                    [attr.aria-pressed]="tab==='wallets'">
+              <span class="ico duo">
+                <img src="assets/img/icons/applepay.svg" alt="">
+                <img src="assets/img/icons/googlepay.svg" alt="">
+              </span>
+              <span class="lbl">Apple / Google Pay</span>
+            </button>
+          </div>
+
+          <div class="space12"></div>
+
+          <!-- CARD tab (billing + card details) -->
+          <form *ngIf="tab==='card'" (ngSubmit)="payInline($event)" novalidate autocomplete="off">
+            <!-- Billing -->
+            <div class="row">
+              <div class="col-lg-6 col-md-6">
+                <div class="input-area">
+                  <input type="text" placeholder="Full Name" [(ngModel)]="name" name="name" />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="input-area">
+                  <input type="email" placeholder="Email" [(ngModel)]="email" name="email" />
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="input-area">
+                  <input type="text" placeholder="Address line 1" [(ngModel)]="address1" name="address1" />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="input-area">
+                  <input type="text" placeholder="Address line 2" [(ngModel)]="address2" name="address2" />
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="input-area">
+                  <input type="text" placeholder="City" [(ngModel)]="city" name="city" />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="input-area">
+                  <input type="text" placeholder="State/Province" [(ngModel)]="state" name="state" />
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="input-area">
+                  <input type="text" placeholder="Postal code" [(ngModel)]="postal" name="postal" />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="input-area">
+                  <input type="text" placeholder="Country" [(ngModel)]="country" name="country" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Card details (Stripe injects Card number / Expiry / CVC here) -->
+            <div class="input-area">
+              <label class="form-label" for="payment-element">Card Details</label>
+              <div id="payment-element"></div>   <!-- absolutely nothing between the tags -->
+              <small class="muted">Secure • PCI compliant • Powered by Stripe</small>
+            </div>
+
+            <div class="input-area">
+              <button class="vl-btn1" type="submit" [disabled]="busy">
+                PAY NOW <img src="assets/img/icons/payment-dollar.svg" alt="">
+              </button>
+            </div>
+
+            <small class="muted">Tabs (Card, Cash App Pay, Affirm, Afterpay) appear when eligible.</small>
+          </form>
+
+          <!-- PAYPAL/VENMO tab -->
+          <div *ngIf="tab==='paypal'">
+            <div class="input-area"><div id="paypal-buttons"></div></div>
+            <small class="muted">You’ll complete details in the PayPal popup. Venmo appears automatically when eligible.</small>
+          </div>
+
+          <!-- APPLE/GOOGLE PAY tab -->
+          <div *ngIf="tab==='wallets'">
+            <div class="input-area"><div id="wallets-button"></div></div>
+            <small class="muted">Shows only on eligible devices/browsers.</small>
+          </div>
+
+          <div class="space12"></div>
+          <div *ngIf="err" class="alert error">{{ err }}</div>
+        </div>
+
+        <div class="space50"></div>
+
+      </div>
+    </div>
+  </div>
+</div>

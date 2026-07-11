@@ -1,0 +1,155 @@
+<!--===== CONTRACT INTAKE STARTS =======-->
+<div class="contact-section-area" data-aos="fade-left" data-aos-duration="900">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="contact-heading heading1">
+          <h5><img src="assets/img/icons/yellow_circle_icon.svg" alt="">Contract Intake</h5>
+          <div class="space24"></div>
+          <h2>Have a project</h2>
+          <div class="space24"></div>
+          <h2 class="head">Ready? <span>Let’s Draft It</span></h2>
+        </div>
+
+        <div class="space50"></div>
+
+        <div class="contact-boxarea" data-aos="zoom-in" data-aos-duration="1000">
+          <h3>{{ heading }}</h3>
+          <div class="space12"></div>
+
+          <form [formGroup]="form" (ngSubmit)="onSubmit($event)" novalidate [attr.aria-busy]="submitting ? 'true' : 'false'">
+
+            <!-- Honeypot -->
+            <p class="hidden" style="display:none" aria-hidden="true">
+              <label>
+                Don’t fill this out:
+                <input name="bot-field" formControlName="botField" tabindex="-1" autocomplete="off" />
+              </label>
+            </p>
+
+            <div class="row">
+              <div class="col-lg-6 col-md-6">
+                <div class="input-area">
+                  <input type="text" placeholder="Client Name *"
+                         formControlName="ClientName"
+                         [class.invalid]="isInvalid('ClientName')" required />
+                  <small *ngIf="isInvalid('ClientName')" class="error">Please enter at least 2 characters.</small>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="input-area">
+                  <input type="email" placeholder="Client Email *"
+                         formControlName="ClientEmail"
+                         [class.invalid]="isInvalid('ClientEmail')" required />
+                  <small *ngIf="isInvalid('ClientEmail')" class="error">Enter a valid email.</small>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="input-area">
+                  <input type="text" placeholder="Client Title (optional)"
+                         formControlName="ClientTitle" />
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="input-area">
+                  <input type="text" placeholder="Governing Law County *"
+                         formControlName="GoverningLawCounty"
+                         [class.invalid]="isInvalid('GoverningLawCounty')" required />
+                  <small *ngIf="isInvalid('GoverningLawCounty')" class="error">Required.</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="input-area">
+                  <textarea placeholder="Project Scope *" rows="5"
+                            formControlName="ProjectScope"
+                            [class.invalid]="isInvalid('ProjectScope')" required></textarea>
+                  <small *ngIf="isInvalid('ProjectScope')" class="error">Tell me a little more (min 10 chars).</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dates & fee row -->
+            <div class="row">
+              <div class="col-lg-4 col-md-6">
+                <div class="input-area">
+                  <label for="ProjectFee">Project Fee (USD) *</label>
+                  <input id="ProjectFee" type="number" placeholder="e.g., 5000"
+                         formControlName="ProjectFee"
+                         [class.invalid]="isInvalid('ProjectFee')" min="0" step="1" required />
+                  <small *ngIf="isInvalid('ProjectFee')" class="error">Enter a non-negative amount.</small>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="input-area">
+                  <label for="EffectiveDate">Effective Date *</label>
+                  <input id="EffectiveDate" type="date"
+                         formControlName="EffectiveDate"
+                         [class.invalid]="isInvalid('EffectiveDate')" required />
+                  <small *ngIf="isInvalid('EffectiveDate')" class="error">Choose an effective date.</small>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="input-area">
+                  <label for="StartDate">Start Date *</label>
+                  <input id="StartDate" type="date"
+                         formControlName="StartDate"
+                         [class.invalid]="isInvalid('StartDate')" required />
+                  <small *ngIf="isInvalid('StartDate')" class="error">Choose a start date.</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-4 col-md-6">
+                <div class="input-area">
+                  <label for="EndDate">End Date *</label>
+                  <input id="EndDate" type="date"
+                         formControlName="EndDate"
+                         [class.invalid]="isInvalid('EndDate')" required />
+                  <small *ngIf="isInvalid('EndDate')" class="error">Choose an end date.</small>
+                  <small *ngIf="form.errors?.['dateOrder'] && (form.touched || submitting)" class="error">
+                    End Date must be on or after Start Date.
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-12">
+              <div class="input-area">
+                <button type="submit" class="vl-btn1" [disabled]="submitting || form.invalid">
+                  {{ submitting ? 'Creating…' : 'Create Draft' }}
+                  <img src="assets/img/icons/mail1.svg" alt="Icon" />
+                </button>
+              </div>
+            </div>
+
+            <div class="space16"></div>
+
+            <div *ngIf="sent" class="alert success" role="status" aria-live="polite">
+              <span>Draft created. Check your email and OneDrive (/Contracts/PendingPDF).</span>
+              <button type="button" class="alert-close" (click)="dismiss('sent')" aria-label="Close">✕</button>
+            </div>
+
+            <div *ngIf="failed" class="alert error" role="alert" aria-live="assertive">
+              <span>Something went wrong. Please try again.</span>
+              <button type="button" class="alert-close" (click)="dismiss('failed')" aria-label="Close">✕</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="space50"></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== CONTRACT INTAKE ENDS =======-->

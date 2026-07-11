@@ -1,0 +1,155 @@
+<div class="header-site-icon">
+  <div class="slide-bar slide-bar1" [class.show]="isSidebarVisible">
+      <div class="sidebar-info">
+          <div class="sidebar-logo">
+              <a href="index.html">
+                  <img src="assets/img/logo/llenroc_logo_yellow.png" alt="logo">
+              </a>
+              <div class="close-mobile-menu" (click)="closeSidebar()">
+                  <a><i class="fa-solid fa-xmark"></i></a>
+              </div>
+          </div>
+          <div class="sidebar-content">
+              <ul>
+             <li>
+  <a href="#list-item-1"
+     [class.active]="currentSection === 'list-item-1'"
+     (click)="onNavClick('list-item-1', $event)">Home</a>
+</li>
+<li>
+  <a href="#list-item-2"
+     [class.active]="currentSection === 'list-item-2'"
+     (click)="onNavClick('list-item-2', $event)">About Us</a>
+</li>
+<li>
+  <a href="#list-item-3"
+     [class.active]="currentSection === 'list-item-3'"
+     (click)="onNavClick('list-item-3', $event)">Service</a>
+</li>
+<li>
+  <a href="#list-item-4"
+     [class.active]="currentSection === 'list-item-4'"
+     (click)="onNavClick('list-item-4', $event)">Skill</a>
+</li>
+<li>
+  <a href="#list-item-5"
+     [class.active]="currentSection === 'list-item-5'"
+     (click)="onNavClick('list-item-5', $event)">Portfolio</a>
+</li>
+<li>
+  <a href="#list-item-5"
+     [class.active]="currentSection === 'list-item-6'"
+     (click)="onNavClick('list-item-6', $event)">LLenroc Custom Portfolio</a>
+</li>
+<li>
+  <a href="#list-item-6"
+     [class.active]="currentSection === 'list-item-7'"
+     (click)="onNavClick('list-item-7', $event)">Testimonial</a>
+</li>
+<li>
+  <a href="#list-item-7"
+     [class.active]="currentSection === 'list-item-8'"
+     (click)="onNavClick('list-item-8', $event)">Blogs</a>
+</li>
+<li>
+  <a href="#list-item-8"
+     [class.active]="currentSection === 'list-item-9'"
+     (click)="onNavClick('list-item-9', $event)">Contact</a>
+</li>
+<li>
+  <a href="#list-item-8"
+     [class.active]="currentSection === 'list-item-10'"
+     (click)="onNavClick('list-item-10', $event)">AI Assistant</a>
+</li>
+<li>
+    <a [routerLink]="['/checkout']"
+     routerLinkActive="active"
+     [routerLinkActiveOptions]="{ exact: true }">
+    Payment
+  </a>
+</li>
+<li>
+    <a [routerLink]="['/forms']"
+     routerLinkActive="active"
+     [routerLinkActiveOptions]="{ exact: true }">
+    Forms
+  </a>
+</li>
+
+
+              </ul>
+          </div>
+          <div class="space32"></div>
+          <div class="space16"></div>
+          <div class="btn-area">
+              <a routerLink="/contact" class="vl-btn1">Get in touch now <img src="assets/img/icons/mail1.svg"
+                      alt=""></a>
+          </div>
+          <div class="space40"></div>
+<!--          <div class="social-link-area">-->
+<!--              <h3 class="sidebar-heading">Social Links</h3>-->
+<!--              <ul>-->
+<!--                  <li>-->
+<!--                      <a href="https://www.facebook.com/profile.php?id=61579963070844"><i class="fa-brands fa-facebook-f"></i></a>-->
+<!--                      <a href="https://www.instagram.com/llenroc_tech/"><i class="fa-brands fa-instagram"></i></a>-->
+<!--                      <a href="https://www.linkedin.com/company/llenroc-tech/"><i class="fa-brands fa-linkedin-in"></i></a>-->
+<!--                      &lt;!&ndash; <a href="javascript:void(0);"><i class="fa-brands fa-pinterest-p"></i></a>-->
+<!--                      <a href="javascript:void(0);"><i class="fa-brands fa-youtube"></i></a> &ndash;&gt;-->
+<!--                  </li>-->
+<!--              </ul>-->
+<!--          </div>-->
+          <div class="space40"></div>
+          <!-- <div class="form-area">
+              <h3>Subscribe To Newsletter</h3>
+              <form>
+                  <input type="text" placeholder="Email Address*">
+                  <button type="submit" class="vl-btn1">subscribe</button>
+              </form>
+          </div> -->
+      </div>
+  </div>
+</div>
+<header>
+  <div class="header-area homepage1 header header-sticky" id="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="header-elements">
+            <div class="site-logo">
+              <a routerLink="/"><img src="assets/img/logo/llenroc_logo_yellow.png" alt=""></a>
+            </div>
+            <div class="btn-area d-lg-flex">
+              <div class="theme-toggle-container">
+                <label class="theme-switch">
+                  <input type="checkbox" type="checkbox" [checked]="isLightMode" (change)="toggleTheme($event)"
+                    id="theme-toggle" id="theme-toggle">
+                  <span class="slider">
+                    <i class="fas fa-moon icon moon-icon"></i>
+                    <i class="fas fa-sun icon sun-icon"></i>
+                  </span>
+                </label>
+              </div>
+              <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=XMyOlFLWg0SZ0VoLGWT8r_j0A8qUhJNFifJhkhK5tu1UM0dEUFI0SFNRMjEyNEpDTTVQTDlUUkc4Wi4u" class="vl-btn1">
+                Request Services
+                <span>
+              <img src="assets/img/icons/mail1.svg" alt="">
+              </span>
+              </a>
+
+              <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=XMyOlFLWg0SZ0VoLGWT8r85gfgwYVpRMtqWtHwIsEUBURDFSMDhNVEVHVjFTWUM1UlFVNjg1WlIzUiQlQCN0PWcu" class="vl-btn1">
+                JOIN NETWORK
+                <span>
+             <i class="fa-solid fa-user-plus"></i>
+                </span>
+              </a>
+
+              <button (click)="toggleSidebar()" class="hamburger_menu">
+                <img src="assets/img/icons/bars-icons1.svg" alt="Menu">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

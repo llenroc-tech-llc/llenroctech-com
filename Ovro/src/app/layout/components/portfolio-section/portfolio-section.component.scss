@@ -1,0 +1,39 @@
+.form-control {
+      color: var(--ztc-text-text-1);
+      font-family: var(--ztc-family-font1);
+      font-size: var(--ztc-font-size-font-s18);
+      font-style: normal;
+      font-weight: var(--ztc-weight-medium);
+      line-height: 18px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 12px 8px;
+      width: 100%;
+    }
+
+ .portfolio-section-area .portfolio-header .head{
+      padding-left: 50px;
+  }
+
+.vl-btn1:hover {
+    color: var(--ztc-text-text-1);
+    border: 1px solid var(--ztc-text-text-1);
+    background: transparent;
+}
+
+.vl-btn1 {
+    border-radius: 52px;
+    background: var(--ztc-bg-btn-bg1);
+    color: var(--ztc-text-btn-text1);
+    font-family: var(--ztc-family-font1);
+    font-size: var(--ztc-font-size-font-s20);
+    font-style: normal;
+    font-weight: var(--ztc-weight-semibold);
+    line-height: 20px;
+    padding: 8px 16px;
+    position: relative;
+    z-index: 1;
+    border: 1px solid var(--ztc-bg-btn-bg1);
+    transition: all 0.4s;
+    text-transform: uppercase;
+}

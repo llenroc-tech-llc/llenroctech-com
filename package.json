@@ -1,0 +1,27 @@
+{
+  "name": "llenroc-portfolio-page",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "ng serve",
+    "start:netlify": "npx ng serve --no-open --port 4200"
+  },
+  "dependencies": {
+    "@angular/cli": "^17.0.0",
+    "@angular/core": "^17.0.0",
+    "@azure/functions": "^4.8.0",
+    "@netlify/blobs": "^6.0.0",
+    "@netlify/functions": "^2.8.0",
+    "@stripe/stripe-js": "^7.9.0",
+    "@supabase/supabase-js": "^2.74.0",
+    "node-fetch": "^2.7.0",
+    "resend": "^4.0.0",
+    "stripe": "^18.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "@types/node-fetch": "^2.6.13",
+    "typescript": "^5.4.0"
+  }
+}

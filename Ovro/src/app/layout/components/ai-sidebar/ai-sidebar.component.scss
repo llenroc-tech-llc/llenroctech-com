@@ -1,0 +1,37 @@
+/* src/app/components/ai-sidebar/ai-sidebar.component.scss */
+
+/* chips look like subtle pills */
+.ai-suggests { display: flex; gap: .5rem; flex-wrap: wrap; }
+.chip {
+  border: 1px solid #e5e7eb; background: #fff; color: #111;
+  border-radius: 999px; padding: .25rem .7rem; cursor: pointer;
+  transition: background .15s ease; font-weight: 500;
+}
+.chip:hover { background: #f9fafb; }
+
+/* chat container styled like your inputs/boxes */
+.ai-chatlog {
+  max-height: 320px;
+  overflow: auto;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  padding: .75rem;
+  background: rgba(255,255,255,.9);
+  backdrop-filter: blur(2px);
+}
+
+/* message bubbles (assistant light / user dark like your theme) */
+.ai-msg {
+  background: #fff; color: #111;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  padding: .6rem .8rem;
+  margin: .35rem 0;
+  max-width: 92%;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+  white-space: pre-wrap;
+}
+.ai-msg.user {
+  margin-left: auto;
+  background: #111; color: #fff; border-color: #111;
+}

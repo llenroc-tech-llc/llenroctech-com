@@ -1,0 +1,154 @@
+<!--===== CONTACT AREA STARTS =======-->
+<div class="contact-section-area" data-aos="fade-left" data-aos-duration="900">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="contact-heading heading1" *ngIf="showSectionHeader">
+          <h5><img src="assets/img/icons/yellow_circle_icon.svg" alt="">Contact Me</h5>
+          <div class="space24"></div>
+          <h2>Have Any Project in</h2>
+          <div class="space24"></div>
+          <h2 class="head">Mind, <span>Let’s Talk</span></h2>
+        </div>
+
+        <div class="space50"></div>
+
+        <div class="contact-boxarea" data-aos="zoom-in" data-aos-duration="1000">
+          <h3>{{ heading }}</h3>
+          <div class="space12"></div>
+
+          <form
+            [formGroup]="form"
+            (ngSubmit)="onSubmit($event)"
+            novalidate
+            [attr.aria-busy]="submitting() ? 'true' : 'false'"
+          >
+            <!-- Honeypot -->
+            <p class="hidden" style="display:none" aria-hidden="true">
+              <label>
+                Don’t fill this out:
+                <input name="bot-field" formControlName="botField" tabindex="-1" autocomplete="off" />
+              </label>
+            </p>
+
+            <div class="row">
+              <div class="col-lg-6 col-md-6">
+                <div class="input-area">
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Full Name *"
+                    formControlName="name"
+                    [class.invalid]="isInvalid('name')"
+                    [attr.aria-invalid]="isInvalid('name')"
+                    autocomplete="name"
+                    required
+                  />
+                  <small *ngIf="isInvalid('name')" class="error">Please enter at least 2 characters.</small>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="input-area">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address *"
+                    formControlName="email"
+                    [class.invalid]="isInvalid('email')"
+                    [attr.aria-invalid]="isInvalid('email')"
+                    autocomplete="email"
+                    required
+                  />
+                  <small *ngIf="isInvalid('email')" class="error">Enter a valid email.</small>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="input-area">
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Phone Number"
+                    formControlName="phone"
+                    autocomplete="tel"
+                  />
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="input-area">
+                  <input
+                    type="text"
+                    name="subject"
+                    placeholder="Subject"
+                    formControlName="subject"
+                    autocomplete="off"
+                  />
+                </div>
+              </div>
+
+              <div class="col-lg-12">
+                <div class="input-area">
+                  <input
+                    type="text"
+                    name="budget"
+                    placeholder="Your Budget (optional)"
+                    formControlName="budget"
+                    autocomplete="off"
+                  />
+                </div>
+              </div>
+
+              <div class="col-lg-12">
+                <div class="input-area">
+                  <textarea
+                    name="message"
+                    placeholder="Message *"
+                    rows="5"
+                    formControlName="message"
+                    [class.invalid]="isInvalid('message')"
+                    [attr.aria-invalid]="isInvalid('message')"
+                    required
+                  ></textarea>
+                  <small *ngIf="isInvalid('message')" class="error">Tell me a little more (min 10 chars).</small>
+                </div>
+              </div>
+
+              <div class="col-lg-12">
+                <div class="input-area">
+                  <button
+                    type="submit"
+                    class="vl-btn1"
+                    [disabled]="submitting() || form.invalid"
+                  >
+                    {{ submitting() ? 'Sending…' : 'Submit Now' }}
+                    <img src="assets/img/icons/mail1.svg" alt="Email Icon" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="space16"></div>
+
+            <!-- Success / Error toasts -->
+            <div *ngIf="sent()" class="alert success" role="status" aria-live="polite">
+              <span>Thanks! Your message was sent. I’ll get back to you shortly.</span>
+              <button type="button" class="alert-close" (click)="dismiss('sent')" aria-label="Close">✕</button>
+            </div>
+
+            <div *ngIf="failed()" class="alert error" role="alert" aria-live="assertive">
+              <span>Something went wrong. Please try again or email me directly at hello&#64;llenroctech.com.</span>
+              <button type="button" class="alert-close" (click)="dismiss('failed')" aria-label="Close">✕</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="space50"></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--===== CONTACT AREA ENDS =======-->

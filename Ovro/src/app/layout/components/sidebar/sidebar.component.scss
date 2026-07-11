@@ -1,0 +1,91 @@
+.payment-mini{
+  border-radius:18px;
+  padding:18px;
+  background: rgba(255,255,255,0.06);     /* was rgba(0,0,0,0.35) */
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(6px);
+  text-align:center;
+
+  .title{ color:#fff; margin:0 0 .25rem; }
+  .muted{ color:#c9ced6; margin:0 0 .75rem; }
+
+  .btns{ display:flex; gap:.5rem; flex-wrap:wrap; justify-content:center; }
+
+  .vl-btn1{ display:inline-flex; align-items:center; gap:.5rem; }
+  .vl-btn1 img{ width:18px; height:18px; filter:brightness(0) invert(1); }
+
+  /* keep secondary button readable on dark ocean bg */
+  .vl-btn1.outline{
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.35);
+    color:#e5e7eb;
+  }
+  .vl-btn1.outline:hover{
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.10);
+    color:#fff;
+  }
+}
+.payment-mini .amount-box{
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:.5rem .75rem; border-radius:999px;
+  background: rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.25);
+}
+.payment-mini .amount-box .prefix{ color:#e5e7eb; font-weight:700; }
+.payment-mini .amount-box input{
+  width:110px; background:transparent; border:0; outline:0; color:#fff;
+  text-align:left; font-weight:700;
+}
+.payment-mini .amount-box input::placeholder{ color:#9ca3af; font-weight:500; }
+
+
+/* If you ever toggle light mode via body.light-mode */
+body.light-mode .payment-mini{
+  background: rgba(255,255,255,0.55);
+  border-color: rgba(0,0,0,0.08);
+  .muted{ color:#4b5563; }
+  .vl-btn1.outline{ color:#1f2937; border-color: rgba(0,0,0,0.2); }
+
+}
+/* give the page a little extra runway at the bottom */
+.page-pad-bottom { padding-bottom: 320px; } /* adjust to taste */
+
+/* Make sure overlays don’t collide with OS scrollbars */
+:root { --sbw: 0px; } // set by script below
+
+/* Floating AI button = .vl-btn1 + positional tweaks */
+.ai-fab-btn{
+  position: fixed;
+  right: calc(20px + var(--sbw));
+  top: 150px;                 /* keep the spot you like */
+  z-index: 11000;             /* above progress widget */
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  border-radius: 999px;       /* pill look like your contact CTA */
+  padding: .6rem 1rem;        /* slightly compact for float */
+  box-shadow: 0 8px 24px rgba(0,0,0,.15);
+}
+
+/* match contact icon treatment inside .vl-btn1 */
+.ai-fab-btn img{
+  width: 18px; height: 18px;
+  filter: brightness(0) invert(1);
+}
+
+/* “NEW” pill like your theme’s yellow accent */
+.ai-badge{
+  margin-left: .25rem;
+  background: #F5C400; color: #111;
+  font-size: .7rem; font-weight: 800;
+  padding: .1rem .35rem; border-radius: 999px; line-height: 1;
+}
+
+/* If you have a scroll progress widget, keep it below this */
+.progress-wrap{ z-index: 9990; }
+
+/* Optional: small hover bump, same vibe as your CTAs */
+.ai-fab-btn:hover{ filter: brightness(1.05); }
+
+

@@ -1,0 +1,45 @@
+[functions]
+  node_bundler = "esbuild"
+  
+[build]
+  command   = "npm install && npm install --prefix Ovro && npm run build --prefix Ovro"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[dev]
+  command       = "npm run start:netlify --prefix ./Ovro"
+  targetPort    = 4200     # Angular dev server
+  port          = 8888     # Netlify dev
+  functionsPort = 9991
+  autoLaunch    = true
+
+# Functions proxy (keep for dev + prod)
+[[redirects]]
+  from = "/api/*"
+  to   = "/.netlify/functions/:splat"
+  status = 200
+
+# --- Passthrough dev assets so they are NOT rewritten to /index.html
+[[redirects]]
+  from = "/@vite/*"
+  to   = "/@vite/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/.angular/*"
+  to   = "/.angular/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/src/*"
+  to   = "/src/:splat"
+  status = 200
+
+# SPA fallback ONLY IN PRODUCTION
+[context.production]
+  [[redirects]]
+    from = "/*"
+    to   = "/index.html"
+    status = 200

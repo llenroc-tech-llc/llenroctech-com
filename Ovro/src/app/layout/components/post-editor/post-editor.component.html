@@ -1,0 +1,68 @@
+<div class="comments-boxarea post-editor">
+  <form [formGroup]="form" (ngSubmit)="save()" novalidate>
+
+    <div class="grid-2">
+      <!-- left column -->
+      <div class="field">
+        <label>Title *</label>
+        <input class="form-input" formControlName="title" required
+               placeholder="Angular Templates: Turn Designs into Polished UI Faster">
+      </div>
+
+      <div class="field">
+        <label>Slug (optional)</label>
+        <input class="form-input" formControlName="slug" placeholder="angular-templates-better-ui">
+      </div>
+
+      <div class="field">
+        <label>Category</label>
+        <input class="form-input" formControlName="category" placeholder="Angular">
+      </div>
+
+      <div class="field">
+        <label>Author</label>
+        <input class="form-input" formControlName="author" placeholder="Cornell Reddick">
+      </div>
+
+      <div class="field">
+        <label>Author avatar URL</label>
+        <input class="form-input" formControlName="author_avatar" placeholder="https://…">
+      </div>
+
+      <div class="field">
+        <label>Hero image URL</label>
+        <input class="form-input" formControlName="hero_image_url" placeholder="https://…">
+      </div>
+
+      <div class="field">
+        <label>Minutes</label>
+        <input class="form-input" type="number" min="1" formControlName="minutes" placeholder="4">
+      </div>
+
+      <div class="field">
+        <label>Published (local)</label>
+        <input class="form-input" type="datetime-local" formControlName="published_at">
+      </div>
+
+      <div class="field full">
+        <label>Excerpt</label>
+        <textarea class="form-input" rows="2" formControlName="excerpt"
+                  placeholder="One-sentence summary…"></textarea>
+      </div>
+
+      <div class="field full">
+        <label>HTML content (optional)</label>
+        <textarea class="form-input" rows="10" formControlName="content_html"
+                  placeholder="<p>Write HTML here…"></textarea>
+      </div>
+    </div>
+
+    <div class="space12"></div>
+    <button class="vl-btn1" type="submit" [disabled]="form.invalid || saving">
+      {{ post ? 'UPDATE POST' : 'CREATE POST' }} <img src="assets/img/icons/download1.svg" alt="">
+    </button>
+    <button class="vl-btn1 gray" type="button" (click)="cancelEdit()" style="margin-left:10px">
+      CANCEL
+    </button>
+  </form>
+</div>

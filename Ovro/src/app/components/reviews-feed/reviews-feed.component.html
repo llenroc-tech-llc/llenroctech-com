@@ -1,0 +1,30 @@
+<section class="reviews">
+  <h3 class="title">Recent Google Reviews</h3>
+
+  <div *ngIf="loading(); else loaded" class="loading">Loading reviews…</div>
+  <ng-template #loaded>
+    <div *ngIf="error(); else ok" class="error">{{ error() }}</div>
+    <ng-template #ok>
+      <div class="summary" *ngIf="total() > 0">
+        <div class="avg">{{ average() | number:'1.1-2' }}</div>
+        <div class="stars">
+          <span *ngFor="let _ of stars(average())">★</span>
+        </div>
+        <div class="count">Based on {{ total() }} reviews</div>
+      </div>
+
+      <ul class="list">
+        <li class="item" *ngFor="let r of reviews() | slice:0:6">
+          <div class="header">
+            <div class="name">{{ r.author }}</div>
+            <div class="rating">
+              <span *ngFor="let _ of stars(r.rating)">★</span>
+            </div>
+          </div>
+          <p class="text">{{ r.text }}</p>
+          <div class="meta">{{ r.company }}</div>
+        </li>
+      </ul>
+    </ng-template>
+  </ng-template>
+</section>

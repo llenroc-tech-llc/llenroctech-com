@@ -1,0 +1,38 @@
+/* src/app/sections/llenroc-templates/llenroc-templates.component.scss */
+
+/* minimal tweaks so portfolio cards behave the same */
+.portfolio-boxarea .img1 img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+/* modal */
+.lz-modal {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.6);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1050;
+}
+.lz-dialog {
+  width: min(100%, 980px);
+  background: #0f141a;
+  color: #fff;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 30px 60px rgba(0,0,0,.5);
+  overflow: hidden; position: relative;
+}
+.lz-close {
+  position: absolute; top: .5rem; right: .75rem;
+  width: 40px; height: 40px;
+  font-size: 1.6rem; line-height: 1; border: none;
+  background: transparent; color: #fff; cursor: pointer; opacity: .75;
+  &:hover { opacity: 1; }
+}
+.lz-dialog-body { display: grid; grid-template-columns: 1.2fr .8fr; }
+.lz-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.lz-info { padding: 1.25rem 1.25rem 1.5rem; }
+.lz-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+@media (max-width: 860px) { .lz-dialog-body { grid-template-columns: 1fr; } .lz-hero img { height: 240px; } }

@@ -1,0 +1,52 @@
+.templates-wrap {
+  padding-top: 20px;
+
+  .lead { color: #c9ced6; max-width: 56rem; }
+
+  .plan-card {
+    border-radius: 18px;
+    padding: 22px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(6px);
+    transition: transform .2s ease, box-shadow .2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(0,0,0,.25);
+    }
+
+    .plan-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: .25rem;
+    }
+
+    .plan-title { font-size: 1.15rem; font-weight: 700; }
+    .plan-price { font-weight: 800; letter-spacing: .02em; color: #ffd166; }
+
+    .plan-desc { margin: .25rem 0 0.75rem; color: #b7bcc4; }
+
+    .plan-features {
+      margin: 0 0 .5rem;
+      padding-left: 1.1rem;
+      li { margin: .2rem 0; color: #d7dbe1; }
+    }
+
+    .vl-btn1 {
+      margin-right: .5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+
+      &.outline {
+        background: transparent;
+        border: 1px solid rgba(255,255,255,.25);
+      }
+
+      img { width: 18px; height: 18px; }
+    }
+  }
+}

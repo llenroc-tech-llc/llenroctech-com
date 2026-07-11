@@ -1,0 +1,59 @@
+<!-- Driven by parent via [isOpen] -->
+<div class="custom-model-main" [class.model-open]="isOpen">
+  <div class="custom-model-inner">
+    <div class="close-btn" (click)="closeModal()">×</div>
+    <div class="custom-model-wrap">
+      <div class="pop-up-content-wrap">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="opend-section">
+              <!-- tighten gutters so columns align nicely -->
+              <div class="row g-0">
+                <!-- LEFT COLUMN: selected template -->
+                <div class="col-lg-7">
+                  <div class="boxes-area">
+                    <div class="img1">
+                      <img [src]="selected()?.thumbnail || 'assets/img/all-images/portfolio/portfolio-img1.png'" alt="">
+                    </div>
+                    <div class="content">
+                      <div class="tags-area">
+                        <a href="javascript:void(0);">by {{ selected()?.author || 'Llenroc Tech' }}</a>
+                        <a href="javascript:void(0);">ThemeForest</a>
+                      </div>
+                      <a href="javascript:void(0);">
+                        {{ selected()?.name || 'Crafting Compelling Designs and Strategic Marketing: A Creative Journey Unveiled' }}
+                      </a>
+                      <p *ngIf="selected()?.tags?.length">
+                        Tags: {{ (selected()?.tags || []).slice(0,6).join(', ') }}
+                      </p>
+                      <div class="btn-area1" style="gap:.5rem; display:flex; flex-wrap:wrap;">
+                        <a *ngIf="selected()?.livePreview" class="vl-btn1" [href]="selected()?.livePreview" target="_blank" rel="noopener">Live Demo</a>
+                        <a *ngIf="selected()?.url" class="vl-btn1" [href]="selected()?.url" target="_blank" rel="noopener">View on ThemeForest</a>
+                        <a routerLink="/contact" class="vl-btn1">Get in touch now</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- RIGHT COLUMN: embedded contact -->
+                <div class="col-lg-5">
+                  <div class="contact-from-area contact-embed" data-aos="flip-right" data-aos-duration="1000">
+                    <app-contact
+                      #contactFormRef
+                      [showSectionHeader]="false"
+                      [heading]="'LEAVE A MESSAGE'"
+                      [formName]="'design-contact'"
+                      [prefillSubject]="selected()?.name || 'Design Inquiry'">
+                    </app-contact>
+                  </div>
+                </div>
+              </div><!-- row -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Click overlay to close -->
+  <div class="bg-overlay" (click)="closeModal()"></div>
+</div>

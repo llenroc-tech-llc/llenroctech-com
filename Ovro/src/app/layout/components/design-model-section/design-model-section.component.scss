@@ -1,0 +1,108 @@
+/* Modal container scroll if tall */
+.custom-model-inner {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  /* =========  EMBEDDED CONTACT (right column)  ========= */
+  
+  :host ::ng-deep .contact-embed { padding: 0 !important; }
+  
+  /* Make the embedded component fill the column */
+  :host ::ng-deep .contact-embed app-contact {
+    display: block;
+    width: 100% !important;
+  }
+  
+  /* Remove outer section spacing/background from the embedded contact */
+  :host ::ng-deep .contact-embed app-contact .contact-section-area {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  
+  /* Kill inner container padding that insets the form */
+  :host ::ng-deep .contact-embed app-contact .container {
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  /* Allow 2-up columns (name/email, phone/subject) to shrink so text doesn't get cut */
+  :host ::ng-deep .contact-embed app-contact .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  :host ::ng-deep .contact-embed app-contact .row > [class*="col-"] {
+    min-width: 0; /* KEY: let inputs shrink without clipping text */
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+  
+  /* The actual card */
+  :host ::ng-deep .contact-embed app-contact .contact-boxarea {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 28px !important;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    background: rgba(0,0,0,0.2);
+    box-sizing: border-box;
+  }
+  
+  /* Heading */
+  :host ::ng-deep .contact-embed app-contact h3 {
+    margin: 0 0 18px !important;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  
+  /* Inputs and textarea: prevent clipping + consistent sizing */
+  :host ::ng-deep .contact-embed app-contact .input-area {
+    margin-bottom: 14px !important;
+  }
+  :host ::ng-deep .contact-embed app-contact input,
+  :host ::ng-deep .contact-embed app-contact textarea,
+  :host ::ng-deep .contact-embed app-contact select {
+    width: 100% !important;
+    box-sizing: border-box;
+    padding: 12px 16px !important;
+    line-height: 1.4 !important;
+    overflow: visible;          /* avoid text clipping at rounded edges */
+    text-overflow: clip;
+  }
+  
+  /* Make textarea a touch taller for balance */
+  :host ::ng-deep .contact-embed app-contact textarea {
+    min-height: 140px;
+  }
+  
+  /* Submit button aligned right with breathing room */
+  :host ::ng-deep .contact-embed app-contact .btn-area,
+  :host ::ng-deep .contact-embed app-contact .btn-area1,
+  :host ::ng-deep .contact-embed app-contact .input-area:last-child {
+    display: flex !important;
+    justify-content: flex-end !important;
+    margin-top: 10px !important;
+  }
+  
+  /* Hide big page header/footer if present (we pass showSectionHeader=false, but keep as safety) */
+  :host ::ng-deep .contact-embed app-contact .contact-heading,
+  :host ::ng-deep .contact-embed app-contact .footer-area,
+  :host ::ng-deep .contact-embed app-contact .space50,
+  :host ::ng-deep .contact-embed app-contact .space60 {
+    display: none !important;
+  }
+  
+  /* Responsive */
+  @media (max-width: 991.98px) {
+    :host ::ng-deep .contact-embed app-contact .row > [class*="col-"] {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+    :host ::ng-deep .contact-embed app-contact .contact-boxarea {
+      padding: 22px !important;
+    }
+  }
+  

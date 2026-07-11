@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <rect width="256" height="256" fill="#ffffff"/>
+  <!-- Simplified Java coffee steam -->
+  <path d="M140 44c-10 8-10 16 6 26 13 8 9 18-8 26-13 7-13 15 2 22" fill="none" stroke="#e76f00" stroke-width="8" stroke-linecap="round"/>
+  <path d="M122 74c-8 6-8 13 5 20 11 7 8 15-7 22-12 6-12 12 2 19" fill="none" stroke="#e76f00" stroke-width="6" stroke-linecap="round"/>
+  <!-- Cup -->
+  <ellipse cx="128" cy="168" rx="70" ry="16" fill="#5382a1" opacity="0.3"/>
+  <path d="M74 128h104c0 22-18 40-52 40s-52-18-52-40z" fill="#5382a1"/>
+  <path d="M180 134c14 0 22 7 22 16s-8 16-22 16" fill="none" stroke="#5382a1" stroke-width="10" stroke-linecap="round"/>
+  <!-- Label -->
+  <text x="128" y="230" font-family="Inter,Segoe UI,Arial" font-size="26" text-anchor="middle" fill="#111827">Java</text>
+</svg>

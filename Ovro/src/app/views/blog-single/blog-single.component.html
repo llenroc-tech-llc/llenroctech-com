@@ -1,0 +1,326 @@
+<app-topbar />
+
+
+
+<div class="main-hero-area parallaxie">
+  <div class="container">
+    <!--===== HERO AREA STARTS =======-->
+    <div class="row">
+      <!-- Left column (profile card) -->
+      <div class="col-lg-4">
+        <div class="personal-contact-box">
+          <div class="img1 image-anime reveal" appGsapReveal>
+            <img src="assets/img/all-images/hero/llenroc_logo_yellow.png" alt="">
+          </div>
+          <div class="space18"></div>
+          <h3>Cornell Reddick</h3>
+          <div class="space16"></div>
+          <p>
+            Hi, I’m Cornell, a dedicated Full Stack Software Engineer with 6+ years of experience
+            building scalable, secure, and user-focused applications.
+          </p>
+          <div class="space32"></div>
+          <ul>
+            <li>
+              <a href="https://x.com/Llenroctech" target="_blank" rel="noopener">
+                <img src="assets/img/icons/s-icon1.svg" alt="Twitter / X">
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/llenroc_tech/" target="_blank" rel="noopener">
+                <img src="assets/img/icons/s-icon2.svg" alt="Instagram">
+              </a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/profile.php?id=61579963070844" target="_blank" rel="noopener">
+                <img src="assets/img/icons/s-icon3.svg" alt="Facebook">
+              </a>
+            </li>
+            <li>
+              <a href="https://linkedin.com/in/cornellreddick" target="_blank" rel="noopener">
+                <img src="assets/img/icons/s-icon4.svg" alt="LinkedIn">
+              </a>
+            </li>
+            <!-- <li>
+              <a href="https://dribbble.com/YourHandle" target="_blank" rel="noopener" class="m-0">
+                <img src="assets/img/icons/s-icon5.svg" alt="Dribbble">
+              </a>
+            </li> -->
+          </ul>
+          <div class="space44"></div>
+          <div class="btn-area1 text-center">
+            <a href="assets/img/all-images/hero/Cornell_Master_Resume_2025-09-11.docx" download class="vl-btn1">
+              Download Now <img src="assets/img/icons/download1.svg" alt="">
+            </a>
+          </div>
+          <div class="space32"></div>
+          <p>© {{ year }} LLENROC . All Rights Reserved.</p>
+        </div>
+      </div>
+
+      <!-- Right column (scrollable content) -->
+      <div class="col-lg-8 blog-right">
+        <div
+          #scroller
+          data-bs-spy="scroll"
+          data-bs-target="#list-example"
+          data-bs-smooth-scroll="true"
+          class="scrollspy-example"
+          tabindex="0"
+        >
+
+          <!-- ====== EDIT / CREATE (single column: hero over form) ====== -->
+          <div *ngIf="isCreate() || isEdit()" class="blog-editor">
+
+            <!-- Title & meta -->
+            <div class="gpad editor-max">
+              <h2 class="post-title">{{ form.value.title || 'Untitled draft' }}</h2>
+              <ul class="post-meta">
+                <li>{{ form.value.author || 'Cornell Reddick' }}</li>
+                <li *ngIf="form.value.published_at">|</li>
+                <li *ngIf="form.value.published_at">
+                  <i class="fa-regular fa-calendar"></i> {{ displayEditDate() }}
+                </li>
+                <li>|</li>
+                <li><i class="fa-regular fa-clock"></i> {{ form.value.minutes || 3 }} min read</li>
+              </ul>
+            </div>
+
+            <!-- Hero preview -->
+            <div class="hero gpad-img editor-max">
+              <img
+                [src]="form.value.hero_image_url || 'assets/img/all-images/blog/blog-img6.png'"
+                alt="Hero preview"
+              />
+            </div>
+
+            <!-- Form card -->
+            <div class="editor-card editor-max">
+              <form [formGroup]="form" (ngSubmit)="save()" novalidate>
+                <div class="form-grid">
+                  <input class="form-input" placeholder="Title *" formControlName="title" required />
+                  <input class="form-input" placeholder="Slug (optional)" formControlName="slug" />
+                  <input class="form-input" placeholder="Category" formControlName="category" />
+                  <input class="form-input" placeholder="Author" formControlName="author" />
+                  <input class="form-input" placeholder="Author avatar URL" formControlName="author_avatar" />
+                  <input class="form-input" placeholder="Hero image URL" formControlName="hero_image_url" />
+
+                  <label class="form-label">Upload hero image</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    (change)="onHeroSelect($event)"
+                    [attr.aria-busy]="uploadingHero() ? 'true' : null"
+                  />
+                  <small *ngIf="uploadingHero()" class="muted">Uploading…</small>
+
+                  <div *ngIf="form.value.hero_image_url" class="space12">
+                    <img [src]="form.value.hero_image_url" alt="Hero preview" class="thumb" />
+                  </div>
+
+                  <input class="form-input" type="number" placeholder="Minutes" formControlName="minutes" />
+
+                  <!-- Must be yyyy-MM-ddTHH:mm -->
+                  <input
+                    class="form-input"
+                    type="datetime-local"
+                    placeholder="Published at"
+                    formControlName="published_at"
+                  />
+
+                  <input class="form-input" placeholder="Excerpt" formControlName="excerpt" />
+
+                  <!-- Plain text authoring -->
+                  <textarea
+                    class="form-input"
+                    rows="8"
+                    placeholder="Write content (plain text). Paragraphs are separated by blank lines."
+                    formControlName="content_text"
+                  ></textarea>
+
+                  <!-- Optional raw HTML (for advanced posts) -->
+                  <textarea
+                    class="form-input"
+                    rows="8"
+                    placeholder="Or paste raw HTML (optional)"
+                    formControlName="content_html"
+                  ></textarea>
+                </div>
+
+                <div class="btn-row">
+                  <button class="vl-btn1" type="submit">
+                    {{ isCreate() ? 'CREATE POST' : 'UPDATE POST' }}
+                    <img src="assets/img/icons/download1.svg" alt="" />
+                  </button>
+                  <button type="button" class="vl-btn1 gray" (click)="cancel()">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- ====== / EDIT / CREATE ====== -->
+
+          <!-- ====== LOADING ====== -->
+          <div *ngIf="loading()" class="blog-single-area">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="heading1">
+                    <h5><img src="assets/img/icons/yellow_circle_icon.svg" alt="" />Loading…</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ====== NOT FOUND ====== -->
+          <div *ngIf="!loading() && error() === 'not_found'" class="blog-single-area">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="heading1">
+                    <h5><img src="assets/img/icons/yellow_circle_icon.svg" alt="" />Blog details</h5>
+                    <div class="space24"></div>
+                    <h2>Post not found</h2>
+                    <div class="space24"></div>
+                    <a routerLink="/" class="vl-btn1">Back to Home</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ====== VIEW MODE ====== -->
+          <ng-container *ngIf="!loading() && !error() && post() as p">
+            <div id="list-item-1">
+              <div class="blog-single-area">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-lg-12">
+
+                      <div class="heading1">
+                        <h5><img src="assets/img/icons/yellow_circle_icon.svg" alt="" />Blog details</h5>
+                        <div class="space24"></div>
+                        <h2>{{ p.title }}</h2>
+                      </div>
+                                          
+                    <div *ngIf="isAdmin() && !isCreate() && !isEdit()" class="admin-toolbar">
+                      <button type="button" class="vl-btn1 small" (click)="startEdit()">EDIT</button>
+                      <button type="button" class="vl-btn1 small danger" (click)="remove()">DELETE</button>
+                    </div>
+
+
+                      <div class="space48"></div>
+
+                      <div class="blog-details-content">
+                        <div class="list">
+                          <ul>
+                            <li>
+                              <a href="javascript:void(0);">
+                                <img *ngIf="p.author_avatar" [src]="p.author_avatar" alt="author" />
+                                {{ p.author || 'Cornell Reddick' }}
+                              </a>
+                              <span> | </span>
+                            </li>
+                            <li><a href="javascript:void(0);">{{ p.category || 'General' }}</a></li>
+                          </ul>
+                          <ul class="list1">
+                            <li>
+                              <a href="javascript:void(0);">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                {{ p.published_at | date : 'MMM d, y' }}
+                              </a>
+                              <span> | </span>
+                            </li>
+                            <li>
+                              <a href="javascript:void(0);">
+                                <i class="fa-solid fa-clock"></i>
+                                {{ p.minutes || 3 }} min read
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div class="space24"></div>
+
+                        <div class="img1">
+                          <img
+                            [src]="p.hero_image_url || 'assets/img/all-images/blog/blog-img6.png'"
+                            [alt]="p.title || 'Blog image'"
+                          />
+                        </div>
+
+                        <div class="space24"></div>
+
+                        <div class="blog-body" [innerHTML]="safeHtml"></div>
+
+                        <div class="space48"></div>
+                        <div class="tags-social" *ngIf="p.category">
+                          <div class="tags">
+                            <ul>
+                              <li>Tags:</li>
+                              <li><a href="javascript:void(0);">#{{ p.category }}</a></li>
+                            </ul>
+                          </div>
+                          <div class="social">
+                            <ul>
+                              <li>Social:</li>
+                              <li><a href="javascript:void(0);"><i class="fa-brands fa-facebook-f"></i></a></li>
+                              <!-- <li><a href="javascript:void(0);"><i class="fa-brands fa-instagram"></i></a></li>
+                              <li><a href="javascript:void(0);" class="m-0"><i class="fa-brands fa-youtube"></i></a></li> -->
+                            </ul>
+                          </div>
+                        </div>
+
+                        <div class="space48"></div>
+                        <app-comments [slug]="slug"></app-comments>
+                        <div class="space48"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact section -->
+            <div id="list-item-8">
+              <div class="contact-section-area">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="space50"></div>
+                      <div id="contact">
+                        <app-contact
+                          [heading]="'Leave A Message'"
+                          [formName]="'contact'"
+                          [prefillSubject]="p.title"
+                        ></app-contact>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                      <div class="space50"></div>
+                      <div class="footer-area">
+                        <div class="btn-area1">
+                          <a
+                            href="#"
+                            class="vl-btn1"
+                            (click)="scrollToInScroller('contact', scroller, $event)"
+                          >
+                            HIRE ME <img src="assets/img/icons/mail1.svg" alt="">
+                          </a>
+                        </div>
+                        <p>© LLENROC . All Rights Reserved.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <!-- ====== / VIEW MODE ====== -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

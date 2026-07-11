@@ -1,0 +1,312 @@
+<!-- src/app/layout/components/sidebar/sidebar.component.html -->
+
+<div [ngClass]="pageClass" class="parallaxie">
+  <router-outlet />
+  <div class="container">
+    <div
+      data-bs-spy="scroll"
+      data-bs-target="#list-example"
+      data-bs-smooth-scroll="true"
+      class="scrollspy-example page-pad-bottom"
+      tabindex="0">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="personal-contact-box" data-aos="fade-right" data-aos-duration="1000">
+            <div id="list-example" class="list-group">
+              <a class="list-group-item list-group-item-action"
+                 [ngClass]="{ active: currentSection === 'list-item-1' }"
+                 href="javascript:void(0);" (click)="scrollTo('list-item-1'); setActiveLink('list-item-1')">
+                <img src="assets/img/icons/home1.svg" alt="" />
+                <span>Home</span>
+              </a>
+
+              <a class="list-group-item list-group-item-action"
+                 [ngClass]="{ active: currentSection === 'list-item-2' }"
+                 href="javascript:void(0);" (click)="scrollTo('list-item-2'); setActiveLink('list-item-2')">
+                <img src="assets/img/icons/home2.svg" alt="" />
+                <span>About Us</span>
+              </a>
+
+              <a class="list-group-item list-group-item-action"
+                 [ngClass]="{ active: currentSection === 'list-item-3' }"
+                 href="javascript:void(0);" (click)="scrollTo('list-item-3'); setActiveLink('list-item-3')">
+                <img src="assets/img/icons/home3.svg" alt="" />
+                <span>Services</span>
+              </a>
+
+              <a class="list-group-item list-group-item-action"
+                 [ngClass]="{ active: currentSection === 'list-item-4' }"
+                 href="javascript:void(0);" (click)="scrollTo('list-item-4'); setActiveLink('list-item-4')">
+                <img src="assets/img/icons/home4.svg" alt="" />
+                <span>Technology Stack</span>
+              </a>
+
+              <a class="list-group-item list-group-item-action"
+                 [ngClass]="{ active: currentSection === 'list-item-5' }"
+                 href="javascript:void(0);" (click)="scrollTo('list-item-5'); setActiveLink('list-item-5')">
+                <img src="assets/img/icons/home5.svg" alt="" />
+                <span>Portfolio</span>
+              </a>
+
+              <a class="list-group-item list-group-item-action"
+                 [ngClass]="{ active: currentSection === 'list-item-6' }"
+                 href="javascript:void(0);" (click)="scrollTo('list-item-6'); setActiveLink('list-item-6')">
+                <img src="assets/img/icons/homeC.svg" alt="" />
+                <span>LLenroc Templates</span>
+              </a>
+
+<!--              <a class="list-group-item list-group-item-action"-->
+<!--                 [ngClass]="{ active: currentSection === 'list-item-7' }"-->
+<!--                 href="javascript:void(0);" (click)="scrollTo('list-item-7'); setActiveLink('list-item-7')">-->
+<!--                <img src="assets/img/icons/home6.svg" alt="" />-->
+<!--                <span>Testimonials</span>-->
+<!--              </a>-->
+
+<!--              <a class="list-group-item list-group-item-action"-->
+<!--                 [ngClass]="{ active: currentSection === 'list-item-8' }"-->
+<!--                 href="javascript:void(0);" (click)="scrollTo('list-item-8'); setActiveLink('list-item-8')">-->
+<!--                <img src="assets/img/icons/home8.svg" alt="" />-->
+<!--                <span>Blog</span>-->
+<!--              </a>-->
+
+              <a class="list-group-item list-group-item-action m-0"
+                 [ngClass]="{ active: currentSection === 'list-item-9' }"
+                 href="javascript:void(0);" (click)="scrollTo('list-item-9'); setActiveLink('list-item-9')">
+                <img src="assets/img/icons/home7.svg" alt="" />
+                <span>Contact</span>
+              </a>
+
+              <br>
+
+              <a class="list-group-item list-group-item-action m-0"
+                 [ngClass]="{ active: currentSection === 'list-item-10' }"
+                 href="javascript:void(0);" (click)="scrollTo('list-item-10'); setActiveLink('list-item-10')"
+                 title="AI Assistant">
+                <img src="assets/img/icons/ai-assistant-icon.svg" alt="AI Assistant" />
+                <span>AI Assistant</span>
+              </a>
+
+              <br>
+
+              <a class="list-group-item list-group-item-action m-0"
+                 [ngClass]="{ active: currentSection === 'list-item-11' }"
+                 href="javascript:void(0);" (click)="scrollTo('list-item-11'); setActiveLink('list-item-11')">
+                <img src="assets/img/icons/payment-dollar.svg" alt="" />
+                <span>Payment</span>
+              </a>
+
+              <br>
+
+              <a class="list-group-item list-group-item-action m-0"
+                 [ngClass]="{ active: currentSection === 'list-item-12' }"
+                 href="javascript:void(0);" (click)="scrollTo('list-item-12'); setActiveLink('list-item-12')">
+                <img src="assets/img/icons/privacy.svg" alt="" />
+                <span>Client & Talent Portal</span>
+              </a>
+            </div>
+
+            <div class="img1 image-anime reveal" appGsapReveal>
+              <img src="assets/img/all-images/hero/llenroc_logo_yellow.png" alt="LLenroc Tech Logo">
+            </div>
+
+            <div class="space18"></div>
+
+            <h3>LLenroc Tech LLC</h3>
+
+            <div class="space32"></div>
+
+            <h3><i>Enterprise Software Consulting</i></h3>
+
+            <div class="space16"></div>
+
+            <p>
+              Helping organizations build, modernize, and scale enterprise software solutions through
+              custom development, consulting, C2C partnerships, and technology talent solutions.
+            </p>
+
+            <div class="space64"></div>
+
+            <!-- Join Talent Network -->
+            <div class="btn-area1 text-center">
+              <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=XMyOlFLWg0SZ0VoLGWT8r85gfgwYVpRMtqWtHwIsEUBURDFSMDhNVEVHVjFTWUM1UlFVNjg1WlIzUiQlQCN0PWcu"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="vl-btn1">
+                Join Talent Network
+                <i class="fa-solid fa-user-plus"></i>
+              </a>
+            </div>
+
+            <div class="space42"></div>
+
+            <!-- Request Services -->
+            <div class="btn-area1 text-center">
+              <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=XMyOlFLWg0SZ0VoLGWT8r_j0A8qUhJNFifJhkhK5tu1UM0dEUFI0SFNRMjEyNEpDTTVQTDlUUkc4Wi4u"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="vl-btn1">
+                Request Services
+                <i class="fa-solid fa-briefcase"></i>
+              </a>
+            </div>
+
+            <div class="space32"></div>
+
+            <!-- Ask AI -->
+            <div class="btn-area1 text-center">
+              <a href="javascript:void(0);" id="aiBtn" class="vl-btn1" aria-label="Ask AI"
+                 (click)="goToAi()">
+                Ask AI
+                <img src="assets/img/icons/ai-assistant-icon.svg" alt="">
+              </a>
+            </div>
+
+            <div class="space32"></div>
+
+            <p>© {{year}} LLENROC . All Rights Reserved.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true"
+               class="scrollspy-example" tabindex="0">
+
+            <div id="list-item-1">
+              <app-hero-area [testimonials]="myTestimonials"></app-hero-area>
+            </div>
+
+            <div class="space50"></div>
+
+            <div id="list-item-2">
+              <app-about-area></app-about-area>
+            </div>
+
+            <div id="list-item-3">
+              <app-service-section></app-service-section>
+            </div>
+
+            <div class="space50"></div>
+
+            <div id="list-item-4">
+              <app-skill-section></app-skill-section>
+            </div>
+
+            <div class="space30"></div>
+
+            <div id="list-item-5">
+              <app-portfolio-section (open)="openModel()"></app-portfolio-section>
+            </div>
+
+            <div class="space30"></div>
+
+            <div id="list-item-6">
+              <app-llenroc-templates (open)="openModel()"></app-llenroc-templates>
+            </div>
+
+            <div class="space30"></div>
+
+            <div id="list-item-7">
+              <app-testimonial-section
+                [eyebrow]="'Testimonial'"
+                [testimonials]="myTestimonials"
+                [hideWhenEmpty]="true"
+                [showWriteReview]="false"
+                [preview]="false">
+              </app-testimonial-section>
+            </div>
+
+            <div class="space30"></div>
+
+            <div id="list-item-8">
+<!--              <app-blog-section></app-blog-section>-->
+            </div>
+
+            <div class="space60"></div>
+
+            <div id="list-item-9">
+              <app-contact></app-contact>
+            </div>
+
+            <div class="space60"></div>
+
+            <div id="list-item-10">
+              <app-ai-sidebar></app-ai-sidebar>
+            </div>
+
+            <div class="space60"></div>
+
+            <div id="list-item-11" class="contact-section-area" data-aos="fade-left" data-aos-duration="900">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="contact-heading heading1">
+                      <h5><img src="assets/img/icons/yellow_circle_icon.svg" alt="">Payment</h5>
+                      <div class="space24"></div>
+                      <h2>Ready to Move Forward?</h2>
+                      <div class="space24"></div>
+                      <h2 class="head">Secure <span>Checkout</span></h2>
+                    </div>
+
+                    <div class="space50"></div>
+
+                    <div class="contact-boxarea" data-aos="zoom-in" data-aos-duration="1000">
+                      <h3>Pay your invoice or make a deposit</h3>
+                      <div class="space12"></div>
+                      <div class="btn-area1 text-center">
+                        <div class="space32"></div>
+                        <a routerLink="/checkout" class="vl-btn1">
+                          Go to Payment
+                          <i class="fa-solid fa-dollar-sign"></i>
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="space50"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="list-item-12" class="contact-section-area" data-aos="fade-left" data-aos-duration="900">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="contact-heading heading1">
+                      <h5><img src="assets/img/icons/yellow_circle_icon.svg" alt="">Client & Talent Portal</h5>
+                      <div class="space24"></div>
+                      <h2>Partner With LLenroc Tech</h2>
+                      <div class="space24"></div>
+                      <h2 class="head">Client Requests • Consultant Intake • <span>C2C Opportunities</span></h2>
+                    </div>
+
+                    <div class="space50"></div>
+
+                    <div class="contact-boxarea" data-aos="zoom-in" data-aos-duration="1000">
+                      <h3>Start a consulting engagement, submit a staffing request, or join our consultant network.</h3>
+                      <div class="space12"></div>
+                      <div class="btn-area1 text-center">
+                        <div class="space32"></div>
+                        <a routerLink="/forms" class="vl-btn1">
+                          Open Portal
+                          <i class="fa-solid fa-file-lines"></i>
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="space50"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-design-model-section
+  [isOpen]="isModelOpen"
+  (close)="closeModel()">
+</app-design-model-section>

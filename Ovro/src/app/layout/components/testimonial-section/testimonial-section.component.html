@@ -1,0 +1,54 @@
+<!-- Render ONLY when there is data or preview=true -->
+<ng-container *ngIf="preview || (testimonials?.length ?? 0) > 0">
+  <section class="ts-wrap skill-section-area">
+    <div class="blog-header heading1" *ngIf="true">
+      <h5>
+        <img src="assets/img/icons/yellow_circle_icon.svg" alt="">
+        Testimonial
+      </h5>
+      <div class="space24"></div>
+      <h2>What Clients Say</h2>
+      <div class="space24"></div>
+      <h2 class="head">About <span>My Work</span></h2>
+    </div>
+
+    <div class="space24"></div>
+
+    <div class="ts-viewport" #viewport
+         (mouseenter)="pauseAutoScroll()"
+         (mouseleave)="resumeAutoScroll()">
+      <div class="ts-rail" #rail>
+        <article class="ts-card skill-boxarea" *ngFor="let t of testimonials">
+          <div class="icons">
+            <div class="avatar">{{ initials(t.author) }}</div>
+          </div>
+
+          <div class="space24"></div>
+          <h3 class="t-name">{{ t.author }}</h3>
+
+          <div class="space16"></div>
+          <p class="t-source">{{ t.source || 'Client' }}</p>
+
+          <div class="space16"></div>
+          <div class="stars" aria-label="rating">
+            <ng-container *ngFor="let _ of five">
+              <svg viewBox="0 0 24 24" class="star">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+            </ng-container>
+          </div>
+
+          <div class="space16"></div>
+          <p class="quote">“{{ t.text }}”</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="ts-controls d-flex justify-content-center gap-3 align-items-center"
+     *ngIf="hasOverflow">
+  <button type="button" class="vl-btn1" (click)="scrollByPage(-1)">‹</button>
+  <button type="button" class="vl-btn1" (click)="scrollByPage(1)">›</button>
+</div>
+
+  </section>
+</ng-container>

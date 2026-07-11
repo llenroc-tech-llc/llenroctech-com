@@ -1,0 +1,99 @@
+:host { display: block; }
+
+.checkout-page {
+  max-width: 920px;
+}
+
+/* Reuse the “comments” card chrome */
+.comments-boxarea {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 24px 28px;
+}
+.comments-boxarea + .comments-boxarea { margin-top: 18px; }
+
+/* Inputs that look like your Comments form */
+.form-grid {
+  display: grid;
+  gap: 14px;
+}
+.form-grid.two-col {
+  grid-template-columns: 1fr 1fr;
+  @media (max-width: 992px) { grid-template-columns: 1fr; }
+}
+
+.form-input {
+  width: 100%;
+  min-height: 56px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255,255,255,.08);
+  color: #eaeaea;
+  outline: none;
+  transition: border-color .15s, box-shadow .15s, background .15s;
+}
+.form-input::placeholder { color: rgba(255,255,255,.6); }
+.form-input:focus {
+  border-color: #ffae00;
+  box-shadow: 0 0 0 3px rgba(255,174,0,.15);
+  background: #121617;
+}
+
+.input-with-prefix {
+  display: grid; grid-template-columns: auto 1fr; gap: .5rem; align-items: center;
+  span {
+    width: 44px; height: 44px; display: inline-grid; place-items: center;
+    border-radius: 9999px; border: 1px solid rgba(255,255,255,.08);
+    background: rgba(255,255,255,.20); color: #eaeaea;
+  }
+}
+
+.form-label { font-weight: 700; color: rgba(255,255,255,.92); }
+.muted { color: rgba(255,255,255,.65); }
+.err { color: #ff6262; margin-top: 8px; }
+
+.w-100 { width: 100%; }
+.pill-row { display: flex; gap: .5rem; flex-wrap: wrap; }
+.pill { border-radius: 9999px; padding-inline: 16px; }
+
+/* Unified method tabs using your button style as base (added in HTML) */
+.method-tabs { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 10px; }
+.tab-btn {
+  border-radius: 9999px;
+  padding: .45rem 1rem;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.22);
+  color: rgba(255,255,255,.86);
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.tab-btn:hover { border-color: rgba(255,255,255,.55); }
+.tab-btn.active {
+  background: #ffae00; color: #0e1f1e; border-color: #ffae00;
+}
+
+/* Stripe Payment Element to match your Comments inputs */
+.payment-element-slot { display: block; }
+
+:host ::ng-deep .Input,
+:host ::ng-deep .p-Input {
+  border-radius: 12px !important;
+  padding: 12px 14px !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  color: #eaeaea !important;
+}
+:host ::ng-deep .Input::placeholder { color: rgba(255,255,255,.6) !important; }
+:host ::ng-deep .Input:focus {
+  border-color: #ffae00 !important;
+  box-shadow: 0 0 0 3px rgba(255,174,0,.15) !important;
+  background: #121617 !important;
+}
+:host ::ng-deep .Tab, :host ::ng-deep .p-Tab {
+  border-radius: 12px !important;
+}
+
+/* PayPal width */
+:host ::ng-deep #paypal-buttons > div { width: 100% !important; min-width: 240px; }
+:host ::ng-deep iframe[src*="paypal"] { border-radius: 10px; overflow: hidden; }

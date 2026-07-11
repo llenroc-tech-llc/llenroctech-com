@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>AI Assistant (Large)</title>
+  <desc>High-visibility robot icon optimized to match 50x50 sidebar tiles.</desc>
+  <g stroke="#EDEFF2" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- antenna -->
+    <path d="M25 7v6"/>
+    <circle cx="25" cy="6" r="2.6"/>
+    <!-- head (fills most of canvas) -->
+    <rect x="8" y="16" width="34" height="22" rx="10"/>
+    <!-- eyes -->
+    <circle cx="19.5" cy="26.5" r="2.6"/>
+    <circle cx="30.5" cy="26.5" r="2.6"/>
+    <!-- mouth -->
+    <path d="M18 32.5h14"/>
+  </g>
+</svg>
