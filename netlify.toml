@@ -2,10 +2,12 @@
   node_bundler = "esbuild"
 
 [build]
+
 base      = "frontend/llenroctech-web"
 command   = "npm ci && npm run build"
 publish   = "dist/llenroc-angular/browser"
 functions = "../../netlify/functions"
+
 
 [build.environment]
   NODE_VERSION = "20"
