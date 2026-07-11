@@ -41,19 +41,20 @@
                 <span>Technology Stack</span>
               </a>
 
-              <a class="list-group-item list-group-item-action"
-                 [ngClass]="{ active: currentSection === 'list-item-5' }"
-                 href="javascript:void(0);" (click)="scrollTo('list-item-5'); setActiveLink('list-item-5')">
-                <img src="assets/img/icons/home5.svg" alt="" />
-                <span>Portfolio</span>
-              </a>
+<!--              Template navigation temporarily hidden. Keep for later restoration. -->
+<!--              <a class="list-group-item list-group-item-action"-->
+<!--                 [ngClass]="{ active: currentSection === 'list-item-5' }"-->
+<!--                 href="javascript:void(0);" (click)="scrollTo('list-item-5'); setActiveLink('list-item-5')">-->
+<!--                <img src="assets/img/icons/home5.svg" alt="" />-->
+<!--                <span>Portfolio</span>-->
+<!--              </a>-->
 
-              <a class="list-group-item list-group-item-action"
-                 [ngClass]="{ active: currentSection === 'list-item-6' }"
-                 href="javascript:void(0);" (click)="scrollTo('list-item-6'); setActiveLink('list-item-6')">
-                <img src="assets/img/icons/homeC.svg" alt="" />
-                <span>LLenroc Templates</span>
-              </a>
+<!--              <a class="list-group-item list-group-item-action"-->
+<!--                 [ngClass]="{ active: currentSection === 'list-item-6' }"-->
+<!--                 href="javascript:void(0);" (click)="scrollTo('list-item-6'); setActiveLink('list-item-6')">-->
+<!--                <img src="assets/img/icons/homeC.svg" alt="" />-->
+<!--                <span>LLenroc Templates</span>-->
+<!--              </a>-->
 
 <!--              <a class="list-group-item list-group-item-action"-->
 <!--                 [ngClass]="{ active: currentSection === 'list-item-7' }"-->
@@ -88,14 +89,15 @@
 
               <br>
 
-              <a class="list-group-item list-group-item-action m-0"
-                 [ngClass]="{ active: currentSection === 'list-item-11' }"
-                 href="javascript:void(0);" (click)="scrollTo('list-item-11'); setActiveLink('list-item-11')">
-                <img src="assets/img/icons/payment-dollar.svg" alt="" />
-                <span>Payment</span>
-              </a>
+<!--              Payment navigation temporarily hidden. -->
+<!--              <a class="list-group-item list-group-item-action m-0"-->
+<!--                 [ngClass]="{ active: currentSection === 'list-item-11' }"-->
+<!--                 href="javascript:void(0);" (click)="scrollTo('list-item-11'); setActiveLink('list-item-11')">-->
+<!--                <img src="assets/img/icons/payment-dollar.svg" alt="" />-->
+<!--                <span>Payment</span>-->
+<!--              </a>-->
 
-              <br>
+<!--              <br>-->
 
               <a class="list-group-item list-group-item-action m-0"
                  [ngClass]="{ active: currentSection === 'list-item-12' }"
@@ -193,17 +195,18 @@
 
             <div class="space30"></div>
 
-            <div id="list-item-5">
-              <app-portfolio-section (open)="openModel()"></app-portfolio-section>
-            </div>
+<!--            Website Templates and LLenroc Templates temporarily hidden. -->
+<!--            <div id="list-item-5">-->
+<!--              <app-portfolio-section (open)="openModel()"></app-portfolio-section>-->
+<!--            </div>-->
 
-            <div class="space30"></div>
+<!--            <div class="space30"></div>-->
 
-            <div id="list-item-6">
-              <app-llenroc-templates (open)="openModel()"></app-llenroc-templates>
-            </div>
+<!--            <div id="list-item-6">-->
+<!--              <app-llenroc-templates (open)="openModel()"></app-llenroc-templates>-->
+<!--            </div>-->
 
-            <div class="space30"></div>
+<!--            <div class="space30"></div>-->
 
             <div id="list-item-7">
               <app-testimonial-section
@@ -235,37 +238,38 @@
 
             <div class="space60"></div>
 
-            <div id="list-item-11" class="contact-section-area" data-aos="fade-left" data-aos-duration="900">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="contact-heading heading1">
-                      <h5><img src="assets/img/icons/yellow_circle_icon.svg" alt="">Payment</h5>
-                      <div class="space24"></div>
-                      <h2>Ready to Move Forward?</h2>
-                      <div class="space24"></div>
-                      <h2 class="head">Secure <span>Checkout</span></h2>
-                    </div>
+<!--            Stripe/payment section temporarily hidden. -->
+<!--            <div id="list-item-11" class="contact-section-area" data-aos="fade-left" data-aos-duration="900">-->
+<!--              <div class="container">-->
+<!--                <div class="row">-->
+<!--                  <div class="col-lg-12">-->
+<!--                    <div class="contact-heading heading1">-->
+<!--                      <h5><img src="assets/img/icons/yellow_circle_icon.svg" alt="">Payment</h5>-->
+<!--                      <div class="space24"></div>-->
+<!--                      <h2>Ready to Move Forward?</h2>-->
+<!--                      <div class="space24"></div>-->
+<!--                      <h2 class="head">Secure <span>Checkout</span></h2>-->
+<!--                    </div>-->
 
-                    <div class="space50"></div>
+<!--                    <div class="space50"></div>-->
 
-                    <div class="contact-boxarea" data-aos="zoom-in" data-aos-duration="1000">
-                      <h3>Pay your invoice or make a deposit</h3>
-                      <div class="space12"></div>
-                      <div class="btn-area1 text-center">
-                        <div class="space32"></div>
-                        <a routerLink="/checkout" class="vl-btn1">
-                          Go to Payment
-                          <i class="fa-solid fa-dollar-sign"></i>
-                        </a>
-                      </div>
-                    </div>
+<!--                    <div class="contact-boxarea" data-aos="zoom-in" data-aos-duration="1000">-->
+<!--                      <h3>Pay your invoice or make a deposit</h3>-->
+<!--                      <div class="space12"></div>-->
+<!--                      <div class="btn-area1 text-center">-->
+<!--                        <div class="space32"></div>-->
+<!--                        <a routerLink="/checkout" class="vl-btn1">-->
+<!--                          Go to Payment-->
+<!--                          <i class="fa-solid fa-dollar-sign"></i>-->
+<!--                        </a>-->
+<!--                      </div>-->
+<!--                    </div>-->
 
-                    <div class="space50"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
+<!--                    <div class="space50"></div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
 
             <div id="list-item-12" class="contact-section-area" data-aos="fade-left" data-aos-duration="900">
               <div class="container">
@@ -298,6 +302,50 @@
                 </div>
               </div>
             </div>
+
+            <div class="space30"></div>
+
+            <section id="reviews" class="contact-section-area homepage-reviews">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="contact-heading heading1">
+                      <h5><img src="assets/img/icons/yellow_circle_icon.svg" alt="">Reviews</h5>
+                      <div class="space24"></div>
+                      <h2>Share Your</h2>
+                      <div class="space24"></div>
+                      <h2 class="head"><span>Experience</span></h2>
+                    </div>
+
+                    <div class="space50"></div>
+
+                    <div class="contact-boxarea">
+                      <div class="homepage-review-cta">
+                        <button class="vl-btn1"
+                                type="button"
+                                (click)="openReview()">
+                          + Write a review
+                        </button>
+
+                        <div class="homepage-review-copy" *ngIf="reviewTotal > 0; else noHomepageReviews">
+                          <strong>{{ reviewTotal }} reviews</strong>
+                          <span>({{ averageRating | number:'1.2-2' }} of 5)</span>
+                        </div>
+
+                        <ng-template #noHomepageReviews>
+                          <div class="homepage-review-copy">
+                            <strong>Be the first to review</strong>
+                            <span>No ratings yet</span>
+                          </div>
+                        </ng-template>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <div class="space50"></div>
 
           </div>
         </div>

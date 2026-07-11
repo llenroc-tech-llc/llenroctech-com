@@ -15,7 +15,7 @@ import { HeroAreaComponent } from '../hero-area/hero-area.component';
 import { AboutAreaComponent } from '../about-area/about-area.component';
 import { ServiceSectionComponent } from '../service-section/service-section.component';
 import { SkillSectionComponent } from '../skill-section/skill-section.component';
-import { PortfolioSectionComponent } from '../portfolio-section/portfolio-section.component';
+// import { PortfolioSectionComponent } from '../portfolio-section/portfolio-section.component';
 import { BlogSectionComponent } from '../blog-section/blog-section.component';
 import { DesignModelSectionComponent } from '../design-model-section/design-model-section.component';
 
@@ -24,8 +24,9 @@ import { TestimonialService } from '../../../services/testimonial.service';
 import { take } from 'rxjs';
 import { CheckoutService } from '../../../services/checkout.service';
 import { TestimonialSectionComponent } from '../testimonial-section/testimonial-section.component';
-import { LlenrocTemplatesComponent } from '../llenroc-templates/llenroc-templates.component';
+// import { LlenrocTemplatesComponent } from '../llenroc-templates/llenroc-templates.component';
 import { AiSidebarComponent } from '../ai-sidebar/ai-sidebar.component';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-sidebar',
@@ -40,10 +41,10 @@ import { AiSidebarComponent } from '../ai-sidebar/ai-sidebar.component';
     AboutAreaComponent,
     ServiceSectionComponent,
     SkillSectionComponent,
-    PortfolioSectionComponent,
+    // PortfolioSectionComponent,
     TestimonialSectionComponent,
     DesignModelSectionComponent,
-    LlenrocTemplatesComponent,
+    // LlenrocTemplatesComponent,
     AiSidebarComponent
   ],
   templateUrl: './sidebar.component.html',
@@ -65,6 +66,22 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   ];
 
   myTestimonials: Testimonial[] = [];
+  writeReviewUrl = environment?.googlePlaceId
+    ? `https://search.google.com/local/writereview?placeid=${encodeURIComponent(environment.googlePlaceId)}`
+    : '';
+
+  get reviewTotal(): number {
+    return this.myTestimonials.length;
+  }
+
+  get averageRating(): number {
+    if (!this.reviewTotal) return 0;
+    return this.myTestimonials.reduce((sum, item) => sum + (item.rating ?? 0), 0) / this.reviewTotal;
+  }
+
+  openReview(): void {
+    if (this.writeReviewUrl) window.open(this.writeReviewUrl, '_blank', 'noopener');
+  }
 
   constructor(
     private renderer: Renderer2,

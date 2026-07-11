@@ -19,6 +19,7 @@
           <div class="space12"></div>
 
           <form
+            *ngIf="false"
             [formGroup]="form"
             (ngSubmit)="onSubmit($event)"
             novalidate
@@ -143,6 +144,19 @@
               <button type="button" class="alert-close" (click)="dismiss('failed')" aria-label="Close">✕</button>
             </div>
           </form>
+
+          <!-- Temporary contact CTA. The original contact form remains above for later use. -->
+          <div class="contact-cta">
+            <p>Tell us about your project, staffing request, or consulting needs.</p>
+            <div class="space24"></div>
+            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=XMyOlFLWg0SZ0VoLGWT8r_j0A8qUhJNFifJhkhK5tu1UM0dEUFI0SFNRMjEyNEpDTTVQTDlUUkc4Wi4u"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="vl-btn1">
+              Contact Me
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+          </div>
         </div>
 
         <div class="space50"></div>

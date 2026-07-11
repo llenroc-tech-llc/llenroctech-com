@@ -26,3 +26,21 @@
   line-height: 1;
   cursor: pointer;
 }
+
+.contact-cta {
+  padding: 12px 0;
+  text-align: center;
+}
+
+.contact-cta p {
+  color: var(--ztc-text-text-1);
+  font-size: var(--ztc-font-size-font-s18);
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+.contact-cta .vl-btn1 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}

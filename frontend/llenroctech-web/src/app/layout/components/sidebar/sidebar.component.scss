@@ -88,4 +88,31 @@ body.light-mode .payment-mini{
 /* Optional: small hover bump, same vibe as your CTAs */
 .ai-fab-btn:hover{ filter: brightness(1.05); }
 
+.homepage-review-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 12px 0;
+}
+
+.homepage-review-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--ztc-text-text-1);
+}
+
+.homepage-review-copy span {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+@media (max-width: 575px) {
+  .homepage-review-cta {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
 
