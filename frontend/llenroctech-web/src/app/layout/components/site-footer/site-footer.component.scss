@@ -1,0 +1,9 @@
+:host { display: block; }
+.site-footer { backdrop-filter: blur(60px); background: var(--ztc-bg-bg-1); border-top: 1px solid var(--ztc-border-border-2); color: var(--ztc-text-text-1); font-family: var(--ztc-family-font1); padding: 2rem 1.25rem; text-align: center; }
+.site-footer__inner { margin: 0 auto; max-width: 72rem; }
+p { margin: 0; }
+nav { align-items: center; display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin: 0.75rem 0; }
+a { color: var(--ztc-bg-btn-bg1); font-weight: var(--ztc-weight-semibold); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; transition: all 0.3s ease; }
+a:hover { color: var(--ztc-text-text-1); }
+a:focus-visible { outline: 3px solid var(--ztc-bg-btn-bg1); outline-offset: 4px; }
+@media (max-width: 575px) { .site-footer { font-size: 0.9rem; padding-block: 1.5rem; } }

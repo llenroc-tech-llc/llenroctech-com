@@ -27,6 +27,7 @@ import { TestimonialSectionComponent } from '../testimonial-section/testimonial-
 // import { LlenrocTemplatesComponent } from '../llenroc-templates/llenroc-templates.component';
 import { AiSidebarComponent } from '../ai-sidebar/ai-sidebar.component';
 import { environment } from '../../../../environments/environment';
+import { SiteFooterComponent } from '../site-footer/site-footer.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -45,7 +46,8 @@ import { environment } from '../../../../environments/environment';
     TestimonialSectionComponent,
     DesignModelSectionComponent,
     // LlenrocTemplatesComponent,
-    AiSidebarComponent
+    AiSidebarComponent,
+    SiteFooterComponent
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
