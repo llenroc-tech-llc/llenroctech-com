@@ -11,6 +11,16 @@ import { ThankYouComponent } from './layout/components/thank-you/thank-you.compo
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
+    path: 'privacy',
+    title: 'Privacy Policy | Llenroc Tech',
+    loadComponent: () => import('./legal/privacy/privacy.component').then(m => m.PrivacyComponent),
+  },
+  {
+    path: 'terms',
+    title: 'Terms and Conditions | Llenroc Tech',
+    loadComponent: () => import('./legal/terms/terms.component').then(m => m.TermsComponent),
+  },
+  {
     path: '',
     component: LayoutComponent,
     loadChildren: () => import('./views/views.route').then(m => m.VIEWS_ROUTE),
