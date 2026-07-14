@@ -1,5 +1,5 @@
 :host { display: block; }
-.site-footer { backdrop-filter: blur(60px); background: var(--ztc-bg-bg-1); border-top: 1px solid var(--ztc-border-border-2); color: var(--ztc-text-text-1); font-family: var(--ztc-family-font1); padding: 2rem 1.25rem; text-align: center; }
+.site-footer { backdrop-filter: blur(5px); background: rgba(4, 22, 24, 0.5); border-top: 1px solid var(--ztc-border-border-2); color: var(--ztc-text-text-1); font-family: var(--ztc-family-font1); padding: 2rem 1.25rem; text-align: center; }
 .site-footer__inner { margin: 0 auto; max-width: 72rem; }
 p { margin: 0; }
 nav { align-items: center; display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin: 0.75rem 0; }

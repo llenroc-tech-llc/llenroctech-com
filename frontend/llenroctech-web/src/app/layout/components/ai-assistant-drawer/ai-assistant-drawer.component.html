@@ -1,0 +1,14 @@
+@if (state.isOpen()) {
+  <aside #drawer id="llenroc-ai-drawer" class="ai-drawer" role="dialog" [attr.aria-modal]="isMobile" aria-labelledby="ai-drawer-title" aria-describedby="ai-drawer-status">
+    <header class="ai-drawer__header">
+      <div class="ai-drawer__brand"><span class="ai-drawer__logo"><i class="fa-solid fa-robot" aria-hidden="true"></i></span><div><h2 id="ai-drawer-title">Llenroc Tech AI Assistant</h2><p id="ai-drawer-status"><span aria-hidden="true"></span>Powered by Azure AI</p></div></div>
+      <div class="ai-drawer__controls">
+        <button type="button" (click)="state.newConversation()" [disabled]="state.loading() || !state.hasConversation()" aria-label="Start a new conversation" title="New conversation"><i class="fa-solid fa-rotate" aria-hidden="true"></i></button>
+        <a routerLink="/ai-assistant" (click)="state.close()" aria-label="Open full-page AI assistant" title="Open full page"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+        <button type="button" (click)="state.minimize()" aria-label="Minimize AI assistant" title="Minimize"><i class="fa-solid fa-window-minimize" aria-hidden="true"></i></button>
+        <button type="button" (click)="state.close()" aria-label="Close AI assistant" title="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </div>
+    </header>
+    <div class="ai-drawer__content"><app-ai-assistant-chat /></div>
+  </aside>
+}

@@ -1,0 +1,43 @@
+<div class="ai-chat">
+  <div #transcript class="ai-chat__transcript" (scroll)="onTranscriptScroll()" tabindex="0" aria-label="Conversation transcript">
+    @if (!state.hasConversation()) {
+      <section class="ai-chat__welcome" aria-labelledby="ai-welcome-title">
+        <span class="ai-chat__welcome-icon"><i class="fa-solid fa-robot" aria-hidden="true"></i></span>
+        <h2 id="ai-welcome-title">How can we help?</h2>
+        <p>Ask about Llenroc Tech services, technical capabilities, engagement options, pricing, or how to get started.</p>
+        <div class="ai-chat__suggestions" aria-label="Suggested questions">
+          @for (item of quickPrompts; track item.label) {
+            <button type="button" (click)="selectQuickPrompt(item.prompt)" [disabled]="state.loading()">{{ item.label }}</button>
+          }
+        </div>
+      </section>
+    }
+
+    <div class="ai-chat__messages" aria-live="polite" aria-relevant="additions text">
+      @for (message of state.messages(); track message.id) {
+        <article class="ai-message" [class.ai-message--visitor]="message.role === 'user'">
+          <span class="ai-message__author">{{ message.role === 'user' ? 'You' : 'Llenroc Tech AI' }}</span>
+          <p>{{ message.content }}</p>
+        </article>
+      }
+      @if (state.loading()) {
+        <div class="ai-message ai-message--typing" role="status" aria-label="Llenroc Tech AI is preparing a response">
+          <span></span><span></span><span></span><span class="visually-hidden">Preparing a response</span>
+        </div>
+      }
+      @if (state.error()) {
+        <div class="ai-chat__error" role="alert"><p>{{ state.error() }}</p><button type="button" (click)="state.retry()" [disabled]="state.loading()">Try Again</button></div>
+      }
+    </div>
+  </div>
+
+  <form class="ai-composer" (submit)="$event.preventDefault(); state.submit()" novalidate>
+    <label for="ai-assistant-prompt" class="visually-hidden">Ask the Llenroc Tech AI assistant</label>
+    <div class="ai-composer__input">
+      <textarea #composer id="ai-assistant-prompt" name="prompt" rows="1" maxlength="2000" [ngModel]="state.draft()" (input)="onInput($event)" (keydown)="onComposerKeydown($event)" placeholder="Ask about services, technology, or getting started…" [disabled]="state.loading()"></textarea>
+      <button type="submit" [disabled]="state.loading() || !state.draft().trim()" aria-label="Send message"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i></button>
+    </div>
+    @if (remainingCharacters <= 200) { <p class="ai-composer__count">{{ remainingCharacters }} characters remaining</p> }
+    <p class="ai-composer__privacy">Do not submit passwords, financial details, health information, or other sensitive personal information.</p>
+  </form>
+</div>
