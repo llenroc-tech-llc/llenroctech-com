@@ -25,9 +25,15 @@ import { take } from 'rxjs';
 import { CheckoutService } from '../../../services/checkout.service';
 import { TestimonialSectionComponent } from '../testimonial-section/testimonial-section.component';
 // import { LlenrocTemplatesComponent } from '../llenroc-templates/llenroc-templates.component';
-import { AiSidebarComponent } from '../ai-sidebar/ai-sidebar.component';
 import { environment } from '../../../../environments/environment';
-import { SiteFooterComponent } from '../site-footer/site-footer.component';
+import { AiAssistantStateService } from '../../../services/ai-assistant-state.service';
+
+interface HomeTopicLink {
+  label: string;
+  route?: string;
+  externalUrl?: string;
+  externalLabel?: string;
+}
 
 @Component({
   selector: 'app-sidebar',
@@ -46,13 +52,37 @@ import { SiteFooterComponent } from '../site-footer/site-footer.component';
     TestimonialSectionComponent,
     DesignModelSectionComponent,
     // LlenrocTemplatesComponent,
-    AiSidebarComponent,
-    SiteFooterComponent
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent implements OnInit, AfterViewInit {
+  readonly aiPlatformTopics: HomeTopicLink[] = [
+    { label: 'Overview', route: '/ai-platform/overview' },
+    { label: 'Architecture', route: '/ai-platform/architecture' },
+    { label: 'AI Agents', route: '/ai-platform/agents' },
+    { label: 'MCP Servers', route: '/ai-platform/mcp' },
+    { label: 'GraphQL', route: '/ai-platform/graphql' },
+    { label: 'RAG', route: '/ai-platform/rag' },
+    { label: 'Enterprise Integrations', route: '/ai-platform/integrations' },
+    { label: 'Roadmap', route: '/ai-platform/roadmap' },
+    { label: 'GitHub', externalUrl: 'https://github.com/llenroc-tech-llc', externalLabel: 'Visit Llenroc Tech on GitHub (opens in a new tab)' },
+    { label: 'Demo', route: '/ai-platform/demo' },
+  ];
+
+  readonly knowledgeTopics: HomeTopicLink[] = [
+    { label: 'AI Research', route: '/knowledge/ai-research' },
+    { label: 'Spring Boot', route: '/knowledge/spring-boot' },
+    { label: 'Angular', route: '/knowledge/angular' },
+    { label: 'GraphQL', route: '/knowledge/graphql' },
+    { label: 'Enterprise Architecture', route: '/knowledge/enterprise-architecture' },
+    { label: 'Case Studies', route: '/knowledge/case-studies' },
+    { label: 'White Papers', route: '/knowledge/white-papers' },
+    { label: 'Government Research', route: '/knowledge/government-research' },
+    { label: 'Grant Research', route: '/knowledge/grant-research' },
+    { label: 'Blogs', route: '/knowledge/blogs' },
+  ];
+
   currentSection = 'list-item-1';
   year = new Date().getFullYear();
   isModelOpen = false;
@@ -91,7 +121,8 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     public classManager: ClassManagerService,
     private cdr: ChangeDetectorRef,
     private testimonialSvc: TestimonialService,
-    private checkout: CheckoutService
+    private checkout: CheckoutService,
+    public aiAssistant: AiAssistantStateService
   ) {}
 
   ngOnInit() {
@@ -166,21 +197,15 @@ window.addEventListener('resize', setSBW);
     this.checkout.pay(amount).catch(console.error);
   }
 
-   goToAi() {
-    this.scrollTo('list-item-10');
-    // focus the chat textarea if present
-    setTimeout(() => {
-      const el = document.querySelector<HTMLTextAreaElement>('#list-item-10 textarea');
-      el?.focus();
-    }, 300);
-  }
+  openAiDrawer(trigger?: HTMLElement): void { this.aiAssistant.open(trigger); }
 
   @HostListener('document:keydown', ['$event'])
   onKey(e: KeyboardEvent) {
-    // Press "/" to jump to the AI chat
-    if (e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey) {
+    const target = e.target as HTMLElement | null;
+    const isTyping = target?.matches('input, textarea, select, [contenteditable="true"]');
+    if (e.key === '/' && !isTyping && !e.metaKey && !e.ctrlKey && !e.altKey) {
       e.preventDefault();
-      this.goToAi();
+      this.openAiDrawer();
     }
   }
 }

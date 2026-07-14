@@ -7,6 +7,7 @@ import { CheckoutPageComponent } from './layout/components/checkout-page/checkou
 import { FormsIndexComponent } from './layout/components/forms-index/forms-index.component';
 import { InitialIntakeComponent } from './layout/components/initial-intake/initial-intake.component';
 import { ThankYouComponent } from './layout/components/thank-you/thank-you.component';
+import { ENTERPRISE_ROUTES } from './enterprise/enterprise.routes';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -20,6 +21,12 @@ export const routes: Routes = [
     title: 'Terms and Conditions | Llenroc Tech',
     loadComponent: () => import('./legal/terms/terms.component').then(m => m.TermsComponent),
   },
+  {
+    path: 'ai-assistant',
+    title: 'AI Assistant | Llenroc Tech',
+    loadComponent: () => import('./layout/components/ai-sidebar/ai-sidebar.component').then(m => m.AiSidebarComponent),
+  },
+  ...ENTERPRISE_ROUTES,
   {
     path: '',
     component: LayoutComponent,

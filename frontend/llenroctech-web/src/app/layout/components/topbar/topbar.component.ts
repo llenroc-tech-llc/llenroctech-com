@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, Renderer2 } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-topbar',
   standalone: true,
-  imports: [RouterLink,CommonModule, RouterLinkActive],
+  imports: [RouterLink, CommonModule],
   templateUrl: './topbar.component.html',
   styles: ``,
     providers: [],
@@ -81,4 +81,5 @@ export class TopbarComponent {
     this.isOverlayActive = false;
     this.renderer.removeClass(document.body, 'on-side');
   }
+
 }

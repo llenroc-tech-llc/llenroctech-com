@@ -13,42 +13,42 @@
         <div class="col-lg-4">
           <div class="personal-contact-box" data-aos="fade-right" data-aos-duration="1000">
             <div id="list-example" class="list-group">
-              <a class="list-group-item list-group-item-action"
+              <a class="list-group-item list-group-item-action m-0"
                  [ngClass]="{ active: currentSection === 'list-item-1' }"
                  href="javascript:void(0);" (click)="scrollTo('list-item-1'); setActiveLink('list-item-1')">
                 <img src="assets/img/icons/home1.svg" alt="" />
                 <span>Home</span>
               </a>
 
-              <a class="list-group-item list-group-item-action"
+              <a class="list-group-item list-group-item-action m-0"
                  [ngClass]="{ active: currentSection === 'list-item-2' }"
                  href="javascript:void(0);" (click)="scrollTo('list-item-2'); setActiveLink('list-item-2')">
                 <img src="assets/img/icons/home2.svg" alt="" />
                 <span>About Us</span>
               </a>
 
-              <a class="list-group-item list-group-item-action"
+              <a class="list-group-item list-group-item-action m-0"
                  [ngClass]="{ active: currentSection === 'list-item-3' }"
                  href="javascript:void(0);" (click)="scrollTo('list-item-3'); setActiveLink('list-item-3')">
                 <img src="assets/img/icons/home3.svg" alt="" />
-                <span>Services</span>
+                <span>Our Services</span>
               </a>
 
-              <a class="list-group-item list-group-item-action"
+              <a class="list-group-item list-group-item-action m-0"
                  [ngClass]="{ active: currentSection === 'list-item-4' }"
                  href="javascript:void(0);" (click)="scrollTo('list-item-4'); setActiveLink('list-item-4')">
                 <img src="assets/img/icons/home4.svg" alt="" />
-                <span>Technology Stack</span>
+                <span>Core Technologies</span>
               </a>
 
-              <a class="list-group-item list-group-item-action"
+              <a class="list-group-item list-group-item-action m-0"
                  [ngClass]="{ active: currentSection === 'list-item-13' }"
                  href="javascript:void(0);" (click)="scrollTo('list-item-13'); setActiveLink('list-item-13')">
                 <img class="ai-platform-nav-icon" src="assets/img/icons/ai-assistant-chip-24.svg" alt="AI Platform" />
-                <span>AI Platform</span>
+                <span>AI Platform (LAAP)</span>
               </a>
 
-              <a class="list-group-item list-group-item-action"
+              <a class="list-group-item list-group-item-action m-0"
                  [ngClass]="{ active: currentSection === 'list-item-14' }"
                  href="javascript:void(0);" (click)="scrollTo('list-item-14'); setActiveLink('list-item-14')">
                 <img src="assets/img/icons/home8.svg" alt="" />
@@ -88,20 +88,16 @@
                  [ngClass]="{ active: currentSection === 'list-item-9' }"
                  href="javascript:void(0);" (click)="scrollTo('list-item-9'); setActiveLink('list-item-9')">
                 <img src="assets/img/icons/home7.svg" alt="" />
-                <span>Contact</span>
+                <span>Contact Llenroc Tech</span>
               </a>
-
-              <br>
 
               <a class="list-group-item list-group-item-action m-0"
                  [ngClass]="{ active: currentSection === 'list-item-10' }"
-                 href="javascript:void(0);" (click)="scrollTo('list-item-10'); setActiveLink('list-item-10')"
+                 href="#ai-assistant" (click)="$event.preventDefault(); openAiDrawer($any($event.currentTarget))"
                  title="AI Assistant">
-                <img src="assets/img/icons/ai-assistant-icon.svg" alt="AI Assistant" />
+                <img class="ai-assistant-nav-icon" src="assets/img/icons/ai-assistant-icon.svg" alt="" />
                 <span>AI Assistant</span>
               </a>
-
-              <br>
 
 <!--              Payment navigation temporarily hidden. -->
 <!--              <a class="list-group-item list-group-item-action m-0"-->
@@ -116,8 +112,15 @@
               <a class="list-group-item list-group-item-action m-0"
                  [ngClass]="{ active: currentSection === 'list-item-12' }"
                  href="javascript:void(0);" (click)="scrollTo('list-item-12'); setActiveLink('list-item-12')">
-                <img src="assets/img/icons/privacy.svg" alt="" />
+                <img src="assets/img/icons/client-portal.svg" alt="" />
                 <span>Client & Talent Portal</span>
+              </a>
+
+              <a class="list-group-item list-group-item-action m-0"
+                 [ngClass]="{ active: currentSection === 'list-item-7' }"
+                 href="javascript:void(0);" (click)="scrollTo('list-item-7'); setActiveLink('list-item-7')">
+                <img src="assets/img/icons/home6.svg" alt="" />
+                <span>Reviews</span>
               </a>
 
             </div>
@@ -171,16 +174,16 @@
 
             <!-- Ask AI -->
             <div class="btn-area1 text-center">
-              <a href="javascript:void(0);" id="aiBtn" class="vl-btn1" aria-label="Ask AI"
-                 (click)="goToAi()">
-                Ask AI
-                <img src="assets/img/icons/ai-assistant-icon.svg" alt="">
-              </a>
+              <button #sidebarAiButton type="button" id="aiBtn" class="vl-btn1 ask-ai-button" aria-haspopup="dialog" [attr.aria-expanded]="aiAssistant.isOpen()" aria-controls="llenroc-ai-drawer" aria-label="Open Llenroc Tech AI assistant"
+                 (click)="openAiDrawer(sidebarAiButton)">
+                <span class="ask-ai-button__icon"><i class="fa-solid fa-robot" aria-hidden="true"></i></span>
+                <span>Ask AI</span>
+              </button>
             </div>
 
             <div class="space32"></div>
 
-            <p>© {{year}} LLENROC . All Rights Reserved.</p>
+            <p>&copy; {{year}} LLENROC TECH LLC. All Rights Reserved.</p>
           </div>
         </div>
 
@@ -246,14 +249,6 @@
             <div id="list-item-9">
               <app-contact></app-contact>
             </div>
-
-            <div class="space60"></div>
-
-            <div id="list-item-10">
-              <app-ai-sidebar></app-ai-sidebar>
-            </div>
-
-            <div class="space60"></div>
 
 <!--            Stripe/payment section temporarily hidden. -->
 <!--            <div id="list-item-11" class="contact-section-area" data-aos="fade-left" data-aos-duration="900">-->
@@ -382,10 +377,14 @@
                   <p class="section-intro">Explore the platform LLenroc Tech is building for intelligent, connected enterprise systems.</p>
 
                   <div class="topic-grid" aria-label="AI Platform topics">
-                    <div class="topic-card" *ngFor="let topic of ['Overview', 'Architecture', 'AI Agents', 'MCP Servers', 'GraphQL', 'RAG', 'Enterprise Integrations', 'Roadmap', 'GitHub', 'Demo']">
-                      <i class="fa-solid fa-circle-nodes" aria-hidden="true"></i>
-                      <span>{{ topic }}</span>
-                    </div>
+                    <ng-container *ngFor="let topic of aiPlatformTopics">
+                      <a *ngIf="topic.route" class="topic-card" [routerLink]="topic.route" [attr.aria-label]="'Open ' + topic.label">
+                        <i class="fa-solid fa-circle-nodes" aria-hidden="true"></i><span>{{ topic.label }}</span>
+                      </a>
+                      <a *ngIf="topic.externalUrl" class="topic-card" [href]="topic.externalUrl" target="_blank" rel="noopener noreferrer" [attr.aria-label]="topic.externalLabel">
+                        <i class="fa-solid fa-circle-nodes" aria-hidden="true"></i><span>{{ topic.label }}</span><i class="fa-solid fa-arrow-up-right-from-square topic-card-external" aria-hidden="true"></i>
+                      </a>
+                    </ng-container>
                   </div>
                 </div>
               </div>
@@ -410,10 +409,9 @@
                   <p class="section-intro">A public learning hub for software engineering, enterprise architecture, research, and applied AI.</p>
 
                   <div class="topic-grid" aria-label="Knowledge Center topics">
-                    <div class="topic-card" *ngFor="let topic of ['AI Research', 'Spring Boot', 'Angular', 'GraphQL', 'Enterprise Architecture', 'Case Studies', 'White Papers', 'Government Research', 'Grant Research', 'Blogs']">
-                      <i class="fa-solid fa-book-open" aria-hidden="true"></i>
-                      <span>{{ topic }}</span>
-                    </div>
+                    <a class="topic-card" *ngFor="let topic of knowledgeTopics" [routerLink]="topic.route" [attr.aria-label]="'Open ' + topic.label">
+                      <i class="fa-solid fa-book-open" aria-hidden="true"></i><span>{{ topic.label }}</span>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -428,10 +426,7 @@
     </div>
   </div>
 </div>
-
 <app-design-model-section
   [isOpen]="isModelOpen"
   (close)="closeModel()">
 </app-design-model-section>
-
-<app-site-footer />
