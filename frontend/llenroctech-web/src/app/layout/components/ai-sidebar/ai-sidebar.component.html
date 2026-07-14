@@ -1,70 +1,9 @@
-<!-- src/app/components/ai-sidebar/ai-sidebar.component.html -->
-<!--===== AI ASSISTANT AREA STARTS =======-->
-<div id="ai-assistant"  class="contact-section-area" data-aos="fade-left" data-aos-duration="900">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-
-        <!-- heading block (mirrors contact-heading) -->
-        <div class="contact-heading heading1">
-          <h5><img src="assets/img/icons/yellow_circle_icon.svg" alt="">AI Assistant</h5>
-          <div class="space24"></div>
-          <h2>Ask about services, stack, pricing, or how to start</h2>
-        </div>
-
-        <div class="space50"></div>
-
-        <!-- box area (mirrors contact-boxarea) -->
-        <div class="contact-boxarea" data-aos="zoom-in" data-aos-duration="1000">
-          <h3>Quick questions</h3>
-          <div class="space12"></div>
-
-          <!-- suggestion chips -->
-          <div class="ai-suggests">
-            <button type="button" class="chip" (click)="quick('What services do you offer?')">Services</button>
-            <button type="button" class="chip" (click)="quick('Do you build Angular + Spring Boot apps?')">Stack</button>
-            <button type="button" class="chip" (click)="quick('How do we start a project and what’s the timeline?')">Getting started</button>
-          </div>
-
-          <div class="space16"></div>
-
-          <!-- chat log styled like inputs -->
-          <div #log class="ai-chatlog" *ngIf="visMessages.length">
-            <div *ngFor="let m of visMessages" class="ai-msg" [class.user]="m.role==='user'">
-              {{ m.content }}
-            </div>
-          </div>
-
-          <div class="space12"></div>
-
-          <!-- input + button using your existing styles -->
-          <form (submit)="$event.preventDefault(); send()" novalidate>
-            <div class="input-area">
-              <textarea
-                rows="4"
-                [(ngModel)]="q"
-                name="question"
-                placeholder="Type your question…"
-                [disabled]="loading"
-                aria-label="Ask the Llenroc Tech assistant">
-              </textarea>
-            </div>
-
-            <div class="space16"></div>
-
-            <div class="input-area">
-              <button type="submit" class="vl-btn1"
-                  [disabled]="loading || !q.trim()">
-            Ask Now
-          </button>
-            </div>
-          </form>
-        </div>
-
-        <div class="space50"></div>
-
-      </div>
-    </div>
-  </div>
-</div>
-<!--===== AI ASSISTANT AREA ENDS =======-->
+<app-topbar />
+<main class="ai-page">
+  <video class="ai-page__background" [muted]="true" [autoplay]="true" [loop]="true" playsinline preload="auto" aria-hidden="true"><source src="assets/img/video/video1.mp4" type="video/mp4"></video>
+  <article class="ai-page__container">
+    <nav aria-label="Breadcrumb"><a routerLink="/home">Home</a><span aria-hidden="true">/</span><span aria-current="page">AI Assistant</span></nav>
+    <header><p><img src="assets/img/icons/yellow_circle_icon.svg" alt="">Azure AI</p><h1>Llenroc Tech AI Assistant</h1><span>Shareable full-page experience</span></header>
+    <section class="ai-page__chat" aria-label="Llenroc Tech AI chat"><app-ai-assistant-chat /></section>
+  </article>
+</main>

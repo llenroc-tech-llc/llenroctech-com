@@ -3,9 +3,11 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import aos from 'aos';
 import { CursorDirective } from './directives/cursor.directive';
 import { filter } from 'rxjs';
+import { AiAssistantDrawerComponent } from './layout/components/ai-assistant-drawer/ai-assistant-drawer.component';
+import { SiteFooterComponent } from './layout/components/site-footer/site-footer.component';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,CursorDirective],
+  imports: [RouterOutlet, CursorDirective, AiAssistantDrawerComponent, SiteFooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

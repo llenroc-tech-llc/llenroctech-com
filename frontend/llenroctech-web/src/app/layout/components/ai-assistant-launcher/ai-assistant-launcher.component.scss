@@ -1,0 +1,6 @@
+:host { position: relative; z-index: 1100; }
+.ai-launcher { align-items: center; background: var(--ztc-bg-btn-bg1); border: 1px solid var(--ztc-bg-btn-bg1); border-radius: 999px; bottom: calc(24px + env(safe-area-inset-bottom)); box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3); color: #0e161f; display: flex; font-family: var(--ztc-family-font1); font-size: var(--ztc-font-size-font-s20); font-weight: var(--ztc-weight-semibold); gap: 0.65rem; min-height: 58px; padding: 0.5rem 1.25rem 0.5rem 0.5rem; position: fixed; right: calc(24px + env(safe-area-inset-right)); text-transform: uppercase; }
+.ai-launcher:hover { background: #ffc044; transform: translateY(-2px); }
+.ai-launcher:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+@media (prefers-reduced-motion: no-preference) { .ai-launcher { transition: background 0.2s ease, transform 0.2s ease; } }
+@media (max-width: 600px) { .ai-launcher { bottom: calc(16px + env(safe-area-inset-bottom)); right: calc(16px + env(safe-area-inset-right)); } }
