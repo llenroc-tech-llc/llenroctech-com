@@ -5,6 +5,7 @@ const DEFAULT_API_VERSION = "2024-10-21";
 const MAX_INPUT_MESSAGES = 12;
 const MAX_MESSAGE_LENGTH = 2_000;
 const MAX_TOTAL_INPUT_LENGTH = 8_000;
+const MAX_REQUEST_BYTES = 12_000;
 const MAX_KNOWLEDGE_ITEMS = 6;
 const PHONE_REGEX = /\b(?:\+?1[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b/g;
 
@@ -123,11 +124,83 @@ APPROVED LLENROC TECH KNOWLEDGE:
 ${knowledgeContext}`,
 });
 
+const PRODUCTION_ORIGINS = new Set([
+  "https://llenroctech.com",
+  "https://www.llenroctech.com",
+]);
+
+const getAllowedOrigins = () => {
+  const configuredOrigins = String(process.env.ALLOWED_ORIGINS || "")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+  const origins = new Set([...PRODUCTION_ORIGINS, ...configuredOrigins]);
+
+  if (process.env.CONTEXT !== "production") {
+    origins.add("http://localhost:4200");
+    origins.add("http://localhost:8888");
+  }
+
+  return origins;
+};
+
+const getCorsHeaders = (event) => {
+  const origin = String(event.headers?.origin || event.headers?.Origin || "");
+  const headers = {
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    Vary: "Origin",
+  };
+
+  if (origin && getAllowedOrigins().has(origin)) {
+    headers["Access-Control-Allow-Origin"] = origin;
+  }
+
+  return headers;
+};
+
+const isOriginAllowed = (event) => {
+  const origin = String(event.headers?.origin || event.headers?.Origin || "");
+  return !origin || getAllowedOrigins().has(origin);
+};
+
 const json = (statusCode, body, extraHeaders = {}) => ({ statusCode, headers: { "Content-Type": "application/json", ...extraHeaders }, body: JSON.stringify(body) });
 
+export const config = {
+  path: ["/.netlify/functions/chat", "/api/chat"],
+  rateLimit: {
+    windowLimit: 15,
+    windowSize: 60,
+    aggregateBy: ["ip", "domain"],
+  },
+};
+
 export async function handler(event) {
+  const corsHeaders = getCorsHeaders(event);
+
   try {
-    if (event.httpMethod !== "POST") return json(405, { error: "Method Not Allowed" }, { Allow: "POST" });
+    if (event.httpMethod === "OPTIONS") return { statusCode: 204, headers: corsHeaders, body: "" };
+    if (event.httpMethod !== "POST") return json(405, { error: "Method Not Allowed" }, { ...corsHeaders, Allow: "POST" });
+    if (!isOriginAllowed(event)) return json(403, { error: "Request origin is not allowed." }, corsHeaders);
+
+    const contentType = String(event.headers?.["content-type"] || event.headers?.["Content-Type"] || "");
+    if (!contentType.toLowerCase().startsWith("application/json")) {
+      return json(415, { error: "Content-Type must be application/json." }, corsHeaders);
+    }
+
+    const rawBody = event.body || "";
+    if (!rawBody) return json(400, { error: "Request body is required." }, corsHeaders);
+    if (Buffer.byteLength(rawBody, event.isBase64Encoded ? "base64" : "utf8") > MAX_REQUEST_BYTES) {
+      return json(413, { error: "The request is too large." }, corsHeaders);
+    }
+
+    let parsedBody;
+    try { parsedBody = JSON.parse(rawBody); } catch { return json(400, { error: "Invalid JSON request body." }, corsHeaders); }
+    if (parsedBody.website) return json(400, { error: "Invalid request." }, corsHeaders);
+
+    let userMessages;
+    try { userMessages = sanitizeMessages(parsedBody.messages); } catch (error) { return json(400, { error: error.message }, corsHeaders); }
+    if (!getLatestUserText(userMessages)) return json(400, { error: "A question is required." }, corsHeaders);
 
     const endpoint = must(process.env.AZURE_OPENAI_ENDPOINT, "AZURE_OPENAI_ENDPOINT");
     const apiKey = must(process.env.AZURE_OPENAI_KEY, "AZURE_OPENAI_KEY");
@@ -140,12 +213,6 @@ export async function handler(event) {
     const privacyUrl = process.env.PRIVACY_URL || `${websiteUrl}/privacy`;
     const termsUrl = process.env.TERMS_URL || `${websiteUrl}/terms`;
 
-    let parsedBody;
-    try { parsedBody = JSON.parse(event.body || "{}"); } catch { return json(400, { error: "Invalid JSON request body." }); }
-
-    let userMessages;
-    try { userMessages = sanitizeMessages(parsedBody.messages); } catch (error) { return json(400, { error: error.message }); }
-
     const matched = findRelevantKnowledge(getLatestUserText(userMessages));
     const systemMessage = createSystemMessage({ companyPhone, companyEmail, contactUrl, privacyUrl, termsUrl, websiteUrl, knowledgeContext: buildKnowledgeContext(matched.length ? matched : getDefaultKnowledge()) });
     const messages = userMessages.length ? [systemMessage, ...userMessages] : [systemMessage, { role: "user", content: "Hello. Briefly introduce Llenroc Tech and explain what visitors can ask you." }];
@@ -156,17 +223,17 @@ export async function handler(event) {
 
     if (!azureResponse.ok) {
       console.error("Azure OpenAI request failed:", azureResponse.status);
-      return json(502, { error: "The AI assistant is temporarily unavailable. Please try again shortly." });
+      return json(502, { error: "The AI assistant is temporarily unavailable. Please try again shortly." }, corsHeaders);
     }
 
     let responseData;
-    try { responseData = JSON.parse(responseText); } catch { console.error("Azure OpenAI returned invalid JSON."); return json(502, { error: "The AI assistant returned an unexpected response. Please try again." }); }
+    try { responseData = JSON.parse(responseText); } catch { console.error("Azure OpenAI returned invalid JSON."); return json(502, { error: "The AI assistant returned an unexpected response. Please try again." }, corsHeaders); }
     const content = responseData?.choices?.[0]?.message?.content;
-    if (typeof content !== "string" || !content.trim()) return json(502, { error: "The AI assistant could not generate a response. Please try again." });
+    if (typeof content !== "string" || !content.trim()) return json(502, { error: "The AI assistant could not generate a response. Please try again." }, corsHeaders);
 
-    return json(200, { reply: filterPhoneNumbers(content.trim(), companyPhone, contactUrl) }, { "Cache-Control": "no-store" });
+    return json(200, { reply: filterPhoneNumbers(content.trim(), companyPhone, contactUrl) }, { ...corsHeaders, "Cache-Control": "no-store" });
   } catch (error) {
     console.error("Chat function error:", error instanceof Error ? error.message : String(error));
-    return json(500, { error: "The AI assistant is temporarily unavailable. Please try again later." });
+    return json(500, { error: "The AI assistant is temporarily unavailable. Please try again later." }, corsHeaders);
   }
 }
