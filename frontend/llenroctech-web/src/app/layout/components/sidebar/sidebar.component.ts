@@ -66,7 +66,8 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     { label: 'RAG', route: '/ai-platform/rag' },
     { label: 'Enterprise Integrations', route: '/ai-platform/integrations' },
     { label: 'Roadmap', route: '/ai-platform/roadmap' },
-    { label: 'GitHub', externalUrl: 'https://github.com/llenroc-tech-llc', externalLabel: 'Visit Llenroc Tech on GitHub (opens in a new tab)' },
+    // GitHub card temporarily hidden until public repository access is ready.
+    // { label: 'GitHub', externalUrl: 'https://github.com/llenroc-tech-llc', externalLabel: 'Visit Llenroc Tech on GitHub (opens in a new tab)' },
     { label: 'Demo', route: '/ai-platform/demo' },
   ];
 
