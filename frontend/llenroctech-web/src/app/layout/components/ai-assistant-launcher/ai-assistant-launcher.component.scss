@@ -4,3 +4,4 @@
 .ai-launcher:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
 @media (prefers-reduced-motion: no-preference) { .ai-launcher { transition: background 0.2s ease, transform 0.2s ease; } }
 @media (max-width: 600px) { .ai-launcher { bottom: calc(16px + env(safe-area-inset-bottom)); right: calc(16px + env(safe-area-inset-right)); } }
+@media (max-width: 380px) { .ai-launcher { font-size: 0.9rem; min-height: 52px; padding-right: 0.9rem !important; } }

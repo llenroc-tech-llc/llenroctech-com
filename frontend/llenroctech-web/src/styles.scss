@@ -80,6 +80,76 @@ body:not(.ai-drawer-open) .progress-wrap {
   }
 }
 
+/* Theme-aware glass surfaces for navigation and the AI assistant. */
+body.light-mode .header-site-icon .slide-bar.slide-bar1 {
+  background: rgba(248, 250, 249, 0.95);
+  border-color: rgba(6, 29, 30, 0.16);
+  box-shadow: -12px 0 32px rgba(6, 29, 30, 0.16);
+}
+
+body.light-mode .header-site-icon .slide-bar.slide-bar1 .sidebar-content a.list-group-item {
+  background: rgba(6, 29, 30, 0.045);
+  border-color: rgba(6, 29, 30, 0.16);
+  color: #0e161f;
+}
+
+body.light-mode .ai-drawer {
+  background: rgba(248, 250, 249, 0.95);
+  border-left-color: rgba(6, 29, 30, 0.18);
+  box-shadow: -12px 0 32px rgba(6, 29, 30, 0.2);
+}
+
+body.light-mode app-ai-assistant-chat .ai-composer {
+  background: rgba(241, 246, 245, 0.92);
+}
+
+body.light-mode app-ai-assistant-chat .ai-composer__input,
+body.light-mode app-ai-assistant-chat .ai-chat__suggestions button,
+body.light-mode app-ai-assistant-chat .ai-message p,
+body.light-mode app-ai-assistant-chat .ai-message--typing {
+  background: rgba(6, 29, 30, 0.065);
+}
+
+body.light-mode app-ai-assistant-chat .ai-message--visitor p {
+  background: var(--ztc-bg-btn-bg1);
+}
+
+body.light-mode app-site-footer .site-footer {
+  background: rgba(248, 250, 249, 0.58);
+}
+
+@media (max-width: 991px) {
+  app-sidebar .platform-section .contact-heading h2,
+  app-sidebar .knowledge-section .contact-heading h2 {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    line-height: 1.08;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 575px) {
+  .vl-btn1,
+  button.vl-btn1,
+  a.vl-btn1 {
+    font-size: 0.9rem;
+    line-height: 1.25;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
+  app-sidebar .platform-section .contact-heading h2,
+  app-sidebar .knowledge-section .contact-heading h2 {
+    font-size: clamp(2.15rem, 12vw, 3.2rem);
+  }
+
+  app-sidebar .topic-card {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    padding-inline: 0.85rem;
+  }
+}
+
 .ask-ai-button {
   align-items: center;
   display: inline-flex;
