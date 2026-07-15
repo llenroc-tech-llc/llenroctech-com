@@ -44,8 +44,6 @@ export const routes: Routes = [
 
   { path: 'forms', component: FormsIndexComponent },
   { path: 'forms/initial-intake', component: InitialIntakeComponent },
-  { path: 'forms/contract-intake', loadComponent: () => import('./layout/components/contract-intake/contract-intake.component').then(m => m.ContractIntakeComponent) },
-
   { path: 'thank-you', component: ThankYouComponent },
   { path: '**', redirectTo: 'home' },
 ];

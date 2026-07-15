@@ -1,7 +1,6 @@
 import { Component, inject, signal, OnDestroy, Input, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, NgForm } from '@angular/forms';
-import { SupabaseService } from '../../../services/supabase.service';
 
 @Component({
   selector: 'app-contact',
@@ -13,7 +12,6 @@ import { SupabaseService } from '../../../services/supabase.service';
 export class ContactComponent implements OnDestroy {
   year = new Date().getFullYear();
   private fb = inject(FormBuilder);
-  private supabase = inject(SupabaseService);
 
   @Input() heading = "Let’s Work Together!";
   @Input() formName = 'contact';
@@ -73,21 +71,12 @@ export class ContactComponent implements OnDestroy {
     try {
       this.submitting.set(true);
 
-      // Persist to Supabase
-      await this.supabase.submitContact({
-        name: this.form.value.name!,
-        email: this.form.value.email!,
-        phone: this.form.value.phone || null,
-        subject: this.form.value.subject || null,
-        budget: this.form.value.budget || null,
-        message: this.form.value.message!
-      });
-
-      // Trigger Netlify function to send email
+      // Send through the validated, rate-limited Netlify endpoint.
       const resp = await fetch('/.netlify/functions/contact-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          botField: this.form.value.botField || '',
           name: this.form.value.name!,
           email: this.form.value.email!,
           phone: this.form.value.phone || '',
