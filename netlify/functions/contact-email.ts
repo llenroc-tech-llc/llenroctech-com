@@ -2,34 +2,70 @@ import type { Handler } from '@netlify/functions';
 import { Resend } from 'resend';
 
 const cors = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS, GET',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
+  'Vary': 'Origin',
 };
 
 const resendApiKey = process.env.RESEND_API_KEY ?? '';
+const MAX_REQUEST_BYTES = 8 * 1024;
+const PRODUCTION_ORIGINS = new Set([
+  'https://llenroctech.com',
+  'https://www.llenroctech.com',
+]);
+
+type ContactRequest = {
+  botField: string;
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  budget: string;
+  message: string;
+};
+
+export const config = {
+  path: ['/.netlify/functions/contact-email', '/api/contact-email'],
+  rateLimit: {
+    windowLimit: 3,
+    windowSize: 3600,
+    aggregateBy: ['ip', 'domain'],
+  },
+};
 
 export const handler: Handler = async (event) => {
-  // CORS & healthcheck
+  const corsHeaders = getCorsHeaders(event.headers);
+
   if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 204, headers: cors, body: '' };
-  }
-  if (event.httpMethod === 'GET') {
-    return { statusCode: 200, headers: cors, body: 'contact-email: ok' };
+    return { statusCode: 204, headers: corsHeaders, body: '' };
   }
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, headers: cors, body: 'Method Not Allowed' };
+    return json(405, { ok: false, error: 'Method Not Allowed' }, corsHeaders, { Allow: 'POST' });
+  }
+  if (!isOriginAllowed(event.headers)) {
+    return json(403, { ok: false, error: 'Request origin is not allowed.' }, corsHeaders);
   }
 
-  if (!resendApiKey) return json(500, { ok:false, error:'Missing RESEND_API_KEY' });
-
-  const body = safeJson(event.body);
-  if (!body) return json(400, { ok:false, error:'Invalid JSON' });
-
-  const { name, email, phone, subject, budget, message } = body;
-  if (!name || !email || !message) {
-    return json(400, { ok:false, error:'name, email, message required' });
+  const contentType = getHeader(event.headers, 'content-type');
+  if (!contentType.toLowerCase().startsWith('application/json')) {
+    return json(415, { ok: false, error: 'Content-Type must be application/json.' }, corsHeaders);
   }
+
+  if (!event.body) return json(400, { ok: false, error: 'Request body is required.' }, corsHeaders);
+
+  const bodyBuffer = Buffer.from(event.body, event.isBase64Encoded ? 'base64' : 'utf8');
+  if (bodyBuffer.byteLength > MAX_REQUEST_BYTES) {
+    return json(413, { ok: false, error: 'The request is too large.' }, corsHeaders);
+  }
+
+  const parsedBody = safeJson(bodyBuffer.toString('utf8'));
+  const validation = validateContactRequest(parsedBody);
+  if (validation.ok === false) return json(400, { ok: false, error: validation.error }, corsHeaders);
+
+  const { botField, name, email, phone, subject, budget, message } = validation.value;
+  if (botField) return json(400, { ok: false, error: 'Invalid request.' }, corsHeaders);
+
+  if (!resendApiKey) return json(500, { ok: false, error: 'The contact service is temporarily unavailable.' }, corsHeaders);
 
   // Instantiate Resend
   const resend = new Resend(resendApiKey);
@@ -145,15 +181,90 @@ ${message}
     html: htmlBody
   });
 
-  if (error) return json(502, { ok:false, error:String(error?.message || error) });
-  return json(200, { ok:true, id:data?.id });
+  if (error) return json(502, { ok: false, error: 'The message could not be sent. Please try again later.' }, corsHeaders);
+  return json(200, { ok: true, id: data?.id }, corsHeaders);
 };
 
 // Helpers
-function json(statusCode: number, body: unknown) {
-  return { statusCode, headers: { 'content-type': 'application/json', ...cors }, body: JSON.stringify(body) };
+function getAllowedOrigins() {
+  const configuredOrigins = String(process.env.ALLOWED_ORIGINS || '')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+  const origins = new Set([...PRODUCTION_ORIGINS, ...configuredOrigins]);
+
+  if (process.env.CONTEXT !== 'production') {
+    origins.add('http://localhost:4200');
+    origins.add('http://localhost:8888');
+  }
+
+  return origins;
 }
-function safeJson(b?: string | null) { try { return b ? JSON.parse(b) : null; } catch { return null; } }
+
+function getHeader(headers: Record<string, string | undefined>, name: string) {
+  const entry = Object.entries(headers).find(([key]) => key.toLowerCase() === name.toLowerCase());
+  return String(entry?.[1] || '');
+}
+
+function isOriginAllowed(headers: Record<string, string | undefined>) {
+  const origin = getHeader(headers, 'origin');
+  return !origin || getAllowedOrigins().has(origin);
+}
+
+function getCorsHeaders(headers: Record<string, string | undefined>) {
+  const origin = getHeader(headers, 'origin');
+  return origin && getAllowedOrigins().has(origin)
+    ? { ...cors, 'Access-Control-Allow-Origin': origin }
+    : cors;
+}
+
+function json(statusCode: number, body: unknown, corsHeaders: Record<string, string>, extraHeaders: Record<string, string> = {}) {
+  return { statusCode, headers: { 'content-type': 'application/json', ...corsHeaders, ...extraHeaders }, body: JSON.stringify(body) };
+}
+function safeJson(value: string): unknown { try { return JSON.parse(value); } catch { return null; } }
+
+function validateContactRequest(value: unknown): { ok: true; value: ContactRequest } | { ok: false; error: string } {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    return { ok: false, error: 'Invalid request.' };
+  }
+
+  const input = value as Record<string, unknown>;
+  const allowedFields = new Set(['botField', 'name', 'email', 'phone', 'subject', 'budget', 'message']);
+  if (Object.keys(input).some((key) => !allowedFields.has(key))) {
+    return { ok: false, error: 'Invalid request fields.' };
+  }
+
+  for (const field of allowedFields) {
+    if (input[field] !== undefined && typeof input[field] !== 'string') {
+      return { ok: false, error: `Invalid ${field}.` };
+    }
+  }
+
+  const result: ContactRequest = {
+    botField: String(input.botField || '').trim(),
+    name: normalizeSingleLine(input.name),
+    email: normalizeSingleLine(input.email).toLowerCase(),
+    phone: normalizeSingleLine(input.phone),
+    subject: normalizeSingleLine(input.subject),
+    budget: normalizeSingleLine(input.budget),
+    message: String(input.message || '').trim(),
+  };
+
+  if (result.botField.length > 200) return { ok: false, error: 'Invalid botField.' };
+  if (result.name.length < 2 || result.name.length > 100) return { ok: false, error: 'Name must be between 2 and 100 characters.' };
+  if (result.email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(result.email)) return { ok: false, error: 'A valid email address is required.' };
+  if (result.phone.length > 30) return { ok: false, error: 'Phone must not exceed 30 characters.' };
+  if (result.subject.length > 160) return { ok: false, error: 'Subject must not exceed 160 characters.' };
+  if (result.budget.length > 100) return { ok: false, error: 'Budget must not exceed 100 characters.' };
+  if (result.message.length < 10 || result.message.length > 4000) return { ok: false, error: 'Message must be between 10 and 4000 characters.' };
+
+  return { ok: true, value: result };
+}
+
+function normalizeSingleLine(value: unknown) {
+  return String(value || '').replace(/[\r\n\u0000-\u001f\u007f]+/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 function escapeHtml(s: string) {
   return s.replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
 }
