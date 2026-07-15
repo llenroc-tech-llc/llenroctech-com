@@ -58,12 +58,11 @@
 }
 
 .technology-item {
-  color: #fff !important;
-  -webkit-text-fill-color: #fff !important;
+  color: var(--ztc-text-text-1);
   font-size: 14px;
   font-weight: var(--ztc-weight-medium);
   line-height: 1.8;
-  opacity: 1 !important;
+  opacity: 0.86;
 }
 
 .technology-item:not(:last-child)::after {
@@ -76,10 +75,12 @@
 @media (max-width: 991px) {
   .technology-groups { grid-template-columns: 1fr; }
   .technology-group:last-child { grid-column: auto; }
+  .skill-header h2 { font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.08; }
 }
 
 @media (max-width: 575px) {
   .technology-group { padding: 18px; }
   .group-header h3 { font-size: 20px; }
   .technology-item { font-size: 13px; }
+  .skill-header h2 { font-size: clamp(2.25rem, 12vw, 3.25rem); overflow-wrap: anywhere; }
 }
