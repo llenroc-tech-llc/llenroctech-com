@@ -1,0 +1,43 @@
+<main class="enterprise-page">
+  <article class="enterprise-container">
+    <nav class="enterprise-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a routerLink="/home">Home</a></li>
+        <li><a [routerLink]="page.areaRoute">{{ page.area }}</a></li>
+        <li aria-current="page">{{ page.title }}</li>
+      </ol>
+    </nav>
+
+    <header class="enterprise-hero glass-panel">
+      <p class="enterprise-eyebrow"><img src="assets/img/icons/yellow_circle_icon.svg" alt="">{{ page.area }}</p>
+      <span class="status-badge">{{ page.status }}</span>
+      <h1>{{ page.title }}</h1>
+      <p class="enterprise-lead">{{ page.description }}</p>
+    </header>
+
+    <section class="enterprise-section glass-panel" aria-labelledby="expect-heading">
+      <div class="section-heading">
+        <p class="enterprise-kicker">Planned content</p>
+        <h2 id="expect-heading">What to expect</h2>
+      </div>
+      <ul class="expectation-list">
+        @for (item of page.expectations; track item) {
+          <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>{{ item }}</span></li>
+        }
+      </ul>
+    </section>
+
+    <section class="enterprise-cta glass-panel" aria-labelledby="status-cta-heading">
+      <div>
+        <p class="enterprise-kicker">Explore Llenroc Tech</p>
+        <h2 id="status-cta-heading">Continue exploring</h2>
+        <p>This section is being developed. Explore the broader content hub or connect with our team in the meantime.</p>
+      </div>
+      <div class="enterprise-actions">
+        <a class="vl-btn1" [routerLink]="page.areaRoute">Return to {{ page.area }}</a>
+        <a class="enterprise-link-button" routerLink="/home" fragment="list-item-3">View Services</a>
+        <a class="enterprise-link-button" routerLink="/contact">Contact Llenroc Tech</a>
+      </div>
+    </section>
+  </article>
+</main>

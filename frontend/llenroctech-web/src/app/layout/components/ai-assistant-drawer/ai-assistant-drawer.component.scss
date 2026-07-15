@@ -1,0 +1,17 @@
+:host { position: relative; z-index: 1200; }
+.ai-drawer { backdrop-filter: blur(14px); background: rgba(4, 22, 24, 0.84); border-left: 1px solid var(--ztc-border-border-2); box-shadow: -12px 0 32px rgba(0, 0, 0, 0.38); color: var(--ztc-text-text-1); display: grid; grid-template-rows: auto minmax(0, 1fr); height: 100dvh; max-width: 480px; position: fixed; right: 0; top: 0; width: min(420px, 100vw); z-index: 1200; }
+.ai-drawer__header { align-items: center; border-bottom: 1px solid var(--ztc-border-border-2); display: flex; gap: 0.75rem; justify-content: space-between; min-height: 76px; padding: calc(0.75rem + env(safe-area-inset-top)) 0.85rem 0.75rem; }
+.ai-drawer__brand { align-items: center; display: flex; gap: 0.7rem; min-width: 0; }
+.ai-drawer__logo { align-items: center; background: var(--ztc-bg-btn-bg1); border-radius: 8px; color: #0e161f; display: inline-flex; flex: 0 0 44px; height: 44px; justify-content: center; }
+.ai-drawer h2 { color: var(--ztc-text-text-1); font-size: 0.98rem; line-height: 1.2; margin: 0; }
+.ai-drawer__brand p { align-items: center; color: var(--ztc-text-text-1); display: flex; font-size: 0.7rem; gap: 0.35rem; margin: 0.25rem 0 0; opacity: 0.65; }
+.ai-drawer__brand p span { background: #5fd49a; border-radius: 50%; height: 0.45rem; width: 0.45rem; }
+.ai-drawer__controls { display: flex; flex: 0 0 auto; gap: 0.15rem; }
+.ai-drawer__controls button, .ai-drawer__controls a { align-items: center; background: transparent; border: 1px solid transparent; border-radius: 8px; color: var(--ztc-text-text-1); display: inline-flex; height: 44px; justify-content: center; padding: 0; width: 44px; }
+.ai-drawer__controls button:hover, .ai-drawer__controls a:hover { background: rgba(255, 255, 255, 0.08); border-color: var(--ztc-border-border-1); }
+.ai-drawer__controls button:focus-visible, .ai-drawer__controls a:focus-visible { outline: 3px solid var(--ztc-bg-btn-bg1); outline-offset: 1px; }
+.ai-drawer__controls button:disabled { opacity: 0.35; }
+.ai-drawer__content { min-height: 0; }
+@media (prefers-reduced-motion: no-preference) { .ai-drawer { animation: drawer-enter 220ms ease-out; } }
+@keyframes drawer-enter { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@media (max-width: 600px) { .ai-drawer { background: rgba(4, 22, 24, 0.95); border: 0; max-width: none; width: 100vw; }.ai-drawer__header { padding-left: max(0.6rem, env(safe-area-inset-left)); padding-right: max(0.6rem, env(safe-area-inset-right)); }.ai-drawer__controls { gap: 0; }.ai-drawer__controls a { display: none; } }

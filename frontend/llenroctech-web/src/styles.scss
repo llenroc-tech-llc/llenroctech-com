@@ -7,4 +7,140 @@
 @use "../public/assets/css/plugins/slick-slider.css";
 @use "../public/assets/css/plugins/nice-select.css";
 @use "../public/assets/scss/main.scss";
+@use "./app/enterprise/enterprise-pages";
+
+body.ai-drawer-open .progress-wrap {
+  opacity: 0 !important;
+  pointer-events: none;
+  visibility: hidden !important;
+}
+
+/* Shared AI composer controls */
+app-ai-assistant-chat .ai-composer textarea {
+  background: transparent;
+  max-height: 132px;
+  overflow-y: hidden;
+  resize: none;
+  scrollbar-color: color-mix(in srgb, var(--ztc-bg-btn-bg1) 65%, transparent) transparent;
+  scrollbar-width: thin;
+}
+
+app-ai-assistant-chat .ai-composer button {
+  align-self: flex-end;
+  transition: filter 180ms ease, transform 180ms ease;
+}
+
+app-ai-assistant-chat .ai-composer textarea::-webkit-scrollbar {
+  width: 5px;
+}
+
+app-ai-assistant-chat .ai-composer textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+app-ai-assistant-chat .ai-composer textarea::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--ztc-bg-btn-bg1) 55%, transparent);
+  border-radius: 999px;
+}
+
+app-ai-assistant-chat .ai-composer textarea::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--ztc-bg-btn-bg1) 80%, transparent);
+}
+
+app-ai-assistant-chat .ai-composer textarea::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
+app-ai-assistant-chat .ai-composer button:not(:disabled):hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+app-ai-assistant-chat .ai-composer button:not(:disabled):active {
+  filter: brightness(0.92);
+  transform: translateY(0) scale(0.96);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  app-ai-assistant-chat .ai-composer button {
+    transition: none;
+  }
+}
+
+body:not(.ai-drawer-open) .progress-wrap {
+  bottom: calc(96px + env(safe-area-inset-bottom));
+}
+
+@media (max-width: 600px) {
+  body:not(.ai-drawer-open) .progress-wrap {
+    bottom: calc(88px + env(safe-area-inset-bottom));
+    right: calc(18px + env(safe-area-inset-right));
+  }
+}
+
+.ask-ai-button {
+  align-items: center;
+  display: inline-flex;
+  font-size: var(--ztc-font-size-font-s20);
+  font-weight: var(--ztc-weight-semibold);
+  gap: 0.65rem;
+  justify-content: center;
+  min-height: 58px;
+  padding: 0.5rem 1.25rem 0.5rem 0.5rem !important;
+  text-transform: uppercase;
+}
+
+.ask-ai-button__icon {
+  align-items: center;
+  background: #0e161f;
+  border-radius: 50%;
+  color: var(--ztc-bg-btn-bg1);
+  display: inline-flex;
+  flex: 0 0 40px;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+/* Home mobile navigation uses the same dark glass and AI control language. */
+.header-site-icon .slide-bar.slide-bar1 {
+  backdrop-filter: blur(14px);
+  background: rgba(4, 22, 24, 0.92);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.header-site-icon .slide-bar.slide-bar1 .sidebar-content ul {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.header-site-icon .slide-bar.slide-bar1 .sidebar-content a.list-group-item {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: var(--ztc-text-text-1);
+  display: flex;
+  font-size: 0.92rem;
+  line-height: 1.25;
+  min-height: 48px;
+  padding: 0.7rem 0.85rem;
+  width: 100%;
+}
+
+.header-site-icon .slide-bar.slide-bar1 .sidebar-content a.list-group-item:hover,
+.header-site-icon .slide-bar.slide-bar1 .sidebar-content a.list-group-item:focus-visible,
+.header-site-icon .slide-bar.slide-bar1 .sidebar-content a.list-group-item.active {
+  background: rgba(255, 174, 0, 0.13);
+  border-color: var(--ztc-bg-btn-bg1);
+  color: var(--ztc-bg-btn-bg1);
+}
+
+@media (max-width: 600px) {
+  .header-site-icon .slide-bar.slide-bar1 {
+    background: rgba(4, 22, 24, 0.96);
+  }
+}
 
