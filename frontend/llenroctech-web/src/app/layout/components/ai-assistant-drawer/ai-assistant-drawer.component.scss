@@ -15,3 +15,4 @@
 @media (prefers-reduced-motion: no-preference) { .ai-drawer { animation: drawer-enter 220ms ease-out; } }
 @keyframes drawer-enter { from { transform: translateX(100%); } to { transform: translateX(0); } }
 @media (max-width: 600px) { .ai-drawer { background: rgba(4, 22, 24, 0.95); border: 0; max-width: none; width: 100vw; }.ai-drawer__header { padding-left: max(0.6rem, env(safe-area-inset-left)); padding-right: max(0.6rem, env(safe-area-inset-right)); }.ai-drawer__controls { gap: 0; }.ai-drawer__controls a { display: none; } }
+@media (max-width: 380px) { .ai-drawer__header { gap: 0.35rem; }.ai-drawer__brand { gap: 0.45rem; }.ai-drawer__logo { flex-basis: 40px; height: 40px; }.ai-drawer h2 { font-size: 0.86rem; }.ai-drawer__controls button { height: 40px; width: 40px; } }
