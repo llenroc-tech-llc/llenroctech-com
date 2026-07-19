@@ -9,6 +9,13 @@
 @use "../public/assets/scss/main.scss";
 @use "./app/enterprise/enterprise-pages";
 
+/* Defensive containment for transformed AOS content after the off-canvas fix below. */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 /* Shared application-shell tokens used by route-level glass surfaces. */
 body {
   --site-page-text: var(--ztc-text-text-1);
@@ -253,6 +260,26 @@ body.light-mode app-site-footer .site-footer {
   backdrop-filter: blur(14px);
   background: rgba(4, 22, 24, 0.92);
   border-color: rgba(255, 255, 255, 0.14);
+  box-sizing: border-box;
+  display: none;
+  max-inline-size: 100vw;
+  right: 0;
+  transform: translate3d(100%, 0, 0);
+  transition:
+    transform 500ms ease,
+    display 500ms allow-discrete;
+  will-change: transform;
+}
+
+.header-site-icon .slide-bar.slide-bar1.show {
+  display: block;
+  transform: translate3d(0, 0, 0);
+}
+
+@starting-style {
+  .header-site-icon .slide-bar.slide-bar1.show {
+    transform: translate3d(100%, 0, 0);
+  }
 }
 
 .header-site-icon .slide-bar.slide-bar1 .sidebar-content ul {
