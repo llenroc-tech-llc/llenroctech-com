@@ -64,6 +64,41 @@
   color: var(--ztc-bg-btn-bg1, #faae00);
   filter: drop-shadow(0 8px 24px rgba(250, 174, 0, 0.2));
 }
+.technology-logo-cluster {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(12px, 2vw, 22px);
+  width: min(88%, 390px);
+}
+.technology-logo {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  width: 72px;
+  color: var(--site-page-text);
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+}
+.technology-logo img {
+  width: 58px;
+  height: 58px;
+  padding: 9px;
+  object-fit: contain;
+  border: 1px solid var(--site-border);
+  border-radius: var(--site-surface-radius);
+  background: var(--site-glass);
+  transition:
+    transform 0.4s ease,
+    border-color 0.4s ease;
+}
+.project-card:hover .technology-logo img {
+  transform: translateY(-3px);
+  border-color: var(--ztc-bg-btn-bg1);
+}
 .status {
   position: absolute;
   top: 14px;
@@ -201,5 +236,8 @@
   }
   .project-card:hover img {
     transform: none;
+  }
+  .technology-logo img {
+    transition: none;
   }
 }
