@@ -1,0 +1,12 @@
+<section id="template-inspiration" class="marketplace" aria-labelledby="marketplace-title">
+  <div class="section-heading"><p class="eyebrow">THIRD-PARTY DESIGN REFERENCES</p><h2 id="marketplace-title">Angular Template Inspiration</h2><p>A curated selection of third-party Angular design references that can help clients explore visual directions before Llenroc Tech creates a customized solution.</p></div>
+  @if(state()==='loading'){<p class="state" role="status">Loading template inspiration…</p>}
+  @else if(state()==='error'||state()==='empty'){<p class="state" role="status">Template inspiration is temporarily unavailable. Please check back soon or contact Llenroc Tech to discuss a custom design direction.</p>}
+  @else {<div class="market-grid">@for(item of items();track item.id){<article class="market-card">
+    <div class="market-image">@if(item.thumbnailUrl){<img [src]="item.thumbnailUrl" [alt]="item.name + ' Angular template thumbnail'" width="590" height="300" loading="lazy">}@else{<span aria-hidden="true">Angular Template</span>}</div>
+    <div class="market-body"><span class="third-party">Third-Party Template</span><h3>{{item.name}}</h3>@if(item.author){<p>By {{item.author}}</p>}<ul>@for(tag of (item.tags||[]).slice(0,4);track tag){<li>{{tag}}</li>}</ul><div class="market-actions">
+      @if(item.previewUrl){<a [href]="item.previewUrl" target="_blank" rel="noopener noreferrer">View live preview <span class="sr-only">for {{item.name}} (opens in a new tab)</span> ↗</a>}
+      <a [href]="item.marketplaceUrl" target="_blank" rel="noopener noreferrer">View on ThemeForest <span class="sr-only">for {{item.name}} (opens in a new tab)</span> ↗</a>
+    </div></div></article>}</div>}
+  <p class="disclosure">Third-party templates are presented for design inspiration and discovery. Template licenses, assets, and marketplace terms remain subject to the original Envato or ThemeForest publisher. Llenroc Tech can customize or build an original solution inspired by an approved design direction.</p>
+</section>

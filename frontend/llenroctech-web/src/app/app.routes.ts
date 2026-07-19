@@ -26,6 +26,11 @@ export const routes: Routes = [
     title: 'AI Assistant | Llenroc Tech',
     loadComponent: () => import('./layout/components/ai-sidebar/ai-sidebar.component').then(m => m.AiSidebarComponent),
   },
+  {
+    path: 'portfolio',
+    title: 'Portfolio | Llenroc Tech',
+    loadComponent: () => import('./portfolio/portfolio-page.component').then(m => m.PortfolioPageComponent),
+  },
   ...ENTERPRISE_ROUTES,
   {
     path: '',

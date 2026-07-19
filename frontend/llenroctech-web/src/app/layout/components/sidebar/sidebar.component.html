@@ -41,6 +41,11 @@
                 <span>Core Technologies</span>
               </a>
 
+              <a class="list-group-item list-group-item-action m-0" routerLink="/portfolio" routerLinkActive="active" ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{exact:true}">
+                <img src="assets/img/icons/home5.svg" alt="" />
+                <span>Portfolio</span>
+              </a>
+
               <a class="list-group-item list-group-item-action m-0"
                  [ngClass]="{ active: currentSection === 'list-item-13' }"
                  href="javascript:void(0);" (click)="scrollTo('list-item-13'); setActiveLink('list-item-13')">
@@ -210,6 +215,10 @@
             <div id="list-item-4">
               <app-skill-section></app-skill-section>
             </div>
+
+            <div class="space30"></div>
+
+            <app-featured-work></app-featured-work>
 
             <div class="space30"></div>
 

@@ -3,7 +3,7 @@ import {
   OnInit, AfterViewInit, ChangeDetectorRef
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import aos from 'aos';
 
 import { GsapRevealDirective } from '../../../directives/gsap-reveal.directive';
@@ -27,6 +27,7 @@ import { TestimonialSectionComponent } from '../testimonial-section/testimonial-
 // import { LlenrocTemplatesComponent } from '../llenroc-templates/llenroc-templates.component';
 import { environment } from '../../../../environments/environment';
 import { AiAssistantStateService } from '../../../services/ai-assistant-state.service';
+import { FeaturedWorkComponent } from '../../../portfolio/featured-work.component';
 
 interface HomeTopicLink {
   label: string;
@@ -42,6 +43,7 @@ interface HomeTopicLink {
     CommonModule,
     RouterOutlet,
     RouterLink,
+    RouterLinkActive,
     GsapRevealDirective,
     ContactComponent,
     HeroAreaComponent,
@@ -51,6 +53,7 @@ interface HomeTopicLink {
     // PortfolioSectionComponent,
     TestimonialSectionComponent,
     DesignModelSectionComponent,
+    FeaturedWorkComponent,
     // LlenrocTemplatesComponent,
   ],
   templateUrl: './sidebar.component.html',
