@@ -57,6 +57,9 @@ frontend/llenroctech-web/src/environments/environment*.local.ts
 .sass-cache/
 .connect.lock
 coverage/
+artifacts/**/*review*.png
+artifacts/focused-ui-review/
+artifacts/portfolio-review/
 libpeerconnection.log
 testem.log
 typings/

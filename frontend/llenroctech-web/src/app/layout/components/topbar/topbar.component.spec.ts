@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 
 import { TopbarComponent } from './topbar.component';
 
@@ -8,9 +9,9 @@ describe('TopbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TopbarComponent]
-    })
-    .compileComponents();
+      imports: [TopbarComponent],
+      providers: [provideRouter([])],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TopbarComponent);
     component = fixture.componentInstance;
@@ -19,5 +20,18 @@ describe('TopbarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('opens and closes without shifting document width', () => {
+    const widthBefore = document.documentElement.scrollWidth;
+    component.toggleSidebar();
+    fixture.detectChanges();
+    expect(component.isSidebarVisible).toBeTrue();
+    expect(document.body.classList.contains('on-side')).toBeTrue();
+    component.closeSidebar();
+    fixture.detectChanges();
+    expect(component.isSidebarVisible).toBeFalse();
+    expect(document.body.classList.contains('on-side')).toBeFalse();
+    expect(document.documentElement.scrollWidth).toBe(widthBefore);
   });
 });
