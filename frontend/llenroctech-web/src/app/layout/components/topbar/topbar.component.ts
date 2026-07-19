@@ -1,30 +1,29 @@
 import { CommonModule } from '@angular/common';
 import { Component, Renderer2 } from '@angular/core';
-import { RouterLink } from '@angular/router';
-
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ThemeService } from '../../../services/theme.service';
 
 @Component({
   selector: 'app-topbar',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './topbar.component.html',
   styles: ``,
-    providers: [],
+  providers: [],
 })
 export class TopbarComponent {
-  isLightMode: boolean = false; // Tracks the current theme mode
+  get isLightMode(): boolean {
+    return this.themeService.theme() === 'light';
+  }
   isSidebarVisible: boolean = false;
   isOverlayActive: boolean = false;
   currentSection = 'list-item-1';
-  constructor(private renderer: Renderer2){}
-  ngOnInit() {
-    // Check the saved theme in localStorage and initialize the theme
-    const savedTheme = localStorage.getItem('theme');
-    this.isLightMode = savedTheme === 'light';
-    this.updateBodyClass(); // Apply the saved theme on page load
-  }
+  constructor(
+    private renderer: Renderer2,
+    private readonly themeService: ThemeService,
+  ) {}
 
-    // Click handler for links
+  // Click handler for links
   onNavClick(id: string, ev?: Event) {
     ev?.preventDefault();
 
@@ -38,32 +37,21 @@ export class TopbarComponent {
     }
   }
 
-
-   scrollToId(id: string, ev?: Event) {
+  scrollToId(id: string, ev?: Event) {
     ev?.preventDefault();
     const el = document.getElementById(id.startsWith('#') ? id.slice(1) : id);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   toggleTheme(event: Event) {
-    this.isLightMode = (event.target as HTMLInputElement).checked;
-    localStorage.setItem('theme', this.isLightMode ? 'light' : 'dark');
-    this.updateBodyClass();
+    this.themeService.setTheme(
+      (event.target as HTMLInputElement).checked ? 'light' : 'dark',
+    );
   }
 
-  updateBodyClass() {
-    if (this.isLightMode) {
-      document.body.classList.add('light-mode');
-    } else {
-      document.body.classList.remove('light-mode');
-    }
-  }
-
-  
   setActiveLink(link: string): void {
-    this.currentSection = link
+    this.currentSection = link;
   }
-
 
   toggleSidebar() {
     this.isSidebarVisible = !this.isSidebarVisible;
@@ -81,5 +69,4 @@ export class TopbarComponent {
     this.isOverlayActive = false;
     this.renderer.removeClass(document.body, 'on-side');
   }
-
 }

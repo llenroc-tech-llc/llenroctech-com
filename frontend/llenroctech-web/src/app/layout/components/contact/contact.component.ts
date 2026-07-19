@@ -1,24 +1,41 @@
-import { Component, inject, signal, OnDestroy, Input, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, Validators, NgForm } from '@angular/forms';
+import {
+  Component,
+  inject,
+  signal,
+  OnDestroy,
+  Input,
+  ViewChild,
+} from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+  NgForm,
+} from '@angular/forms';
+import { Router } from '@angular/router';
+import { TopbarComponent } from '../topbar/topbar.component';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TopbarComponent],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
 })
 export class ContactComponent implements OnDestroy {
   year = new Date().getFullYear();
   private fb = inject(FormBuilder);
+  private router = inject(Router);
+  private document = inject(DOCUMENT);
+  isStandalonePage = false;
 
-  @Input() heading = "Let’s Work Together!";
+  @Input() heading = 'Let’s Work Together!';
   @Input() formName = 'contact';
   @Input() supportEmail = 'support@llenroctech.com';
   @Input() prefillSubject?: string;
   @Input() showSectionHeader = true;
-  @ViewChild('formRef') formRef!: NgForm; 
+  @ViewChild('formRef') formRef!: NgForm;
 
   submitting = signal(false);
   sent = signal(false);
@@ -41,9 +58,13 @@ export class ContactComponent implements OnDestroy {
   ngOnDestroy() {
     clearTimeout(this.sentTimer);
     clearTimeout(this.failTimer);
+    this.document.body.classList.remove('contact-route');
   }
 
   ngOnInit() {
+    this.isStandalonePage = this.router.url.split('?')[0] === '/contact';
+    if (this.isStandalonePage)
+      this.document.body.classList.add('contact-route');
     if (this.prefillSubject) {
       this.form.get('subject')?.setValue(this.prefillSubject);
     }
@@ -59,13 +80,15 @@ export class ContactComponent implements OnDestroy {
     return !!c && c.invalid && (c.dirty || c.touched);
   }
 
-
   async onSubmit(e: Event) {
     e.preventDefault();
     this.sent.set(false);
     this.failed.set(false);
 
-    if (this.form.invalid) { this.form.markAllAsTouched(); return; }
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
     if (this.form.value.botField) return; // spam
 
     try {
@@ -82,8 +105,8 @@ export class ContactComponent implements OnDestroy {
           phone: this.form.value.phone || '',
           subject: this.form.value.subject || '',
           budget: this.form.value.budget || '',
-          message: this.form.value.message!
-        })
+          message: this.form.value.message!,
+        }),
       });
 
       if (!resp.ok) throw new Error(`contact-email HTTP ${resp.status}`);
@@ -94,12 +117,14 @@ export class ContactComponent implements OnDestroy {
       clearTimeout(this.sentTimer);
       this.sentTimer = setTimeout(() => this.sent.set(false), this.autoHideMs);
       this.form.reset();
-
     } catch (err) {
       console.error('Contact submit failed:', err);
       this.failed.set(true);
       clearTimeout(this.failTimer);
-      this.failTimer = setTimeout(() => this.failed.set(false), this.autoHideMs);
+      this.failTimer = setTimeout(
+        () => this.failed.set(false),
+        this.autoHideMs,
+      );
     } finally {
       this.submitting.set(false);
     }

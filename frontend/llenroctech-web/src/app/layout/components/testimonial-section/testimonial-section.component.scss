@@ -27,7 +27,12 @@
   text-align:center;
   transition:all .4s;
   margin-bottom:20px;
+  min-height:0!important;
+  height:auto!important;
+  overflow:visible!important;
 }
+.skill-section-area .ts-card.skill-boxarea::before,
+.skill-section-area .ts-card.skill-boxarea::after{display:none!important;content:none!important}
 .skill-section-area .ts-card.skill-boxarea:hover{transform:translateY(-4px)}
 
 /* —— initials block perfectly centered (nuke inherited icon styles) —— */
@@ -39,9 +44,9 @@
   display:grid;place-items:center;
 }
 .skill-section-area .ts-card .avatar{
-  width:54px;height:54px;border-radius:12px;
+  width:80px;height:80px;border-radius:16px;
   display:grid;place-items:center;
-  font-weight:700;font-size:.95rem;line-height:1;
+  font-weight:800;font-size:1.15rem;line-height:1;
   background:rgba(76,201,240,.15);
   border:1px solid rgba(76,201,240,.4);
   color:#eaf7ff;
@@ -53,6 +58,7 @@
 .skill-section-area .ts-card .t-source{margin:0;opacity:.75}
 .skill-section-area .ts-card .stars{display:inline-flex;gap:6px;align-items:center;justify-content:center}
 .skill-section-area .ts-card .star{width:18px;height:18px;fill:#ffd24d}
+.skill-section-area .ts-card .quote{position:relative!important;z-index:1;margin:0!important;padding:0 8px 4px!important;font-size:1rem!important;line-height:1.65!important;white-space:normal!important;overflow:visible!important;max-height:none!important;text-wrap:pretty}
 
 /* —— brighter pagination —— */
 .ts-controls{display:flex;justify-content:center;gap:12px;margin-top:12px}
@@ -71,5 +77,6 @@
 
 /* small screens: 1-up */
 @media (max-width:700px){
-  .skill-section-area .ts-card.skill-boxarea{flex:0 0 100%;max-width:100%}
+  .skill-section-area .ts-card.skill-boxarea{flex:0 0 100%;max-width:100%;padding:24px 20px}
+  .skill-section-area .ts-card .avatar{width:72px;height:72px}
 }

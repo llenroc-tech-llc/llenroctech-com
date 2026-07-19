@@ -1,0 +1,20 @@
+<article class="project-card" [class.compact]="compact">
+  <div class="project-visual">
+    @if (project.image) { <img [src]="project.image" [alt]="project.imageAlt || project.title" width="720" height="450" loading="lazy"> }
+    @else if (project.icon) { <i class="visual-icon fa-solid {{ project.icon }}" aria-hidden="true"></i><span>{{ project.category }}</span> }
+    @else { <img class="fallback-logo" src="assets/img/logo/llenroc_logo_yellow.png" alt="Llenroc Tech" width="240" height="180" loading="lazy"> }
+    <span class="status" [attr.data-status]="project.status">{{ project.status }}</span>
+  </div>
+  <div class="project-body"><p class="category">{{ project.category }}</p><h3>{{ project.title }}</h3><p>{{ project.summary }}</p>
+    @if (project.description) { <p class="supporting">{{ project.description }}</p> }
+    <ul class="chips" aria-label="Technologies used"><li *ngFor="let technology of project.technologies">{{ technology }}</li></ul>
+    @if (!compact && project.disclaimer) { <p class="disclaimer">{{ project.disclaimer }}</p> }
+    <div class="card-actions">
+      @if (project.liveUrl) { <a class="project-link" [href]="project.liveUrl" target="_blank" rel="noopener noreferrer" [attr.aria-label]="actionLabel() + ': ' + project.title + ' (opens in a new tab)'">{{ actionLabel() }} <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a> }
+      @else if (project.internalRoute) { <a class="project-link" [routerLink]="project.internalRoute">Explore {{ project.title }} <span aria-hidden="true">→</span></a> }
+      @else if (project.section === 'templates' && project.image) { <button class="preview-button" type="button" (click)="openPreview()">View larger preview</button> }
+      @else { <span class="availability">Public demo coming soon</span> }
+    </div>
+  </div>
+</article>
+@if(project.section === 'templates' && project.image){<dialog #previewDialog class="preview-dialog" [attr.aria-label]="project.title + ' image preview'" (click)="$event.target === previewDialog && closePreview()"><button class="dialog-close" type="button" (click)="closePreview()" aria-label="Close image preview">×</button><img [src]="project.image" [alt]="project.imageAlt || project.title" width="1200" height="750"><p>{{project.title}} — Design Concept</p></dialog>}

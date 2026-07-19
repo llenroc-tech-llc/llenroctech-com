@@ -260,3 +260,8 @@ Specializing in:
 Copyright © 2026 Llenroc Tech LLC.
 
 All Rights Reserved.
+# Portfolio and Innovation Gallery
+
+The enterprise portfolio is available at `/portfolio`. Project content is centralized in `frontend/llenroctech-web/src/app/portfolio/portfolio.data.ts`; architecture, content, image, and Envato integration guidance is under `docs/architecture/`.
+
+The optional Angular Template Inspiration section requires the server-side `ENVATO_PERSONAL_TOKEN` deployment variable. No token belongs in browser code or tracked files.
