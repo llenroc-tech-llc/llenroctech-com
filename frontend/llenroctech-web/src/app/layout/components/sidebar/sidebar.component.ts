@@ -3,7 +3,7 @@ import {
   OnInit, AfterViewInit, ChangeDetectorRef
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import aos from 'aos';
 
 import { GsapRevealDirective } from '../../../directives/gsap-reveal.directive';
@@ -42,6 +42,7 @@ interface HomeTopicLink {
     CommonModule,
     RouterOutlet,
     RouterLink,
+    RouterLinkActive,
     GsapRevealDirective,
     ContactComponent,
     HeroAreaComponent,
@@ -94,7 +95,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
   sectionIds = [
     'list-item-1','list-item-2','list-item-3','list-item-4',
-    'list-item-5','list-item-6','list-item-7','list-item-8',
+    'list-item-6','list-item-7','list-item-8',
     'list-item-9', 'list-item-10', 'list-item-11', 'list-item-12',
     'list-item-13', 'list-item-14'
   ];
