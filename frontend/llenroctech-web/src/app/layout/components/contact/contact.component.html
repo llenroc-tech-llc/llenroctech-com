@@ -1,11 +1,26 @@
 <!--===== CONTACT AREA STARTS =======-->
+<app-topbar *ngIf="isStandalonePage" />
+<div class="contact-water-layer" *ngIf="isStandalonePage" aria-hidden="true">
+  <video
+    [muted]="true"
+    [autoplay]="true"
+    [loop]="true"
+    playsinline
+    preload="metadata"
+  >
+    <source src="assets/img/video/video1.mp4" type="video/mp4" />
+  </video>
+  <div class="contact-water-overlay"></div>
+</div>
 <div class="contact-section-area" data-aos="fade-left" data-aos-duration="900">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-
         <div class="contact-heading heading1" *ngIf="showSectionHeader">
-          <h5><img src="assets/img/icons/yellow_circle_icon.svg" alt="">Contact Llenroc Tech</h5>
+          <h5>
+            <img src="assets/img/icons/yellow_circle_icon.svg" alt="" />Contact
+            Llenroc Tech
+          </h5>
           <div class="space24"></div>
           <h2>Have Any Project in</h2>
           <div class="space24"></div>
@@ -14,7 +29,11 @@
 
         <div class="space50"></div>
 
-        <div class="contact-boxarea" data-aos="zoom-in" data-aos-duration="1000">
+        <div
+          class="contact-boxarea"
+          data-aos="zoom-in"
+          data-aos-duration="1000"
+        >
           <h3>{{ heading }}</h3>
           <div class="space12"></div>
 
@@ -26,10 +45,15 @@
             [attr.aria-busy]="submitting() ? 'true' : 'false'"
           >
             <!-- Honeypot -->
-            <p class="hidden" style="display:none" aria-hidden="true">
+            <p class="hidden" style="display: none" aria-hidden="true">
               <label>
                 Don’t fill this out:
-                <input name="bot-field" formControlName="botField" tabindex="-1" autocomplete="off" />
+                <input
+                  name="bot-field"
+                  formControlName="botField"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
               </label>
             </p>
 
@@ -46,7 +70,9 @@
                     autocomplete="name"
                     required
                   />
-                  <small *ngIf="isInvalid('name')" class="error">Please enter at least 2 characters.</small>
+                  <small *ngIf="isInvalid('name')" class="error"
+                    >Please enter at least 2 characters.</small
+                  >
                 </div>
               </div>
 
@@ -62,7 +88,9 @@
                     autocomplete="email"
                     required
                   />
-                  <small *ngIf="isInvalid('email')" class="error">Enter a valid email.</small>
+                  <small *ngIf="isInvalid('email')" class="error"
+                    >Enter a valid email.</small
+                  >
                 </div>
               </div>
 
@@ -113,7 +141,9 @@
                     [attr.aria-invalid]="isInvalid('message')"
                     required
                   ></textarea>
-                  <small *ngIf="isInvalid('message')" class="error">Tell me a little more (min 10 chars).</small>
+                  <small *ngIf="isInvalid('message')" class="error"
+                    >Tell me a little more (min 10 chars).</small
+                  >
                 </div>
               </div>
 
@@ -124,7 +154,7 @@
                     class="vl-btn1"
                     [disabled]="submitting() || form.invalid"
                   >
-                    {{ submitting() ? 'Sending…' : 'Submit Now' }}
+                    {{ submitting() ? "Sending…" : "Submit Now" }}
                     <img src="assets/img/icons/mail1.svg" alt="Email Icon" />
                   </button>
                 </div>
@@ -134,25 +164,59 @@
             <div class="space16"></div>
 
             <!-- Success / Error toasts -->
-            <div *ngIf="sent()" class="alert success" role="status" aria-live="polite">
-              <span>Thanks! Your message was sent. I’ll get back to you shortly.</span>
-              <button type="button" class="alert-close" (click)="dismiss('sent')" aria-label="Close">✕</button>
+            <div
+              *ngIf="sent()"
+              class="alert success"
+              role="status"
+              aria-live="polite"
+            >
+              <span
+                >Thanks! Your message was sent. I’ll get back to you
+                shortly.</span
+              >
+              <button
+                type="button"
+                class="alert-close"
+                (click)="dismiss('sent')"
+                aria-label="Close"
+              >
+                ✕
+              </button>
             </div>
 
-            <div *ngIf="failed()" class="alert error" role="alert" aria-live="assertive">
-              <span>Something went wrong. Please try again or email me directly at hello&#64;llenroctech.com.</span>
-              <button type="button" class="alert-close" (click)="dismiss('failed')" aria-label="Close">✕</button>
+            <div
+              *ngIf="failed()"
+              class="alert error"
+              role="alert"
+              aria-live="assertive"
+            >
+              <span
+                >Something went wrong. Please try again or email me directly at
+                hello&#64;llenroctech.com.</span
+              >
+              <button
+                type="button"
+                class="alert-close"
+                (click)="dismiss('failed')"
+                aria-label="Close"
+              >
+                ✕
+              </button>
             </div>
           </form>
 
           <!-- Temporary contact CTA. The original contact form remains above for later use. -->
           <div class="contact-cta">
-            <p>Tell us about your project, staffing request, or consulting needs.</p>
+            <p>
+              Tell us about your project, staffing request, or consulting needs.
+            </p>
             <div class="space24"></div>
-            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=XMyOlFLWg0SZ0VoLGWT8r_j0A8qUhJNFifJhkhK5tu1UM0dEUFI0SFNRMjEyNEpDTTVQTDlUUkc4Wi4u"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="vl-btn1">
+            <a
+              href="https://forms.office.com/Pages/ResponsePage.aspx?id=XMyOlFLWg0SZ0VoLGWT8r_j0A8qUhJNFifJhkhK5tu1UM0dEUFI0SFNRMjEyNEpDTTVQTDlUUkc4Wi4u"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="vl-btn1"
+            >
               Contact Llenroc Tech
               <i class="fa-solid fa-envelope"></i>
             </a>
@@ -160,7 +224,6 @@
         </div>
 
         <div class="space50"></div>
-
       </div>
     </div>
   </div>

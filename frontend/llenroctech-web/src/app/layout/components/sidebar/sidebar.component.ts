@@ -27,7 +27,6 @@ import { TestimonialSectionComponent } from '../testimonial-section/testimonial-
 // import { LlenrocTemplatesComponent } from '../llenroc-templates/llenroc-templates.component';
 import { environment } from '../../../../environments/environment';
 import { AiAssistantStateService } from '../../../services/ai-assistant-state.service';
-import { FeaturedWorkComponent } from '../../../portfolio/featured-work.component';
 
 interface HomeTopicLink {
   label: string;
@@ -53,7 +52,6 @@ interface HomeTopicLink {
     // PortfolioSectionComponent,
     TestimonialSectionComponent,
     DesignModelSectionComponent,
-    FeaturedWorkComponent,
     // LlenrocTemplatesComponent,
   ],
   templateUrl: './sidebar.component.html',
@@ -97,7 +95,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
   sectionIds = [
     'list-item-1','list-item-2','list-item-3','list-item-4',
-    'list-item-5','list-item-6','list-item-7','list-item-8',
+    'list-item-6','list-item-7','list-item-8',
     'list-item-9', 'list-item-10', 'list-item-11', 'list-item-12',
     'list-item-13', 'list-item-14'
   ];

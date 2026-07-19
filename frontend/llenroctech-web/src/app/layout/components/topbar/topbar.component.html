@@ -1,63 +1,144 @@
 <div class="header-site-icon">
   <div class="slide-bar slide-bar1" [class.show]="isSidebarVisible">
-      <div class="sidebar-info">
-          <div class="sidebar-logo">
-              <a href="index.html">
-                  <img src="assets/img/logo/llenroc_logo_yellow.png" alt="logo">
-              </a>
-              <div class="close-mobile-menu" (click)="closeSidebar()">
-                  <a><i class="fa-solid fa-xmark"></i></a>
-              </div>
-          </div>
-          <div class="sidebar-content">
-              <ul>
-<li><a class="list-group-item list-group-item-action m-0" href="#list-item-1" [class.active]="currentSection === 'list-item-1'" (click)="onNavClick('list-item-1', $event)">Home</a></li>
-<li><a class="list-group-item list-group-item-action m-0" href="#list-item-2" [class.active]="currentSection === 'list-item-2'" (click)="onNavClick('list-item-2', $event)">About Us</a></li>
-<li><a class="list-group-item list-group-item-action m-0" href="#list-item-3" [class.active]="currentSection === 'list-item-3'" (click)="onNavClick('list-item-3', $event)">Our Services</a></li>
-<li><a class="list-group-item list-group-item-action m-0" href="#list-item-4" [class.active]="currentSection === 'list-item-4'" (click)="onNavClick('list-item-4', $event)">Core Technologies</a></li>
-<li><a class="list-group-item list-group-item-action m-0" routerLink="/portfolio" routerLinkActive="active" ariaCurrentWhenActive="page" (click)="closeSidebar()">Portfolio</a></li>
-<li><a class="list-group-item list-group-item-action m-0" href="#list-item-13" [class.active]="currentSection === 'list-item-13'" (click)="onNavClick('list-item-13', $event)">AI Platform (LAAP)</a></li>
-<li><a class="list-group-item list-group-item-action m-0" href="#list-item-14" [class.active]="currentSection === 'list-item-14'" (click)="onNavClick('list-item-14', $event)">Knowledge Center</a></li>
-<li><a class="list-group-item list-group-item-action m-0" href="#list-item-9" [class.active]="currentSection === 'list-item-9'" (click)="onNavClick('list-item-9', $event)">Contact Llenroc Tech</a></li>
-<li><a class="list-group-item list-group-item-action m-0" href="#list-item-12" [class.active]="currentSection === 'list-item-12'" (click)="onNavClick('list-item-12', $event)">Client &amp; Talent Portal</a></li>
-<li><a class="list-group-item list-group-item-action m-0" href="#list-item-7" [class.active]="currentSection === 'list-item-7'" (click)="onNavClick('list-item-7', $event)">Reviews</a></li>
-
-
-              </ul>
-          </div>
-          <div class="space32"></div>
-          <div class="space16"></div>
-          <div class="btn-area">
-            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=XMyOlFLWg0SZ0VoLGWT8r_j0A8qUhJNFifJhkhK5tu1UM0dEUFI0SFNRMjEyNEpDTTVQTDlUUkc4Wi4u"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="vl-btn1">
-              Request Services
-              <i class="fa-solid fa-briefcase"></i>
-            </a>
-          </div>
-          <div class="space40"></div>
-<!--          <div class="social-link-area">-->
-<!--              <h3 class="sidebar-heading">Social Links</h3>-->
-<!--              <ul>-->
-<!--                  <li>-->
-<!--                      <a href="https://www.facebook.com/profile.php?id=61579963070844"><i class="fa-brands fa-facebook-f"></i></a>-->
-<!--                      <a href="https://www.instagram.com/llenroc_tech/"><i class="fa-brands fa-instagram"></i></a>-->
-<!--                      <a href="https://www.linkedin.com/company/llenroc-tech/"><i class="fa-brands fa-linkedin-in"></i></a>-->
-<!--                      &lt;!&ndash; <a href="javascript:void(0);"><i class="fa-brands fa-pinterest-p"></i></a>-->
-<!--                      <a href="javascript:void(0);"><i class="fa-brands fa-youtube"></i></a> &ndash;&gt;-->
-<!--                  </li>-->
-<!--              </ul>-->
-<!--          </div>-->
-          <div class="space40"></div>
-          <!-- <div class="form-area">
+    <div class="sidebar-info">
+      <div class="sidebar-logo">
+        <a href="index.html">
+          <img src="assets/img/logo/llenroc_logo_yellow.png" alt="logo" />
+        </a>
+        <div class="close-mobile-menu" (click)="closeSidebar()">
+          <a><i class="fa-solid fa-xmark"></i></a>
+        </div>
+      </div>
+      <div class="sidebar-content">
+        <ul>
+          <li>
+            <a
+              class="list-group-item list-group-item-action m-0"
+              href="#list-item-1"
+              [class.active]="currentSection === 'list-item-1'"
+              (click)="onNavClick('list-item-1', $event)"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              class="list-group-item list-group-item-action m-0"
+              href="#list-item-2"
+              [class.active]="currentSection === 'list-item-2'"
+              (click)="onNavClick('list-item-2', $event)"
+              >About Us</a
+            >
+          </li>
+          <li>
+            <a
+              class="list-group-item list-group-item-action m-0"
+              href="#list-item-3"
+              [class.active]="currentSection === 'list-item-3'"
+              (click)="onNavClick('list-item-3', $event)"
+              >Our Services</a
+            >
+          </li>
+          <li>
+            <a
+              class="list-group-item list-group-item-action m-0"
+              href="#list-item-4"
+              [class.active]="currentSection === 'list-item-4'"
+              (click)="onNavClick('list-item-4', $event)"
+              >Core Technologies</a
+            >
+          </li>
+          <li>
+            <a
+              class="list-group-item list-group-item-action m-0"
+              routerLink="/portfolio"
+              routerLinkActive="active"
+              ariaCurrentWhenActive="page"
+              (click)="closeSidebar()"
+              >Portfolio</a
+            >
+          </li>
+          <li>
+            <a
+              class="list-group-item list-group-item-action m-0"
+              href="#list-item-13"
+              [class.active]="currentSection === 'list-item-13'"
+              (click)="onNavClick('list-item-13', $event)"
+              >AI Platform (LAAP)</a
+            >
+          </li>
+          <li>
+            <a
+              class="list-group-item list-group-item-action m-0"
+              href="#list-item-14"
+              [class.active]="currentSection === 'list-item-14'"
+              (click)="onNavClick('list-item-14', $event)"
+              >Knowledge Center</a
+            >
+          </li>
+          <li>
+            <a
+              class="list-group-item list-group-item-action m-0"
+              href="#list-item-9"
+              [class.active]="currentSection === 'list-item-9'"
+              (click)="onNavClick('list-item-9', $event)"
+              >Contact Llenroc Tech</a
+            >
+          </li>
+          <li>
+            <a
+              class="list-group-item list-group-item-action m-0"
+              href="#list-item-12"
+              [class.active]="currentSection === 'list-item-12'"
+              (click)="onNavClick('list-item-12', $event)"
+              >Client &amp; Talent Portal</a
+            >
+          </li>
+          <li>
+            <a
+              class="list-group-item list-group-item-action m-0"
+              href="#list-item-7"
+              [class.active]="currentSection === 'list-item-7'"
+              (click)="onNavClick('list-item-7', $event)"
+              >Reviews</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="space32"></div>
+      <div class="space16"></div>
+      <div class="btn-area">
+        <a
+          href="https://forms.office.com/Pages/ResponsePage.aspx?id=XMyOlFLWg0SZ0VoLGWT8r_j0A8qUhJNFifJhkhK5tu1UM0dEUFI0SFNRMjEyNEpDTTVQTDlUUkc4Wi4u"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="vl-btn1"
+        >
+          Request Services
+          <i class="fa-solid fa-briefcase"></i>
+        </a>
+      </div>
+      <div class="space40"></div>
+      <!--          <div class="social-link-area">-->
+      <!--              <h3 class="sidebar-heading">Social Links</h3>-->
+      <!--              <ul>-->
+      <!--                  <li>-->
+      <!--                      <a href="https://www.facebook.com/profile.php?id=61579963070844"><i class="fa-brands fa-facebook-f"></i></a>-->
+      <!--                      <a href="https://www.instagram.com/llenroc_tech/"><i class="fa-brands fa-instagram"></i></a>-->
+      <!--                      <a href="https://www.linkedin.com/company/llenroc-tech/"><i class="fa-brands fa-linkedin-in"></i></a>-->
+      <!--                      &lt;!&ndash; <a href="javascript:void(0);"><i class="fa-brands fa-pinterest-p"></i></a>-->
+      <!--                      <a href="javascript:void(0);"><i class="fa-brands fa-youtube"></i></a> &ndash;&gt;-->
+      <!--                  </li>-->
+      <!--              </ul>-->
+      <!--          </div>-->
+      <div class="space40"></div>
+      <!-- <div class="form-area">
               <h3>Subscribe To Newsletter</h3>
               <form>
                   <input type="text" placeholder="Email Address*">
                   <button type="submit" class="vl-btn1">subscribe</button>
               </form>
           </div> -->
-      </div>
+    </div>
   </div>
 </div>
 <header>
@@ -67,35 +148,48 @@
         <div class="col-lg-12">
           <div class="header-elements">
             <div class="site-logo">
-              <a routerLink="/"><img src="assets/img/logo/llenroc_logo_yellow.png" alt=""></a>
+              <a routerLink="/"
+                ><img src="assets/img/logo/llenroc_logo_yellow.png" alt=""
+              /></a>
             </div>
             <div class="btn-area d-lg-flex">
               <div class="theme-toggle-container">
                 <label class="theme-switch">
-                  <input type="checkbox" type="checkbox" [checked]="isLightMode" (change)="toggleTheme($event)"
-                    id="theme-toggle" id="theme-toggle">
+                  <input
+                    type="checkbox"
+                    [checked]="isLightMode"
+                    (change)="toggleTheme($event)"
+                    id="theme-toggle"
+                    aria-label="Use light theme"
+                  />
                   <span class="slider">
                     <i class="fas fa-moon icon moon-icon"></i>
                     <i class="fas fa-sun icon sun-icon"></i>
                   </span>
                 </label>
               </div>
-              <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=XMyOlFLWg0SZ0VoLGWT8r_j0A8qUhJNFifJhkhK5tu1UM0dEUFI0SFNRMjEyNEpDTTVQTDlUUkc4Wi4u" class="vl-btn1">
+              <a
+                href="https://forms.office.com/Pages/ResponsePage.aspx?id=XMyOlFLWg0SZ0VoLGWT8r_j0A8qUhJNFifJhkhK5tu1UM0dEUFI0SFNRMjEyNEpDTTVQTDlUUkc4Wi4u"
+                class="vl-btn1"
+              >
                 Request Services
                 <span>
-              <img src="assets/img/icons/mail1.svg" alt="">
-              </span>
+                  <img src="assets/img/icons/mail1.svg" alt="" />
+                </span>
               </a>
 
-              <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=XMyOlFLWg0SZ0VoLGWT8r85gfgwYVpRMtqWtHwIsEUBURDFSMDhNVEVHVjFTWUM1UlFVNjg1WlIzUiQlQCN0PWcu" class="vl-btn1">
+              <a
+                href="https://forms.office.com/Pages/ResponsePage.aspx?id=XMyOlFLWg0SZ0VoLGWT8r85gfgwYVpRMtqWtHwIsEUBURDFSMDhNVEVHVjFTWUM1UlFVNjg1WlIzUiQlQCN0PWcu"
+                class="vl-btn1"
+              >
                 JOIN NETWORK
                 <span>
-             <i class="fa-solid fa-user-plus"></i>
+                  <i class="fa-solid fa-user-plus"></i>
                 </span>
               </a>
 
               <button (click)="toggleSidebar()" class="hamburger_menu">
-                <img src="assets/img/icons/bars-icons1.svg" alt="Menu">
+                <img src="assets/img/icons/bars-icons1.svg" alt="Menu" />
               </button>
             </div>
           </div>

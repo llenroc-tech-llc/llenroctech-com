@@ -3,6 +3,7 @@ import type { Handler } from '@netlify/functions';
 const ENDPOINT = 'https://api.envato.com/v1/discovery/search/search/item';
 const MAX_ITEMS = 9;
 const ALLOWED_HOSTS = new Set(['themeforest.net', 'www.themeforest.net']);
+const ALLOWED_TERMS = new Set(['all','business','corporate','portfolio','ecommerce','fitness','education','real estate','technology','saas','nonprofit','medical','restaurant','travel']);
 
 const safeUrl = (value: unknown): string | undefined => {
   if (typeof value !== 'string') return undefined;
@@ -22,16 +23,22 @@ export const normalizeEnvatoItems = (payload: unknown) => {
       priceDisplay: Number.isFinite(item?.price_cents) ? `$${(item.price_cents / 100).toFixed(0)}` : undefined,
       tags: Array.isArray(item?.tags) ? item.tags.filter((tag: unknown) => typeof tag === 'string').slice(0, 6) : [], source: 'ThemeForest' as const,
       lastVerifiedAt: typeof item.updated_at === 'string' ? item.updated_at : undefined,
+      rating: Number.isFinite(item?.rating?.rating) ? item.rating.rating : undefined,
+      ratingCount: Number.isFinite(item?.rating?.count) ? item.rating.count : undefined,
+      sales: Number.isFinite(item?.number_of_sales) ? item.number_of_sales : undefined,
     };
   }).filter(Boolean).slice(0, MAX_ITEMS);
 };
 
-export const handler: Handler = async () => {
+export const handler: Handler = async (event) => {
   const token = process.env.ENVATO_PERSONAL_TOKEN;
   if (!token) return { statusCode: 503, headers: {'Cache-Control':'no-store'}, body: JSON.stringify({ error: 'temporarily_unavailable' }) };
   const controller = new AbortController(); const timeout = setTimeout(() => controller.abort(), 6500);
   try {
-    const url = `${ENDPOINT}?site=themeforest.net&term=${encodeURIComponent('angular saas business dashboard')}&page=1&page_size=${MAX_ITEMS}`;
+    const requested=(event.queryStringParameters?.q || 'all').trim().toLowerCase();
+    const term=ALLOWED_TERMS.has(requested) ? requested : 'all';
+    const search=term==='all' ? 'angular business saas' : `angular ${term}`;
+    const url = `${ENDPOINT}?site=themeforest.net&term=${encodeURIComponent(search)}&page=1&page_size=${MAX_ITEMS}`;
     const response = await fetch(url,{signal:controller.signal,headers:{Authorization:`Bearer ${token}`,'User-Agent':'llenroctech-template-inspiration',Accept:'application/json'}});
     if (!response.ok) return {statusCode:503,headers:{'Cache-Control':'no-store'},body:JSON.stringify({error:'temporarily_unavailable'})};
     const items=normalizeEnvatoItems(await response.json());

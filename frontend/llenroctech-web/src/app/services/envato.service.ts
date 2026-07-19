@@ -11,5 +11,8 @@ export interface EnvatoItem extends MarketplaceTemplate {
 @Injectable({ providedIn: 'root' })
 export class EnvatoService {
   private readonly http = inject(HttpClient);
-  list(_term?: string, _page?: number, _pageSize?: number) { return this.http.get<{ items: EnvatoItem[] }>('/.netlify/functions/envato-templates'); }
+  list(term = 'angular', _page?: number, _pageSize?: number) {
+    const query = new URLSearchParams({ q: term });
+    return this.http.get<{ items: EnvatoItem[] }>(`/.netlify/functions/envato-templates?${query.toString()}`);
+  }
 }
