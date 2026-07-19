@@ -1,82 +1,216 @@
-/* —— 2-up layout without clipping —— */
+/* —— Testimonial carousel: 2-up desktop, 1-up mobile —— */
 
-/* viewport = scroll container (hide bar, snap) */
-.ts-viewport{
-  overflow-x:auto;overflow-y:visible;
-  -ms-overflow-style:none;scrollbar-width:none;
-  scroll-snap-type:x mandatory;
-  scroll-padding-inline:12px;         /* <= match endcaps below */
+/* Viewport = horizontal scroll container */
+.ts-viewport {
+  overflow-x: auto;
+  overflow-y: visible;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 12px;
 }
-.ts-viewport::-webkit-scrollbar{display:none}
 
-/* rail = pure layout */
-.ts-rail{display:flex;gap:24px;padding:0}
-.ts-rail::before,.ts-rail::after{content:"";flex:0 0 12px} /* <= endcaps */
-
-/* card: 2-up math => 2*(50% - 12px) + 24px gap = 100% */
-.skill-section-area .ts-card.skill-boxarea{
-  flex:0 0 calc(50% - 12px);
-  max-width:calc(50% - 12px);
-  box-sizing:border-box;
-  scroll-snap-align:start;
-
-  background:var(--ztc-bg-bg2);
-  border:1px solid var(--ztc-border-border-2);
-  border-radius:8px;
-  padding:28px;
-  text-align:center;
-  transition:all .4s;
-  margin-bottom:20px;
-  min-height:0!important;
-  height:auto!important;
-  overflow:visible!important;
+.ts-viewport::-webkit-scrollbar {
+  display: none;
 }
+
+/* Rail = card layout */
+.ts-rail {
+  display: flex;
+  gap: 24px;
+  padding: 0;
+}
+
+.ts-rail::before,
+.ts-rail::after {
+  content: '';
+  flex: 0 0 12px;
+}
+
+/*
+ * Desktop card width:
+ * Two cards + one 24px gap + two 12px rail endcaps
+ */
+.skill-section-area .ts-card.skill-boxarea {
+  flex: 0 0 calc(50% - 24px);
+  max-width: calc(50% - 24px);
+  box-sizing: border-box;
+  scroll-snap-align: start;
+
+  background: var(--ztc-bg-bg2);
+  border: 1px solid var(--ztc-border-border-2);
+  border-radius: 8px;
+  padding: 28px;
+  margin-bottom: 20px;
+
+  text-align: center;
+  transition: transform 0.4s;
+
+  min-height: 0 !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
 .skill-section-area .ts-card.skill-boxarea::before,
-.skill-section-area .ts-card.skill-boxarea::after{display:none!important;content:none!important}
-.skill-section-area .ts-card.skill-boxarea:hover{transform:translateY(-4px)}
-
-/* —— initials block perfectly centered (nuke inherited icon styles) —— */
-.skill-section-area .ts-card .icons{
-  position:static!important;transform:none!important;
-  margin:0 0 10px!important;padding:0!important;
-  width:auto!important;height:auto!important;
-  background:transparent!important;border:0!important;box-shadow:none!important;
-  display:grid;place-items:center;
-}
-.skill-section-area .ts-card .avatar{
-  width:80px;height:80px;border-radius:16px;
-  display:grid;place-items:center;
-  font-weight:800;font-size:1.15rem;line-height:1;
-  background:rgba(76,201,240,.15);
-  border:1px solid rgba(76,201,240,.4);
-  color:#eaf7ff;
-  transform:none!important;           /* <- ensure no stray transforms */
+.skill-section-area .ts-card.skill-boxarea::after {
+  display: none !important;
+  content: none !important;
 }
 
-/* text + stars */
-.skill-section-area .ts-card .t-name{margin:0;font-weight:800;line-height:1.2;font-size:1.6rem}
-.skill-section-area .ts-card .t-source{margin:0;opacity:.75}
-.skill-section-area .ts-card .stars{display:inline-flex;gap:6px;align-items:center;justify-content:center}
-.skill-section-area .ts-card .star{width:18px;height:18px;fill:#ffd24d}
-.skill-section-area .ts-card .quote{position:relative!important;z-index:1;margin:0!important;padding:0 8px 4px!important;font-size:1rem!important;line-height:1.65!important;white-space:normal!important;overflow:visible!important;max-height:none!important;text-wrap:pretty}
-
-/* —— brighter pagination —— */
-.ts-controls{display:flex;justify-content:center;gap:12px;margin-top:12px}
-.ts-controls .btn{
-  all:unset;cursor:pointer;
-  width:30px;height:30px;border-radius:999px;
-  display:grid;place-items:center;
-  color:#111;                            /* arrow color */
-  background:rgba(255,255,255,.35);      /* brighter */
-  border:1px solid rgba(255,255,255,.55);
-  box-shadow:0 2px 6px rgba(0,0,0,.2);
-  font-weight:700; line-height:1;
+.skill-section-area .ts-card.skill-boxarea:hover {
+  transform: translateY(-4px);
 }
-.ts-controls .btn:hover{background:rgba(255,255,255,.5)}
-.ts-controls .btn:active{transform:scale(.96)}
 
-/* small screens: 1-up */
-@media (max-width:700px){
-  .skill-section-area .ts-card.skill-boxarea{flex:0 0 100%;max-width:100%;padding:24px 20px}
-  .skill-section-area .ts-card .avatar{width:72px;height:72px}
+/* Initials block */
+.skill-section-area .ts-card .icons {
+  position: static !important;
+  transform: none !important;
+
+  display: grid;
+  place-items: center;
+
+  width: auto !important;
+  height: auto !important;
+  margin: 0 0 10px !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.skill-section-area .ts-card .avatar {
+  display: grid;
+  place-items: center;
+
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1;
+
+  color: #eaf7ff;
+  background: rgba(76, 201, 240, 0.15);
+  border: 1px solid rgba(76, 201, 240, 0.4);
+
+  transform: none !important;
+}
+
+/* Testimonial text */
+.skill-section-area .ts-card .t-name {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.skill-section-area .ts-card .t-source {
+  margin: 0;
+  opacity: 0.75;
+}
+
+/* Stars */
+.skill-section-area .ts-card .stars {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.skill-section-area .ts-card .star {
+  width: 18px;
+  height: 18px;
+  fill: #ffd24d;
+}
+
+/* Quote */
+.skill-section-area .ts-card .quote {
+  position: relative !important;
+  z-index: 1;
+
+  margin: 0 !important;
+  padding: 0 8px 4px !important;
+
+  font-size: 1rem !important;
+  line-height: 1.65 !important;
+
+  white-space: normal !important;
+  overflow: visible !important;
+  overflow-wrap: anywhere;
+  max-height: none !important;
+
+  text-wrap: pretty;
+}
+
+/* Pagination */
+.ts-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.ts-controls .vl-btn1 {
+  display: grid;
+  place-items: center;
+
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+
+  color: #111;
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.ts-controls .vl-btn1:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.ts-controls .vl-btn1:active {
+  transform: scale(0.96);
+}
+
+/* Mobile: one full testimonial card */
+@media (max-width: 700px) {
+  .ts-rail {
+    gap: 16px;
+  }
+
+  .skill-section-area .ts-card.skill-boxarea {
+    flex: 0 0 calc(100% - 24px);
+    max-width: calc(100% - 24px);
+    padding: 24px 20px;
+  }
+
+  .skill-section-area .ts-card .avatar {
+    width: 72px;
+    height: 72px;
+  }
+
+  .skill-section-area .ts-card .t-name {
+    font-size: 1.35rem;
+  }
+
+  .skill-section-area .ts-card .quote {
+    padding-inline: 0 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.65 !important;
+  }
 }
