@@ -4,14 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { loadStripe, Stripe, StripeElements, PaymentRequest } from '@stripe/stripe-js';
 import { environment } from '../../../../environments/environment';
 
-declare const paypal: any;
-
 type MethodTab = 'card' | 'wallets' | 'paypal';
 type Addr = {
   line1?: string; line2?: string; city?: string; state?: string; postal?: string; country?: string;
 };
 
 const FN_BASE = environment.fnBase; // e.g. '/.netlify/functions'
+const PAYPAL_SDK_URL = 'https://www.paypal.com/sdk/js?client-id=Aej4J8ZbeJnGweDSfT1xnLNgGyFByFsoktBAiRtUZKGWrfLNhbxG4mE81zLip6R6lpon4MgIqbILrtaC&components=buttons,funding-eligibility&enable-funding=venmo';
+let paypalSdkPromise: Promise<any> | undefined;
 
 @Component({
   standalone: true,
@@ -304,17 +304,29 @@ async payInline(ev: Event) {
     });
   }
 
-  private waitForPaypal(timeout = 8000): Promise<any> {
-    return new Promise((resolve, reject) => {
-      const start = Date.now();
-      const look = () => {
-        const pp = (window as any).paypal;
-        if (pp?.Buttons) return resolve(pp);
-        if (Date.now() - start > timeout) return reject(new Error('PayPal SDK not loaded'));
-        setTimeout(look, 50);
+  private loadPaypalSdk(): Promise<any> {
+    const loadedPaypal = (window as any).paypal;
+    if (loadedPaypal?.Buttons) return Promise.resolve(loadedPaypal);
+    if (paypalSdkPromise) return paypalSdkPromise;
+
+    paypalSdkPromise = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = PAYPAL_SDK_URL;
+      script.async = true;
+      script.onload = () => {
+        const paypal = (window as any).paypal;
+        paypal?.Buttons
+          ? resolve(paypal)
+          : reject(new Error('PayPal SDK loaded without the Buttons component'));
       };
-      look();
+      script.onerror = () => reject(new Error('PayPal SDK failed to load'));
+      document.head.appendChild(script);
+    }).catch(error => {
+      paypalSdkPromise = undefined;
+      throw error;
     });
+
+    return paypalSdkPromise;
   }
 
   private async ensurePaypalButtons() {
@@ -325,7 +337,7 @@ async payInline(ev: Event) {
     });
     if (!container) return;
 
-    const pp = await this.waitForPaypal().catch(err => {
+    const pp = await this.loadPaypalSdk().catch(err => {
       this.err = err.message; return null;
     });
     if (!pp) return;
