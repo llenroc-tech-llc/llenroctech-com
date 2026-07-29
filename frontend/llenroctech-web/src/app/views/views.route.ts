@@ -1,40 +1,33 @@
 import { Route } from "@angular/router";
-import { IndexComponent } from "./index/index.component";
-import { HomeComponent } from "./home/home.component";
-import { Index3Component } from "./index3/index3.component";
-import { Index4Component } from "./index4/index4.component";
-import { Index5Component } from "./index5/index5.component";
-import { Index6Component } from "./index6/index6.component";
-import { Index7Component } from "./index7/index7.component";
 
 export const VIEWS_ROUTE: Route[] = [
     {
         path: 'index',
-        component: IndexComponent
+        loadComponent: () => import('./index/index.component').then(m => m.IndexComponent)
     },
     {
         path: 'home',
-        component: HomeComponent
+        loadComponent: () => import('./home/home.component').then(m => m.HomeComponent)
     },
     {
         path: 'index-3',
-        component: Index3Component
+        loadComponent: () => import('./index3/index3.component').then(m => m.Index3Component)
     },
     {
         path: 'index-4',
-        component: Index4Component
+        loadComponent: () => import('./index4/index4.component').then(m => m.Index4Component)
     },
     {
         path: 'index-5',
-        component: Index5Component
+        loadComponent: () => import('./index5/index5.component').then(m => m.Index5Component)
     },
     {
         path: 'index-6',
-        component: Index6Component
+        loadComponent: () => import('./index6/index6.component').then(m => m.Index6Component)
     },
     {
         path: 'index-7',
-        component: Index7Component
+        loadComponent: () => import('./index7/index7.component').then(m => m.Index7Component)
     },
       {
     path: 'admin/post/new',

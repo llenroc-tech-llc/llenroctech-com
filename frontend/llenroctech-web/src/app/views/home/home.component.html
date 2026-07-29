@@ -3,6 +3,8 @@
        [autoplay]="true"
        [loop]="true"
        playsinline
-       preload="auto">
-  <source src="assets/img/video/video1.mp4" type="video/mp4">
+       preload="none">
+  @if (videoSrc) {
+    <source [src]="videoSrc" type="video/mp4">
+  }
 </video>
