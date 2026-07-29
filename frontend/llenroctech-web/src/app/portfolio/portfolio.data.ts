@@ -213,13 +213,13 @@ export const PORTFOLIO_PROJECTS: readonly PortfolioProject[] = [
     sortOrder: 4,
   },
   {
-    id: 'enterprise-customer-platform',
-    title: 'Enterprise Customer Platform',
-    category: 'Enterprise Business Operations Platform',
+    id: 'customerconnect',
+    title: 'CustomerConnect',
+    category: 'ENTERPRISE CUSTOMER OPERATIONS PLATFORM',
     section: 'featured',
     status: 'Live',
     summary:
-      'A full-stack business operations suite unifying customer management, invoicing, workforce workflows, reporting, administration, and AI-assisted operational insights in one secure workspace.',
+      'A secure full-stack customer operations platform for account management, authentication, invoicing, workforce workflows, reporting, administration, and AI-assisted business operations.',
     technologies: [
       'Angular',
       'Spring Boot',
@@ -228,12 +228,13 @@ export const PORTFOLIO_PROJECTS: readonly PortfolioProject[] = [
       'REST APIs',
       'GitHub Actions',
       'Twilio',
+      'AWS',
       'AI-Assisted Experience',
     ],
     image:
-      'assets/img/all-images/portfolio/projects/enterprise-customer-platform.png',
+      'assets/img/all-images/portfolio/projects/customerconnect.png',
     imageAlt:
-      'Llenroc Tech Operations Suite enterprise operations dashboard',
+      'CustomerConnect enterprise customer operations dashboard',
     liveUrl: 'https://customerconnect.llenroctech.com/',
     external: true,
     featured: true,
