@@ -23,15 +23,15 @@ export class AppComponent {
   strokeDashOffset: number = 0;
   offset: number = 50;
   duration: number = 550;
-  showPreloader: boolean = true;
-
   constructor(
     private router: Router,
     private readonly themeService: ThemeService,
   ) {}
 
   ngOnInit() {
-    aos.init();
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => aos.init());
+    });
     const pathElement = document.querySelector(
       '.progress-circle path',
     ) as SVGPathElement;
@@ -40,10 +40,6 @@ export class AppComponent {
       pathElement.style.strokeDasharray = `${this.pathLength} ${this.pathLength}`;
       this.strokeDashOffset = this.pathLength;
     }
-
-    setTimeout(() => {
-      this.showPreloader = false;
-    }, 900);
 
     this.router.events
       .pipe(filter((e) => e instanceof NavigationEnd))

@@ -1,12 +1,5 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
-import { PreviewComponent } from './views/preview/preview.component';
-import { BlogSingleComponent } from './views/blog-single/blog-single.component';
-import { ContactComponent } from './layout/components/contact/contact.component';
-import { CheckoutPageComponent } from './layout/components/checkout-page/checkout-page.component';
-import { FormsIndexComponent } from './layout/components/forms-index/forms-index.component';
-import { InitialIntakeComponent } from './layout/components/initial-intake/initial-intake.component';
-import { ThankYouComponent } from './layout/components/thank-you/thank-you.component';
 import { ENTERPRISE_ROUTES } from './enterprise/enterprise.routes';
 
 export const routes: Routes = [
@@ -38,17 +31,17 @@ export const routes: Routes = [
     loadChildren: () => import('./views/views.route').then(m => m.VIEWS_ROUTE),
   },
 
-  { path: 'contact', component: ContactComponent },
-  { path: 'preview', component: PreviewComponent },
-  { path: 'blog-single/new', component: BlogSingleComponent },
-  { path: 'blog-single/:slug/edit', component: BlogSingleComponent },
-  { path: 'blog-single/:slug', component: BlogSingleComponent },
-  { path: 'checkout', component: CheckoutPageComponent },
+  { path: 'contact', loadComponent: () => import('./layout/components/contact/contact.component').then(m => m.ContactComponent) },
+  { path: 'preview', loadComponent: () => import('./views/preview/preview.component').then(m => m.PreviewComponent) },
+  { path: 'blog-single/new', loadComponent: () => import('./views/blog-single/blog-single.component').then(m => m.BlogSingleComponent) },
+  { path: 'blog-single/:slug/edit', loadComponent: () => import('./views/blog-single/blog-single.component').then(m => m.BlogSingleComponent) },
+  { path: 'blog-single/:slug', loadComponent: () => import('./views/blog-single/blog-single.component').then(m => m.BlogSingleComponent) },
+  { path: 'checkout', loadComponent: () => import('./layout/components/checkout-page/checkout-page.component').then(m => m.CheckoutPageComponent) },
   { path: 'checkout/success', loadComponent: () => import('./layout/components/checkout-success/checkout-success.component').then(m => m.CheckoutSuccessComponent) },
   { path: 'checkout/cancel', loadComponent: () => import('./layout/components/checkout-cancel/checkout-cancel.component').then(m => m.CheckoutCancelComponent) },
 
-  { path: 'forms', component: FormsIndexComponent },
-  { path: 'forms/initial-intake', component: InitialIntakeComponent },
-  { path: 'thank-you', component: ThankYouComponent },
+  { path: 'forms', loadComponent: () => import('./layout/components/forms-index/forms-index.component').then(m => m.FormsIndexComponent) },
+  { path: 'forms/initial-intake', loadComponent: () => import('./layout/components/initial-intake/initial-intake.component').then(m => m.InitialIntakeComponent) },
+  { path: 'thank-you', loadComponent: () => import('./layout/components/thank-you/thank-you.component').then(m => m.ThankYouComponent) },
   { path: '**', redirectTo: 'home' },
 ];
